@@ -1,0 +1,91 @@
+---
+import "@styles/styles.css";
+
+import { Icon } from 'astro-icon/components'
+---
+
+<!doctype html>
+<html
+    lang="en"
+    x-data="{
+        darkMode: localStorage.getItem('darkMode') !== 'false'
+    }"
+    x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))"
+    :data-theme="darkMode ? 'dark' : 'light'"
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>Astro Basics</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&display=swap" rel="stylesheet">
+    </head>
+	<body>
+        <a class="sr-only focus:not-sr-only" href="#main-content">Skip to Main Content</a>
+
+        <div class="absolute top-0 left-0 w-full flex items-center justify-end gap-p5 p-2">
+            <a
+                href="mailto:jeff@jeffglenn.me"
+                class="grid place-items-center size-[40px] rounded-lg dark:text-white/75 border border-transparent hover:border-gray-700"
+            >
+                <Icon name="envelope" />
+            </a>
+            <a
+                href="https://github.com/jeffaglenn"
+                class="grid place-items-center size-[40px] rounded-lg dark:text-white/75 border border-transparent hover:border-gray-700"
+            >
+                <Icon name="github" />
+            </a>
+            <button
+                @click="darkMode = !darkMode"
+                class="grid hover:cursor-pointer size-[40px] p-p75 border border-black/10 dark:border-gray-700 rounded-lg"
+            >
+                <span
+                    class="block col-start-1 row-start-1"
+                    x-show="!darkMode"
+                    x-transition:enter="transition ease duration-300"
+                    x-transition:enter-start=" scale-75 rotate-45"
+                    x-transition:enter-end=" scale-100 rotate-0"
+
+                >
+                    <Icon name="moon" class="size-full will-change-transform text-black/50" />
+                    <span class="sr-only">Switch to Dark Mode</span>
+                </span>
+                <span
+                    class="block col-start-1 row-start-1"
+                    x-show="darkMode"
+                    x-transition:enter="transition ease duration-300"
+                    x-transition:enter-start=" scale-75 rotate-45"
+                    x-transition:enter-end=" scale-100 rotate-0"
+
+                >
+                    <Icon name="sun" class="size-full will-change-transform text-yellow-200" />
+                    <span class="sr-only">Switch to Light Mode</span>
+                </span>
+            </button>
+        </div>
+
+        <main id="#main-content">
+            <slot />
+        </main>
+
+        <Icon name="bg-svg-1" class="fixed -top-1/4 -right-1/4 size-full text-red-500 -z-10 opacity-10 blur-[150px] animate-[spin_10s_linear_infinite] " />
+        <Icon name="bg-svg-2" class="fixed -bottom-1/4 -left-1/4 size-full text-purple-500 -z-10 opacity-5 blur-[150px] animate-[spin_10s_linear_infinite_reverse]" />
+	</body>
+</html>
+
+<script>
+    import "../scripts/app.js";
+</script>
+
+<style>
+    @keyframes rotate {
+        from {  -webkit-transform: rotate(0deg) rotate(0deg); }
+        to   {  -webkit-transform: rotate(360deg) rotate(-360deg); }
+    }
+</style>

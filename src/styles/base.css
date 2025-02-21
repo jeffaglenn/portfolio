@@ -1,0 +1,74 @@
+@layer base {
+    html {
+        @apply
+            /* dark:bg-gray-900 */
+            bg-gradient-to-br
+            from-white
+            to-amber-50
+            dark:from-gray-950
+            dark:to-gray-950
+            text-[10px]
+            scroll-smooth
+            font-mona
+            antialiased;
+    }
+
+    body {
+        @apply
+            text-1p8
+            md:text-2
+            dark:text-white;
+    }
+
+    ::selection {
+        @apply
+            bg-black
+            text-white;
+    }
+
+    a:focus,
+    button:focus {
+        @apply
+            outline-none
+            ring-2;
+    }
+
+    img,
+    svg {
+        @apply
+            max-w-full
+            h-auto;
+    }
+
+    /* Hide Alpine.js components that are hidden by default */
+    [x-cloak] {
+        @apply
+            hidden;
+    }
+}
+
+@layer components {
+    .wrapper {
+        @apply
+            w-full
+            max-w-[128rem]
+            mx-auto
+            px-[3vw];
+
+        /* &-no-padding {
+            @apply
+                max-w-screen-2xl
+                mx-auto;
+        } */
+    }
+
+    .remove-scrollbars {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}

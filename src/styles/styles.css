@@ -1,0 +1,11 @@
+@import "tailwindcss" source("../../");
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* Tailwind variable overrides */
+@import "./defaults.css";
+
+/* Starts custom CSS */
+@import "./base.css";
+@import "./typography.css";
+@import "./buttons.css";

@@ -1,0 +1,29 @@
+.btn {
+    @apply
+        relative
+        z-10;
+
+    &:before {
+        content: '';
+        @apply
+            absolute
+            w-full
+            h-full
+            top-0
+            left-0
+            opacity-0
+            z-[-1];
+        border-radius: inherit;
+        transition: opacity 0.5s;
+        background: radial-gradient(
+            100px circle at var(--button-mouse-x) center,
+            theme('colors.violet.500'),
+            theme('colors.blue.900')
+        );
+    }
+
+    &:hover:before {
+        @apply
+            opacity-25;
+    }
+}

@@ -1,0 +1,50 @@
+@theme {
+    /* Colors */
+    --color-black: #000000;
+    --color-white: #FFFFFF;
+
+    --color-gray-50: oklch(0.984 0.003 247.858);
+    --color-gray-100: oklch(0.968 0.007 247.896);
+    --color-gray-200: oklch(0.929 0.013 255.508);
+    --color-gray-300: oklch(0.869 0.022 252.894);
+    --color-gray-400: oklch(0.704 0.04 256.788);
+    --color-gray-500: oklch(0.554 0.046 257.417);
+    --color-gray-600: oklch(0.446 0.043 257.281);
+    --color-gray-700: oklch(0.372 0.044 257.287);
+    --color-gray-800: oklch(0.279 0.041 260.031);
+    --color-gray-900: oklch(0.208 0.042 265.755);
+    --color-gray-950: oklch(0.129 0.042 264.695);
+
+    /* Spacing */
+    --spacing-p25: 0.25rem;
+    --spacing-p5 : 0.5rem;
+    --spacing-p75: 0.75rem;
+    --spacing    : 1rem;
+
+    /* Font Families */
+    --font-mona  : "Mona Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+    /* Text Sizes */
+    --text-1  : 1rem;
+    --text-1p2: 1.2rem;
+    --text-1p4: 1.4rem;
+    --text-1p6: 1.6rem;
+    --text-1p8: 1.8rem;
+    --text-2  : 2rem;
+    --text-2p2: 2.2rem;
+    --text-2p4: 2.4rem;
+    --text-2p6: 2.6rem;
+    --text-2p8: 2.8rem;
+    --text-3  : 3rem;
+    --text-3p2: 3.2rem;
+    --text-3p4: 3.4rem;
+    --text-3p6: 3.6rem;
+    --text-3p8: 3.8rem;
+    --text-4  : 4rem;
+    --text-5  : 5rem;
+    --text-6  : 6rem;
+    --text-7  : 7rem;
+    --text-8  : 8rem;
+    --text-9  : 9rem;
+    --text-10 : 10rem;
+}

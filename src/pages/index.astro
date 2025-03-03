@@ -6,11 +6,11 @@ import pic from '@images/pic.jpg';
 <Layout>
 	<section class="h-screen flex items-center justify-center">
         <div class="text-center flex flex-col items-center">
-            <div class="relative size-[150px] mb-4">
-                <div class="absolute size-[150px] bg-yellow-300/25 dark:bg-blue-500 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_8s_linear_infinite_reverse] blur"></div>
-                <div class="absolute size-[150px] bg-orange-200/25 dark:bg-purple-500 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_4s_linear_infinite] blur"></div>
-                <div class="absolute size-[150px] bg-red-500/25 dark:bg-lime-300 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_6s_linear_infinite] blur"></div>
-                <div class="absolute size-[150px] border border-white/25 rounded-full">
+            <div class="relative size-[125px] mb-4">
+                <div class="absolute size-[125px] bg-yellow-300/25 dark:bg-blue-500 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_8s_linear_infinite_reverse] blur"></div>
+                <div class="absolute size-[125px] bg-orange-200/25 dark:bg-purple-500 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_4s_linear_infinite] blur"></div>
+                <div class="absolute size-[125px] bg-red-500/25 dark:bg-lime-300 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_6s_linear_infinite] blur"></div>
+                <div class="absolute size-[125px] border border-white/25 rounded-full">
                     <img src={ pic.src } alt="" class="rounded-full" />
                 </div>
             </div>
@@ -18,18 +18,87 @@ import pic from '@images/pic.jpg';
             <div class="space-y-4">
                 <div>
                     <!-- <h1 class="text-6 dark:text-gray-200">Jeff Glenn</h1> -->
-                    <h1 class="text-6 bg-gradient-to-b from-white to-white/75 inline-block text-transparent bg-clip-text">Jeff Glenn</h1>
+                    <h1 class="text-[clamp(4rem,5vw,5rem)] bg-gradient-to-b from-white to-white/75 inline-block text-transparent bg-clip-text">Jeff Glenn</h1>
                     <h2 class=" font-stretch-normal">Web Developer</h2>
                     <p>Currently the Web Director at Paradigm Marketing &amp; Creative</p>
                 </div>
 
 
                 <div class="flex items-center justify-center gap-2">
-                    <a href="" class="btn border border-white/10 hover:border-white/20 transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 bg-white/10 backdrop-blur-lg text-white">About</a>
-                    <a href="" class="btn border border-white/10 hover:border-white/20 transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 bg-white/10 backdrop-blur-lg text-white">Experience</a>
-                    <a href="" class="btn border border-white/10 hover:border-white/20 transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 bg-white/10 backdrop-blur-lg text-white">Contact</a>
+                    <a href="" class="btn border border-transparent hover:border-white/20 transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white">About</a>
+                    <a href="" class="btn border border-transparent hover:border-white/20 transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white">Experience</a>
+                    <a href="" class="btn border border-transparent hover:border-white/20 transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white">Contact</a>
                 </div>
             </div>
+        </div>
+
+    </section>
+
+    <section class="wrapper">
+        <div class="bg-white/10 p-4 rounded-lg backdrop-blur-lg border border-white/10">
+            <h2 class="mb-4">Work Experience</h2>
+            <ul class="space-y-4">
+                <li class="flex items-start gap-4">
+                    <div>
+                        <h3>Partner &amp; Web Director</h3>
+                        <h4>Paradigm Marketing &amp; Creative</h4>
+
+                        <ul>
+                            <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
+                            <li>Iste repellendus quaerat rerum dolorem eveniet sint quo perspiciatis.</li>
+                            <li>Nobis inventore rerum officiis blanditiis nobis aut.</li>
+                            <li>Eum dicta fuga sunt distinctio dignissimos quis.</li>
+                        </ul>
+                    </div>
+                    <div class="shrink-0">
+                        <p>2017-Present</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-4">
+                    <div>
+                        <h3>Freelance Web Designer &amp; Developer</h3>
+                        <ul>
+                            <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
+                            <li>Iste repellendus quaerat rerum dolorem eveniet sint quo perspiciatis.</li>
+                            <li>Nobis inventore rerum officiis blanditiis nobis aut.</li>
+                            <li>Eum dicta fuga sunt distinctio dignissimos quis.</li>
+                        </ul>
+                    </div>
+                    <div class="shrink-0">
+                        <p>2013-2017</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-4">
+                    <div>
+                        <h3>Web Designer &amp; Developer</h3>
+                        <h4>Deluge Studios</h4>
+                        <ul>
+                            <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
+                            <li>Iste repellendus quaerat rerum dolorem eveniet sint quo perspiciatis.</li>
+                            <li>Nobis inventore rerum officiis blanditiis nobis aut.</li>
+                            <li>Eum dicta fuga sunt distinctio dignissimos quis.</li>
+                        </ul>
+                    </div>
+                    <div class="shrink-0">
+                        <p>2009-2014</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-4">
+                    <div>
+                        <h3>Motion Graphic Design</h3>
+                        <h4>The University Network</h4>
+                        <ul>
+                            <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
+                            <li>Iste repellendus quaerat rerum dolorem eveniet sint quo perspiciatis.</li>
+                            <li>Nobis inventore rerum officiis blanditiis nobis aut.</li>
+                            <li>Eum dicta fuga sunt distinctio dignissimos quis.</li>
+                        </ul>
+                    </div>
+                    <div class="shrink-0">
+                        <p>2007-2009</p>
+                    </div>
+                </li>
+            </ul>
         </div>
 
     </section>

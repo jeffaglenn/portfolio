@@ -17,7 +17,7 @@
         transition: opacity 0.5s;
         background: radial-gradient(
             100px circle at var(--button-mouse-x) center,
-            theme('colors.violet.500'),
+            theme('colors.rose.300'),
             theme('colors.blue.900')
         );
     }

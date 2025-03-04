@@ -16,14 +16,14 @@
         border-radius: inherit;
         transition: opacity 0.5s;
         background: radial-gradient(
-            100px circle at var(--button-mouse-x) center,
-            theme('colors.rose.300'),
-            theme('colors.blue.900')
+            75px circle at var(--button-mouse-x) center,
+            theme('colors.pink.700'),
+            transparent
         );
     }
 
     &:hover:before {
         @apply
-            opacity-25;
+            opacity-50;
     }
 }

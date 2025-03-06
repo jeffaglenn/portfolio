@@ -7,11 +7,13 @@ import pic from '@images/pic.jpg';
 	<section class="h-screen flex items-center justify-center">
         <div class="text-center flex flex-col items-center">
             <div class="relative size-[125px] mb-4">
-                <div class="absolute size-[125px] bg-yellow-300/25 dark:bg-blue-500 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_8s_linear_infinite_reverse] blur"></div>
-                <div class="absolute size-[125px] bg-orange-200/25 dark:bg-purple-500 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_4s_linear_infinite] blur"></div>
-                <div class="absolute size-[125px] bg-red-500/25 dark:bg-lime-300 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_6s_linear_infinite] blur"></div>
-                <div class="absolute size-[125px] border border-white/25 rounded-full">
-                    <img src={ pic.src } alt="" class="rounded-full" />
+                <div class="absolute glow">
+                    <div class="absolute size-[125px] bg-yellow-300/25 dark:bg-blue-500 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_8s_linear_infinite_reverse] blur"></div>
+                    <div class="absolute size-[125px] bg-orange-200/25 dark:bg-purple-500 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_4s_linear_infinite] blur"></div>
+                    <div class="absolute size-[125px] bg-red-500/25 dark:bg-yellow-200 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_6s_linear_infinite] blur"></div>
+                </div>
+                <div class="absolute size-[125px]  rounded-full">
+                    <img id="profile-pic" src={ pic.src } alt="" class="rounded-full" />
                 </div>
             </div>
 
@@ -117,10 +119,9 @@ import pic from '@images/pic.jpg';
     </section>
 </Layout>
 
-
 <style>
     @keyframes rotate {
-        from {  -webkit-transform: rotate(0deg) translateX(5px) rotate(0deg); }
-        to   {  -webkit-transform: rotate(360deg) translateX(5px) rotate(-360deg); }
+        from {  -webkit-transform: rotate(0deg) translateX(10px) rotate(0deg); }
+        to   {  -webkit-transform: rotate(360deg) translateX(10px) rotate(-360deg); }
     }
 </style>

@@ -10,18 +10,34 @@ if (isTouchDevice()) {
 // Random Profile Picture Logic
 // --------------------------------- //
 const images = [
-    "https://picsum.photos/seed/1/800/800",
-    "https://picsum.photos/seed/2/800/800",
-    "https://picsum.photos/seed/3/800/800",
-    "https://picsum.photos/seed/4/800/800",
-    "https://picsum.photos/seed/5/800/800",
-    "https://picsum.photos/seed/6/800/800",
-    "https://picsum.photos/seed/7/800/800",
-    "https://picsum.photos/seed/8/800/800",
-    "https://picsum.photos/seed/9/800/800",
-    "https://picsum.photos/seed/10/800/800",
-    "https://picsum.photos/seed/11/800/800",
-    "https://picsum.photos/seed/12/800/800",
+    "/profile-pic/profile1.webp",
+    "/profile-pic/profile2.webp",
+    "/profile-pic/profile3.webp",
+    "/profile-pic/profile4.webp",
+    "/profile-pic/profile5.webp",
+    "/profile-pic/profile6.webp",
+    "/profile-pic/profile7.webp",
+    "/profile-pic/profile8.webp",
+    "/profile-pic/profile9.webp",
+    "/profile-pic/profile10.webp",
+    "/profile-pic/profile11.webp",
+    "/profile-pic/profile12.webp",
+    "/profile-pic/profile13.webp",
+    "/profile-pic/profile14.webp",
+    "/profile-pic/profile15.webp",
+    "/profile-pic/profile16.webp",
+    "/profile-pic/profile17.webp",
+    "/profile-pic/profile18.webp",
+    "/profile-pic/profile19.webp",
+    "/profile-pic/profile20.webp",
+    "/profile-pic/profile21.webp",
+    "/profile-pic/profile22.webp",
+    "/profile-pic/profile23.webp",
+    "/profile-pic/profile24.webp",
+    "/profile-pic/profile25.webp",
+    "/profile-pic/profile26.webp",
+    "/profile-pic/profile27.webp",
+    "/profile-pic/profile28.webp",
 ];
 
 let availableImages = [...images];
@@ -62,7 +78,7 @@ document.addEventListener("mousemove", ({ clientX, clientY }) => {
     }px)`;
 
     // Change profile pic if the mouse has moved > 50px in any direction
-    if (Math.abs(clientX - lastMouseX) > 50 || Math.abs(clientY - lastMouseY) > 50) {
+    if (Math.abs(clientX - lastMouseX) > 100 || Math.abs(clientY - lastMouseY) > 100) {
         document.getElementById("profile-pic").src = getRandomImage();
         lastMouseX = clientX;
         lastMouseY = clientY;

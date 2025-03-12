@@ -10,6 +10,7 @@ if (isTouchDevice()) {
 // Random Profile Picture Logic
 // --------------------------------- //
 const images = [
+    "/profile-pic/profile.jpg",
     "/profile-pic/profile1.webp",
     "/profile-pic/profile2.webp",
     "/profile-pic/profile3.webp",
@@ -43,6 +44,8 @@ const images = [
 let availableImages = [...images];
 let lastMouseX = 0;
 let lastMouseY = 0;
+let originalImage = document.getElementById("profile-pic").src;
+let revertTimeout;
 
 function getRandomImage() {
     if (!availableImages.length) {
@@ -50,6 +53,10 @@ function getRandomImage() {
     }
     const index = Math.floor(Math.random() * availableImages.length);
     return availableImages.splice(index, 1)[0];
+}
+
+function revertToOriginalImage() {
+    document.getElementById("profile-pic").src = originalImage;
 }
 
 // --------------------------------- //
@@ -77,11 +84,15 @@ document.addEventListener("mousemove", ({ clientX, clientY }) => {
         Math.sin(angle) * distance
     }px)`;
 
-    // Change profile pic if the mouse has moved > 50px in any direction
+    // Change profile pic if the mouse has moved > 100px in any direction
     if (Math.abs(clientX - lastMouseX) > 100 || Math.abs(clientY - lastMouseY) > 100) {
         document.getElementById("profile-pic").src = getRandomImage();
         lastMouseX = clientX;
         lastMouseY = clientY;
+
+        // Clear the previous timeout and set a new one
+        clearTimeout(revertTimeout);
+        revertTimeout = setTimeout(revertToOriginalImage, 2000);
     }
 });
 

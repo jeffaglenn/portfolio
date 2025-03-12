@@ -1,16 +1,16 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import pic from '@images/pic.jpg';
+import pic from '@images/profile.jpg';
 ---
 
 <Layout>
 	<section class="h-screen flex items-center justify-center">
         <div class="text-center flex flex-col items-center">
-            <div class="relative size-[125px] mb-4 ring ring-white/50 rounded-full">
+            <div class="relative size-[125px] mb-4 ring-2 ring-blue-900/50 dark:ring-white/50 rounded-full">
                 <div class="absolute glow">
-                    <div class="absolute size-[125px] bg-yellow-300/25 dark:bg-blue-500 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_8s_linear_infinite_reverse] blur"></div>
-                    <div class="absolute size-[125px] bg-orange-200/25 dark:bg-purple-500 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_4s_linear_infinite] blur"></div>
-                    <div class="absolute size-[125px] bg-red-500/25 dark:bg-yellow-200 mix-blend-multiply dark:mix-blend-screen rounded-full animate-[rotate_6s_linear_infinite] blur"></div>
+                    <div class="absolute size-[125px] bg-yellow-100 dark:bg-blue-500  dark:mix-blend-screen rounded-full animate-[rotate_8s_linear_infinite_reverse] blur"></div>
+                    <div class="absolute size-[125px] bg-orange-100 dark:bg-purple-500  dark:mix-blend-screen rounded-full animate-[rotate_4s_linear_infinite] blur"></div>
+                    <div class="absolute size-[125px] bg-white dark:bg-yellow-200 dark:mix-blend-screen rounded-full animate-[rotate_6s_linear_infinite] blur"></div>
                 </div>
                 <div class="absolute size-full rounded-full">
                     <img id="profile-pic" src={ pic.src } alt="" class="rounded-full" />
@@ -41,14 +41,15 @@ import pic from '@images/pic.jpg';
     </section>
 
     <section class="wrapper">
-        <div class="bg-white/5 p-4 rounded-lg backdrop-blur-3xl border border-white/10">
+        <div class="bg-white/50 dark:bg-white/5 p-4 rounded-lg backdrop-blur-3xl border border-white/10 shadow-2xl">
             <h2 class="text-1p6 uppercase mb-4 font-medium">Work Experience</h2>
 
             <ul class="divide-y divide-white/50">
                 <li class="flex items-start gap-4 pb-4">
                     <div>
-                        <h3 class="text-2p4 mb-1">Partner &amp; Web Director</h3>
-                        <h4 class="font-stretch-normal text-1p4 opacity-75 uppercase">Paradigm Marketing &amp; Creative</h4>
+                        <h3 class="text-2p4">Partner &amp; Web Director</h3>
+                        <!-- <h4 class="text-fuchsia-500 font-stretch-normal text-1p4 uppercase">Paradigm Marketing &amp; Creative</h4> -->
+                        <h4 class="bg-gradient-to-r from-fuchsia-500 to-yellow-500 inline-block text-transparent bg-clip-text font-stretch-normal text-1p4 uppercase">Paradigm Marketing &amp; Creative</h4>
 
                         <ul class="mt-2 list-disc ml-2">
                             <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
@@ -78,8 +79,8 @@ import pic from '@images/pic.jpg';
                 </li>
                 <li class="flex items-start gap-4 py-4">
                     <div>
-                        <h3 class="text-2p4 mb-1">Web Designer &amp; Developer</h3>
-                        <h4 class="font-stretch-normal text-1p4 opacity-75 uppercase">Deluge Studios</h4>
+                        <h3 class="text-2p4">Web Designer &amp; Developer</h3>
+                        <h4 class="text-fuchsia-500 font-stretch-normal text-1p4 uppercase">Deluge Studios</h4>
 
                         <ul class="mt-2 list-disc ml-2">
                             <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
@@ -93,8 +94,8 @@ import pic from '@images/pic.jpg';
                 </li>
                 <li class="flex items-start gap-4 pt-4">
                     <div>
-                        <h3 class="text-2p4 mb-1">Motion Graphic Designer</h3>
-                        <h4 class="font-stretch-normal text-1p4 opacity-75 uppercase">The University Network</h4>
+                        <h3 class="text-2p4">Motion Graphic Designer</h3>
+                        <h4 class="bg-gradient-to-r from-fuchsia-500 to-yellow-500 inline-block text-transparent bg-clip-text font-stretch-normal text-1p4 uppercase">The University Network</h4>
 
                         <ul class="mt-2 list-disc ml-2">
                             <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>

@@ -17,6 +17,7 @@
         @apply
             text-1p8
             md:text-2
+            text-gray-800
             dark:text-white;
     }
 

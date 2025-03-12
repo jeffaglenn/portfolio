@@ -1,6 +1,8 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import pic from '@images/profile.jpg';
+
+import { Icon } from 'astro-icon/components'
 ---
 
 <Layout>
@@ -19,37 +21,132 @@ import pic from '@images/profile.jpg';
 
             <div class="space-y-4">
                 <div>
-                    <!-- <h1 class="text-6 dark:text-gray-200">Jeff Glenn</h1> -->
                     <h1 class="text-[clamp(4rem,5vw,5rem)] mb-1">Jeff Glenn</h1>
                     <h2 class="opacity-75 font-stretch-normal uppercase text-1p4 font-medium">Web Designer &amp; Front-End Developer</h2>
-                    <!-- <p>Currently the Web Director at Paradigm Marketing &amp; Creative</p> -->
                 </div>
 
 
                 <div class="flex items-center justify-center gap-2">
                     <a href="" class="btn transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white">About</a>
                     <a href="" class="btn transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white">Experience</a>
-                    <a href="" class="btn transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white">Contact</a>
+                    <a href="mailto:jeff@jeffglenn.me" class="btn transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white">Contact</a>
                 </div>
             </div>
         </div>
 
     </section>
 
-    <section>
-
+    <section class="py-8">
+        <div class="wrapper max-w-prose">
+            <p>Jeff is a life-long Memphian specializing in digital design & development. Taking a project from conception to completion is his specialty and when he solves a problem, it makes his day. With over 10 years of design experience, ranging from print, web & motion, Jeff is committed to providing clients with professional and engaging designs while always pushing the finished product forward creatively.</p>
+            <p>He loves Arrested Development, Hawaii, Disney, Alton Brown and backpacking in the Smoky Mountains.</p>
+            <p>He and his wife Megan are beach aficionados and hope to make their home on 30A sooner rather than later.</p>
+        </div>
     </section>
 
-    <section class="wrapper">
-        <div class="bg-white/50 dark:bg-white/5 p-4 rounded-lg backdrop-blur-3xl border border-white/10 shadow-2xl">
-            <h2 class="text-1p6 uppercase mb-4 font-medium">Work Experience</h2>
+    <section class="py-8">
+        <div class="wrapper max-w-prose flex gap-8">
+            <div class="flex-1">
+                <h2 class="text-[clamp(4rem,5vw,5rem)]">
+                    Recent Projects
+                </h2>
+                <p>Orpheum, Regency, Dixon, Brother DTG, Production DTG, Reinhart, The Henry, Beechfork, Mission, Miestro, thomas family law, Madeline Farms</p>
+            </div>
 
+            <ul class="grid gap-4 flex-1">
+                <li class="space-y-p5">
+                    <a href="" class="font-semibold">
+                        Orpheum Theater Group
+                        <Icon name="external" class="inline size-[13px]" />
+                    </a>
+                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Craft CMS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="" class="font-semibold">
+                        Dixon Gallery &amp; Gardens
+                        <Icon name="external" class="inline size-[13px]" />
+                    </a>
+                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Craft CMS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="" class="font-semibold">
+                        Brother Direct to Garment Printing
+                        <Icon name="external" class="inline size-[13px]" />
+                    </a>
+                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Astro JS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="" class="font-semibold">
+                        Regency Homebuilders
+                        <Icon name="external" class="inline size-[13px]" />
+                    </a>
+                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Craft CMS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="" class="font-semibold">
+                        Reinhart Law
+                        <Icon name="external" class="inline size-[13px]" />
+                    </a>
+                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Craft CMS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="" class="font-semibold">
+                        Thomas Family Law
+                        <Icon name="external" class="inline size-[13px]" />
+                    </a>
+                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Craft CMS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="" class="font-semibold">
+                        The Henry
+                        <Icon name="external" class="inline size-[13px]" />
+                    </a>
+                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Wordpress</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">GSAP</li>
+                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="wrapper max-w-prose">
+        <h2 class="mb-2 font-medium">Work Experience</h2>
+        <div class="text-1p6 bg-white/50 dark:bg-white/5 p-4 rounded-lg backdrop-blur-3xl border border-white/10 shadow-2xl">
             <ul class="divide-y divide-white/50">
                 <li class="flex items-start gap-4 pb-4">
                     <div>
-                        <h3 class="text-2p4">Partner &amp; Web Director</h3>
-                        <!-- <h4 class="text-fuchsia-500 font-stretch-normal text-1p4 uppercase">Paradigm Marketing &amp; Creative</h4> -->
-                        <h4 class="bg-gradient-to-r from-fuchsia-500 to-yellow-500 inline-block text-transparent bg-clip-text font-stretch-normal text-1p4 uppercase">Paradigm Marketing &amp; Creative</h4>
+                        <h3 class="text-2p4 font-semibold">
+                            Partner &amp; Web Director
+                        </h3>
+                        <h4 class="text-pink-500 font-stretch-normal">
+                            <a href="https://2dimes.com">Paradigm Marketing &amp; Creative</a>
+                        </h4>
 
                         <ul class="mt-2 list-disc ml-2">
                             <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
@@ -64,8 +161,12 @@ import pic from '@images/profile.jpg';
                 </li>
                 <li class="flex items-start gap-4 py-4">
                     <div>
-                        <h3 class="text-2p4 mb-1">Freelance Web Designer &amp; Developer</h3>
-
+                        <h3 class="text-2p4 font-semibold">
+                            Web Designer &amp; Developer
+                        </h3>
+                        <h4 class="text-pink-500 font-stretch-normal">
+                            Freelance
+                        </h4>
                         <ul class="mt-2 list-disc ml-2">
                             <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
                             <li>Iste repellendus quaerat rerum dolorem eveniet sint quo perspiciatis.</li>
@@ -79,8 +180,12 @@ import pic from '@images/profile.jpg';
                 </li>
                 <li class="flex items-start gap-4 py-4">
                     <div>
-                        <h3 class="text-2p4">Web Designer &amp; Developer</h3>
-                        <h4 class="text-fuchsia-500 font-stretch-normal text-1p4 uppercase">Deluge Studios</h4>
+                        <h3 class="text-2p4 font-semibold">
+                            Web Designer &amp; Developer
+                        </h3>
+                        <h4 class="text-pink-500 font-stretch-normal">
+                            Deluge Studios
+                        </h4>
 
                         <ul class="mt-2 list-disc ml-2">
                             <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
@@ -94,8 +199,12 @@ import pic from '@images/profile.jpg';
                 </li>
                 <li class="flex items-start gap-4 pt-4">
                     <div>
-                        <h3 class="text-2p4">Motion Graphic Designer</h3>
-                        <h4 class="bg-gradient-to-r from-fuchsia-500 to-yellow-500 inline-block text-transparent bg-clip-text font-stretch-normal text-1p4 uppercase">The University Network</h4>
+                        <h3 class="text-2p4 font-semibold">
+                            Motion Graphic Designer
+                        </h3>
+                        <h4 class="text-pink-500 font-stretch-normal">
+                            The University Network
+                        </h4>
 
                         <ul class="mt-2 list-disc ml-2">
                             <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
@@ -113,15 +222,13 @@ import pic from '@images/profile.jpg';
 
     <section class="py-8">
         <div class="wrapper">
-            <p>Links</p>
-            <p>Orpheum, Regency, Dixon, Brother DTG, Production DTG, Reinhart, The Henry, Beechfork, Mission, Miestro, thomas family law, Madeline Farms</p>
-        </div>
-    </section>
-    <section class="py-8">
-        <div class="wrapper">
-            <p>Logo list</p>
+            <p>Logo list?</p>
             <p>Allure, Ballet Memphis, Regency, Orpheum, Reinhart, Dixon, Brother</p>
         </div>
+    </section>
+
+    <section>
+        Contact Information
     </section>
 </Layout>
 

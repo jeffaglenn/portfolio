@@ -3,6 +3,11 @@ import Layout from '@layouts/Layout.astro';
 import pic from '@images/profile.jpg';
 
 import { Icon } from 'astro-icon/components'
+import { getCollection } from 'astro:content';
+
+const projectsData = await getCollection('projects');
+console.log(projectsData);
+
 ---
 
 <Layout>
@@ -44,101 +49,30 @@ import { Icon } from 'astro-icon/components'
         </div>
     </section>
 
-    <section class="py-8">
-        <div class="wrapper max-w-prose flex gap-8">
-            <div class="flex-1">
-                <h2 class="text-[clamp(4rem,5vw,5rem)]">
-                    Recent Projects
-                </h2>
-                <p>Orpheum, Regency, Dixon, Brother DTG, Production DTG, Reinhart, The Henry, Beechfork, Mission, Miestro, thomas family law, Madeline Farms</p>
+    <section class="py-8 wrapper">
+        <div class="grid grid-cols-2 gap-1">
+            <div class="p-2">
+                <h2 class="text-pink-500 dark:text-purple-500 font-medium">Recent Projects</h2>
             </div>
 
-            <ul class="grid gap-4 flex-1">
-                <li class="space-y-p5">
-                    <a href="" class="font-semibold">
-                        Orpheum Theater Group
-                        <Icon name="external" class="inline size-[13px]" />
-                    </a>
+            { projectsData.map(project => (
+                <a href={ project.data.url } class="block font-semibold space-y-p5 border border-white/10 p-2 rounded-lg backdrop-blur-2xl hover:bg-white/5">
+                    { project.data.title }
+                    <Icon name="external" class="inline size-[13px]" />
                     <ul class="text-1 flex flex-wrap gap-1 mt-p5">
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Craft CMS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
+                        { project.data.technologies.map(tech => (
+                            <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">{ tech }</li>
+                        )) }
                     </ul>
-                </li>
-                <li>
-                    <a href="" class="font-semibold">
-                        Dixon Gallery &amp; Gardens
-                        <Icon name="external" class="inline size-[13px]" />
-                    </a>
-                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Craft CMS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="" class="font-semibold">
-                        Brother Direct to Garment Printing
-                        <Icon name="external" class="inline size-[13px]" />
-                    </a>
-                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Astro JS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="" class="font-semibold">
-                        Regency Homebuilders
-                        <Icon name="external" class="inline size-[13px]" />
-                    </a>
-                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Craft CMS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="" class="font-semibold">
-                        Reinhart Law
-                        <Icon name="external" class="inline size-[13px]" />
-                    </a>
-                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Craft CMS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="" class="font-semibold">
-                        Thomas Family Law
-                        <Icon name="external" class="inline size-[13px]" />
-                    </a>
-                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Craft CMS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Alpine JS</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="" class="font-semibold">
-                        The Henry
-                        <Icon name="external" class="inline size-[13px]" />
-                    </a>
-                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">Wordpress</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">GSAP</li>
-                        <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">TailwindCSS</li>
-                    </ul>
-                </li>
-            </ul>
+                </a>
+            ))}
         </div>
     </section>
 
     <section class="wrapper max-w-prose">
-        <h2 class="mb-2 font-medium">Work Experience</h2>
-        <div class="text-1p6 bg-white/50 dark:bg-white/5 p-4 rounded-lg backdrop-blur-3xl border border-white/10 shadow-2xl">
-            <ul class="divide-y divide-white/50">
+        <h2 class="mb-2 font-medium text-pink-500">Work Experience</h2>
+        <div class="text-1p6 bg-white/50 dark:bg-white/5 p-4 rounded-lg border border-white/50 dark:border-white/10 shadow-2xl shadow-pink-500/20 dark:shadow-pink-500/10 ">
+            <ul class="divide-y divide-pink-500/10 dark:divide-white/10">
                 <li class="flex items-start gap-4 pb-4">
                     <div>
                         <h3 class="text-2p4 font-semibold">

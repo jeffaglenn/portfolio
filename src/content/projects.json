@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "title": "Orpheum Theater Group",
+        "description": "Description of Project 1",
+        "technologies": ["Craft CMS", "AlpineJS", "TailwindCSS"],
+        "url": "https://www.orpheum-memphis.com"
+    },
+    {
+        "id": 2,
+        "title": "Dixon Gallery & Gardens",
+        "description": "Description of Project 2",
+        "technologies": ["Craft CMS", "AlpineJS", "TailwindCSS"],
+        "url": "https://dixon.org"
+    },
+    {
+        "id": 3,
+        "title": "Brother Direct to Garment Printing",
+        "description": "Description of Project 3",
+        "technologies": ["Astro JS", "AlpineJS", "TailwindCSS"],
+        "url": "https://brotherdtg.com"
+    },
+    {
+        "id": 4,
+        "title": "Regency Homebuilders",
+        "description": "Description of Project 3",
+        "technologies": ["Craft CMS", "AlpineJS", "TailwindCSS"],
+        "url": "https://newregencyhomes.com"
+    },
+    {
+        "id": 5,
+        "title": "Reinhart Law",
+        "description": "Description of Project 3",
+        "technologies": ["Craft CMS", "AlpineJS", "TailwindCSS", "Algolia"],
+        "url": "https://reinhartlaw.com"
+    },
+    {
+        "id": 6,
+        "title": "Thomas Family Law",
+        "description": "Description of Project 3",
+        "technologies": ["Craft CMS", "AlpineJS", "TailwindCSS", "GSAP"],
+        "url": "https://thomasfamilylaw.net"
+    },
+    {
+        "id": 7,
+        "title": "The Henry",
+        "description": "Description of Project 3",
+        "technologies": ["Wordpress", "TailwindCSS", "GSAP"],
+        "url": "https://thehenryclt.com"
+    }
+]

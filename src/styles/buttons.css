@@ -1,0 +1,21 @@
+.btn {
+    @apply
+        shadow-xl
+        uppercase
+        tracking-wider
+        text-1p2
+        font-medium
+        leading-none
+        px-2
+        py-1
+        backdrop-blur-lg
+        dark:text-white
+        bg-white/40
+        dark:bg-transparent
+        dark:backdrop-brightness-200
+        ring
+        ring-inset
+        ring-pink-500/20
+        dark:ring-pink-500/10
+        rounded-xl;
+}

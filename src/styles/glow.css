@@ -1,10 +1,4 @@
 .glow-hover {
-    @apply
-        ring
-        ring-inset
-        ring-transparent
-        hover:ring-white/10;
-
     &:before {
         content: '';
         @apply
@@ -19,13 +13,26 @@
         transition: opacity 0.5s;
         background: radial-gradient(
             circle farthest-side at var(--button-mouse-x) var(--button-mouse-y),
-            theme('colors.pink.700'),
+            #fff,
             transparent
         );
     }
 
     &:hover:before {
-        @apply
-            opacity-50;
+        @apply opacity-100;
+    }
+}
+
+/* Override hover opacity when using data-theme="dark" */
+[data-theme="dark"] .glow-hover {
+    &:before {
+        background: radial-gradient(
+            circle farthest-side at var(--button-mouse-x) var(--button-mouse-y),
+            theme('colors.pink.500'),
+            transparent
+        );
+    }
+    &:hover::before {
+        @apply opacity-30;
     }
 }

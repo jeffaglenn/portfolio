@@ -8,4 +8,5 @@
 /* Starts custom CSS */
 @import "./base.css";
 @import "./typography.css";
+@import "./buttons.css";
 @import "./glow.css";

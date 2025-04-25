@@ -13,12 +13,12 @@ const experienceData = await getCollection('experience');
 	<section class="h-screen flex items-center justify-center">
         <div class="text-center flex flex-col items-center">
             <div
-                class="relative size-[125px] mb-4 ring-2 ring-blue-900/50 dark:ring-white/50 rounded-full rounded-bl-none"
+                class="relative size-[125px] mb-4 ring-2 ring-cyan-400/50 dark:ring-white/50 rounded-full rounded-bl-none"
                 data-stagger-fade-in
             >
                 <div class="absolute glow">
-                    <div class="absolute size-[125px] bg-yellow-100 dark:bg-blue-500  dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_8s_linear_infinite_reverse] blur"></div>
-                    <div class="absolute size-[125px] bg-orange-100 dark:bg-purple-500  dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_4s_linear_infinite] blur"></div>
+                    <div class="absolute size-[125px] bg-yellow-200 dark:bg-blue-500  dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_8s_linear_infinite_reverse] blur"></div>
+                    <div class="absolute size-[125px] bg-yellow-100 dark:bg-purple-500  dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_4s_linear_infinite] blur"></div>
                     <div class="absolute size-[125px] bg-white dark:bg-yellow-200 dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_6s_linear_infinite] blur"></div>
                 </div>
                 <div class="absolute size-full rounded-full rounded-bl-none">
@@ -44,22 +44,22 @@ const experienceData = await getCollection('experience');
 
                 <div class=" flex items-center justify-center gap-2">
                     <a
-                        href=""
-                        class="glow-hover backdrop-brightness-200 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white"
+                        href="#about"
+                        class="btn glow-hover shadow-pink-500/10"
                         data-stagger-fade-in
                     >
                         About
                     </a>
                     <a
-                        href=""
-                        class="glow-hover backdrop-brightness-200 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white"
+                        href="#projects"
+                        class="btn glow-hover shadow-pink-500/10"
                         data-stagger-fade-in
                     >
                         Experience
                     </a>
                     <a
                         href="mailto:jeff@jeffglenn.me"
-                        class="glow-hover backdrop-brightness-200 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white"
+                        class="btn glow-hover shadow-pink-500/10"
                         data-stagger-fade-in
                     >
                         Contact
@@ -69,7 +69,7 @@ const experienceData = await getCollection('experience');
         </div>
     </section>
 
-    <section class="mb-16 wrapper max-w-prose space-y-2">
+    <section id="about" class="mb-16 wrapper max-w-prose space-y-2 scroll-mt-16">
         <p data-fade-in>Jeff is a Memphis-based designer and developer with over a decade of experience in web, print, motion, and photography. He specializes in taking projects from concept to completion, focusing on clean, effective design and thoughtful problem-solving.</p>
         <p data-fade-in>As a partner at <a href="https://2dimes.com" class="underline decoration-pink-500">Paradigm Marketing & Creative</a>, Jeff helps businesses refine their digital presence with a mix of strategy and creativity. He started freelancing in 2014 and worked with Paradigm for over five years before officially joining the team.</p>
         <p data-fade-in>Outside of work, Jeff enjoys backpacking in the Smoky Mountains, photography, and traveling with his family.</p>

@@ -1,0 +1,87 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<div
+    x-data="{ scrolled: false }"
+    @scroll.window="scrolled = window.scrollY > 500"
+    class="fixed flex items-center gap-4 z-50 backdrop-blur-xl top-0 left-0 w-full  px-2 py-1"
+>
+    <div
+        x-show="scrolled"
+        x-cloak
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="-translate-x-2 opacity-0 blur"
+        x-transition:enter-end="translate-x-0 opacity-100 blur-none"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="translate-x-0 opacity-100"
+        x-transition:leave-end="-translate-x-2 opacity-0 blur"
+    >
+        <p class="font-stretch-120%">Jeff Glenn</p>
+    </div>
+    <div class="flex items-center justify-end gap-p5 ml-auto">
+        <a
+            href="mailto:jeff@jeffglenn.me"
+            class="grid place-items-center size-[40px] rounded-lg dark:text-white/75 border border-transparent hover:border-black/25 dark:hover:border-white/25"
+        >
+            <Icon name="envelope" />
+        </a>
+        <a
+            href="https://github.com/jeffaglenn"
+            class="grid place-items-center size-[40px] rounded-lg dark:text-white/75 border border-transparent hover:border-black/25 dark:hover:border-white/25"
+        >
+            <Icon name="github" />
+        </a>
+
+        <button
+            x-on:click="
+            theme =
+                theme === 'light'
+                ? 'dark'
+                : theme === 'dark'
+                    ? 'system'
+                    : 'light'
+            "
+            class="grid place-items-center size-[40px] rounded-lg dark:text-white/75 border border-transparent hover:border-black/25 dark:hover:border-white/25"
+        >
+            <!-- Light Icon -->
+            <span
+                class="block col-start-1 row-start-1"
+                x-show="theme === 'light'"
+                x-transition:enter="transition ease duration-300"
+                x-transition:enter-start=" scale-75 rotate-45"
+                x-transition:enter-end=" scale-100 rotate-0"
+
+            >
+                <Icon name="sun" class="size-full will-change-transform text-orange-500" />
+                <span class="sr-only">On light theme. Click to switch to dark theme.</span>
+            </span>
+
+            <!-- Dark Icon -->
+            <span
+                class="block col-start-1 row-start-1"
+                x-show="theme === 'dark'"
+                x-transition:enter="transition ease duration-300"
+                x-transition:enter-start=" scale-75 rotate-45"
+                x-transition:enter-end=" scale-100 rotate-0"
+
+            >
+                <Icon name="moon" class="size-full will-change-transform text-yellow-500" />
+                <span class="sr-only">On dark theme. Click to switch to system theme.</span>
+            </span>
+
+            <!-- System Icon -->
+            <span
+                class="block col-start-1 row-start-1"
+                x-show="theme === 'system'"
+                x-transition:enter="transition ease duration-300"
+                x-transition:enter-start=" scale-75 rotate-45"
+                x-transition:enter-end=" scale-100 rotate-0"
+
+            >
+                <Icon name="cog" class="size-full will-change-transform dark:text-white/75" />
+                <span class="sr-only">On system theme. Click to switch to light theme.</span>
+            </span>
+        </button>
+    </div>
+</div>

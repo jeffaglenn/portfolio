@@ -1,0 +1,31 @@
+.glow-hover {
+    @apply
+        ring
+        ring-inset
+        ring-transparent
+        hover:ring-white/10;
+
+    &:before {
+        content: '';
+        @apply
+            absolute
+            w-full
+            h-full
+            top-0
+            left-0
+            opacity-0
+            z-[-1];
+        border-radius: inherit;
+        transition: opacity 0.5s;
+        background: radial-gradient(
+            circle farthest-side at var(--button-mouse-x) var(--button-mouse-y),
+            theme('colors.pink.700'),
+            transparent
+        );
+    }
+
+    &:hover:before {
+        @apply
+            opacity-50;
+    }
+}

@@ -3,17 +3,19 @@ import Layout from '@layouts/Layout.astro';
 import pic from '@images/profile.jpg';
 
 import { Icon } from 'astro-icon/components'
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 const projectsData = await getCollection('projects');
-console.log(projectsData);
-
+const experienceData = await getCollection('experience');
 ---
 
 <Layout>
 	<section class="h-screen flex items-center justify-center">
         <div class="text-center flex flex-col items-center">
-            <div class="relative size-[125px] mb-4 ring-2 ring-blue-900/50 dark:ring-white/50 rounded-full">
+            <div
+                class="relative size-[125px] mb-4 ring-2 ring-blue-900/50 dark:ring-white/50 rounded-full"
+                data-stagger-fade-in
+            >
                 <div class="absolute glow">
                     <div class="absolute size-[125px] bg-yellow-100 dark:bg-blue-500  dark:mix-blend-screen rounded-full animate-[rotate_8s_linear_infinite_reverse] blur"></div>
                     <div class="absolute size-[125px] bg-orange-100 dark:bg-purple-500  dark:mix-blend-screen rounded-full animate-[rotate_4s_linear_infinite] blur"></div>
@@ -26,129 +28,109 @@ console.log(projectsData);
 
             <div class="space-y-4">
                 <div>
-                    <h1 class="text-[clamp(4rem,5vw,5rem)] mb-1">Jeff Glenn</h1>
-                    <h2 class="opacity-75 font-stretch-normal uppercase text-1p4 font-medium">Web Designer &amp; Front-End Developer</h2>
+                    <h1
+                        class="text-[clamp(4rem,5vw,5rem)] mb-1"
+                        data-stagger-fade-in
+                    >
+                        Jeff Glenn
+                    </h1>
+                    <h2
+                        class="font-stretch-normal text-1p4 font-medium"
+                        data-stagger-fade-in
+                    >
+                        Web Designer &amp; Front-End Developer
+                    </h2>
                 </div>
 
-
-                <div class="flex items-center justify-center gap-2">
-                    <a href="" class="btn transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white">About</a>
-                    <a href="" class="btn transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white">Experience</a>
-                    <a href="mailto:jeff@jeffglenn.me" class="btn transition-colors duration-500 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white">Contact</a>
+                <div class=" flex items-center justify-center gap-2">
+                    <a
+                        href=""
+                        class="glow-hover backdrop-brightness-200 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white"
+                        data-stagger-fade-in
+                    >
+                        About
+                    </a>
+                    <a
+                        href=""
+                        class="glow-hover backdrop-brightness-200 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white"
+                        data-stagger-fade-in
+                    >
+                        Experience
+                    </a>
+                    <a
+                        href="mailto:jeff@jeffglenn.me"
+                        class="glow-hover backdrop-brightness-200 rounded-xl uppercase text-1p4 font-medium leading-none px-2 py-1 backdrop-blur-lg text-white"
+                        data-stagger-fade-in
+                    >
+                        Contact
+                    </a>
                 </div>
             </div>
         </div>
-
     </section>
 
-    <section class="py-8">
-        <div class="wrapper max-w-prose">
-            <p>Jeff is a life-long Memphian specializing in digital design & development. Taking a project from conception to completion is his specialty and when he solves a problem, it makes his day. With over 10 years of design experience, ranging from print, web & motion, Jeff is committed to providing clients with professional and engaging designs while always pushing the finished product forward creatively.</p>
-            <p>He loves Arrested Development, Hawaii, Disney, Alton Brown and backpacking in the Smoky Mountains.</p>
-            <p>He and his wife Megan are beach aficionados and hope to make their home on 30A sooner rather than later.</p>
-        </div>
+    <section class="mb-16 wrapper max-w-prose space-y-2">
+        <p data-fade-in>Jeff is a Memphis-based designer and developer with over a decade of experience in web, print, motion, and photography. He specializes in taking projects from concept to completion, focusing on clean, effective design and thoughtful problem-solving.</p>
+        <p data-fade-in>As a partner at <a href="https://2dimes.com" class="underline decoration-pink-500">Paradigm Marketing & Creative</a>, Jeff helps businesses refine their digital presence with a mix of strategy and creativity. He started freelancing in 2014 and worked with Paradigm for over five years before officially joining the team.</p>
+        <p data-fade-in>Outside of work, Jeff enjoys backpacking in the Smoky Mountains, photography, and traveling with his family.</p>
     </section>
 
-    <section class="py-8 wrapper">
+    <section class="my-16 wrapper">
         <div class="grid grid-cols-2 gap-1">
-            <div class="p-2">
-                <h2 class="text-pink-500 dark:text-purple-500 font-medium">Recent Projects</h2>
+            <div class="p-2" data-fade-in>
+                <h2 class="text-pink-500 font-medium">Recent Projects</h2>
             </div>
 
             { projectsData.map(project => (
-                <a href={ project.data.url } class="block font-semibold space-y-p5 border border-white/10 p-2 rounded-lg backdrop-blur-2xl hover:bg-white/5">
-                    { project.data.title }
-                    <Icon name="external" class="inline size-[13px]" />
+                <a
+                    href={ project.data.url }
+                    class="glow-hover flex flex-col justify-between aspect-square relative z-10 font-semibold space-y-p5 p-2 rounded-lg overflow-clip backdrop-blur-lg backdrop-brightness-200"
+                    data-fade-in
+                    data-project
+                >
+                    <div>
+                        { project.data.title }
+                        <Icon name="external" class="inline size-[13px]" />
+                    </div>
                     <ul class="text-1 flex flex-wrap gap-1 mt-p5">
                         { project.data.technologies.map(tech => (
                             <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">{ tech }</li>
                         )) }
                     </ul>
+                    <img
+                        src={project.data.image.src }
+                        class="absolute s size-full object-cover -z-10 opacity-50"
+                        alt=""
+                    >
                 </a>
             ))}
         </div>
     </section>
 
     <section class="wrapper max-w-prose">
-        <h2 class="mb-2 font-medium text-pink-500">Work Experience</h2>
-        <div class="text-1p6 bg-white/50 dark:bg-white/5 p-4 rounded-lg border border-white/50 dark:border-white/10 shadow-2xl shadow-pink-500/20 dark:shadow-pink-500/10 ">
+        <h2 class="mb-2 font-medium text-pink-500" data-fade-in>Work Experience</h2>
+        <div class="text-1p6 px-4 rounded-lg shadow-2xl backdrop-blur-lg backdrop-brightness-200 shadow-pink-500/20 dark:shadow-pink-500/10 overflow-clip" data-fade-in>
             <ul class="divide-y divide-pink-500/10 dark:divide-white/10">
-                <li class="flex items-start gap-4 pb-4">
-                    <div>
-                        <h3 class="text-2p4 font-semibold">
-                            Partner &amp; Web Director
-                        </h3>
-                        <h4 class="text-pink-500 font-stretch-normal">
-                            <a href="https://2dimes.com">Paradigm Marketing &amp; Creative</a>
-                        </h4>
+                { experienceData.map(async (experience) => {
+                    const { Content } = await render(experience);
+                    return (
+                        <li class="flex items-start gap-4 py-4" data-fade-in>
+                            <div class="flex-1">
+                                <h3 class="text-2p4 font-semibold">
+                                    { experience.data.position }
+                                </h3>
+                                <h4 class="text-pink-500 font-stretch-normal">
+                                    <a href={ experience.data.companyUrl }>{ experience.data.company }</a>
+                                </h4>
 
-                        <ul class="mt-2 list-disc ml-2">
-                            <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
-                            <li>Iste repellendus quaerat rerum dolorem eveniet sint quo perspiciatis.</li>
-                            <li>Nobis inventore rerum officiis blanditiis nobis aut.</li>
-                            <li>Eum dicta fuga sunt distinctio dignissimos quis.</li>
-                        </ul>
-                    </div>
-                    <div class="shrink-0 bg-white/5 px-2 py-p5 rounded-lg text-1p4">
-                        2017-Present
-                    </div>
-                </li>
-                <li class="flex items-start gap-4 py-4">
-                    <div>
-                        <h3 class="text-2p4 font-semibold">
-                            Web Designer &amp; Developer
-                        </h3>
-                        <h4 class="text-pink-500 font-stretch-normal">
-                            Freelance
-                        </h4>
-                        <ul class="mt-2 list-disc ml-2">
-                            <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
-                            <li>Iste repellendus quaerat rerum dolorem eveniet sint quo perspiciatis.</li>
-                            <li>Nobis inventore rerum officiis blanditiis nobis aut.</li>
-                            <li>Eum dicta fuga sunt distinctio dignissimos quis.</li>
-                        </ul>
-                    </div>
-                    <div class="shrink-0 bg-white/5 px-2 py-p5 rounded-lg text-1p4">
-                        2013-2017
-                    </div>
-                </li>
-                <li class="flex items-start gap-4 py-4">
-                    <div>
-                        <h3 class="text-2p4 font-semibold">
-                            Web Designer &amp; Developer
-                        </h3>
-                        <h4 class="text-pink-500 font-stretch-normal">
-                            Deluge Studios
-                        </h4>
-
-                        <ul class="mt-2 list-disc ml-2">
-                            <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
-                            <li>Nobis inventore rerum officiis blanditiis nobis aut.</li>
-                            <li>Eum dicta fuga sunt distinctio dignissimos quis.</li>
-                        </ul>
-                    </div>
-                    <div class="shrink-0 bg-white/5 px-2 py-p5 rounded-lg text-1p4">
-                        2009-2014
-                    </div>
-                </li>
-                <li class="flex items-start gap-4 pt-4">
-                    <div>
-                        <h3 class="text-2p4 font-semibold">
-                            Motion Graphic Designer
-                        </h3>
-                        <h4 class="text-pink-500 font-stretch-normal">
-                            The University Network
-                        </h4>
-
-                        <ul class="mt-2 list-disc ml-2">
-                            <li>Cupiditate ipsum aut consequatur repudiandae sunt deserunt numquam veniam nemo consequatur quo reiciendis autem id.</li>
-                            <li>Iste repellendus quaerat rerum dolorem eveniet sint quo perspiciatis.</li>
-                        </ul>
-                    </div>
-                    <div class="shrink-0 bg-white/5 px-2 py-p5 rounded-lg text-1p4">
-                        2007-2009
-                    </div>
-                </li>
+                                <Content />
+                            </div>
+                            <div class="shrink-0 bg-white/5 px-2 py-p5 rounded-lg text-1p4">
+                                { experience.data.dates }
+                            </div>
+                        </li>
+                    )
+                })}
             </ul>
         </div>
 

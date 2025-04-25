@@ -3,49 +3,88 @@
         "id": 1,
         "title": "Orpheum Theater Group",
         "description": "Description of Project 1",
-        "technologies": ["Craft CMS", "AlpineJS", "TailwindCSS"],
-        "url": "https://www.orpheum-memphis.com"
+        "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS"],
+        "url": "https://www.orpheum-memphis.com",
+        "image": {
+            "src": "https://picsum.photos/seed/orpheum/800/800",
+            "alt": "Orpheum Theater Group"
+        }
     },
     {
         "id": 2,
         "title": "Dixon Gallery & Gardens",
         "description": "Description of Project 2",
-        "technologies": ["Craft CMS", "AlpineJS", "TailwindCSS"],
-        "url": "https://dixon.org"
+        "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS"],
+        "url": "https://dixon.org",
+        "image": {
+            "src": "https://picsum.photos/seed/paradigm/800/800",
+            "alt": "Orpheum Theater Group"
+        }
     },
     {
         "id": 3,
         "title": "Brother Direct to Garment Printing",
         "description": "Description of Project 3",
-        "technologies": ["Astro JS", "AlpineJS", "TailwindCSS"],
-        "url": "https://brotherdtg.com"
+        "technologies": ["Astro.js", "Alpine.js", "TailwindCSS"],
+        "url": "https://brotherdtg.com",
+        "image": {
+            "src": "https://picsum.photos/seed/jeff/800/800",
+            "alt": "Orpheum Theater Group"
+        }
     },
     {
         "id": 4,
         "title": "Regency Homebuilders",
         "description": "Description of Project 3",
-        "technologies": ["Craft CMS", "AlpineJS", "TailwindCSS"],
-        "url": "https://newregencyhomes.com"
+        "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS"],
+        "url": "https://newregencyhomes.com",
+        "image": {
+            "src": "https://picsum.photos/seed/glenn/800/800",
+            "alt": "Orpheum Theater Group"
+        }
     },
     {
         "id": 5,
         "title": "Reinhart Law",
         "description": "Description of Project 3",
-        "technologies": ["Craft CMS", "AlpineJS", "TailwindCSS", "Algolia"],
-        "url": "https://reinhartlaw.com"
+        "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS", "Algolia"],
+        "url": "https://reinhartlaw.com",
+        "image": {
+            "src": "https://picsum.photos/seed/megan/800/800",
+            "alt": "Orpheum Theater Group"
+        }
     },
     {
         "id": 6,
         "title": "Thomas Family Law",
         "description": "Description of Project 3",
-        "technologies": ["Craft CMS", "AlpineJS", "TailwindCSS", "GSAP"],
-        "url": "https://thomasfamilylaw.net"
+        "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS", "GSAP"],
+        "url": "https://thomasfamilylaw.net",
+        "image": {
+            "src": "https://picsum.photos/seed/walt/800/800",
+            "alt": "Orpheum Theater Group"
+        }
     },
     {
         "id": 7,
         "title": "The Henry",
         "description": "Description of Project 3",
         "technologies": ["Wordpress", "TailwindCSS", "GSAP"],
-        "url": "https://thehenryclt.com"
+        "url": "https://thehenryclt.com",
+        "image": {
+            "src": "https://picsum.photos/seed/alice/800/800",
+            "alt": "Orpheum Theater Group"
+        }
+    },
+    {
+        "id": 8,
+        "title": "Stauf USA",
+        "description": "Description of Project 3",
+        "technologies": ["Craft CMS", "TailwindCSS", "Alpine.js"],
+        "url": "https://staufusa.com",
+        "image": {
+            "src": "https://picsum.photos/seed/2dimes/800/800",
+            "alt": "Orpheum Theater Group"
+        }
     }
 ]

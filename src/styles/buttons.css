@@ -23,15 +23,16 @@
 .link {
     background-image: linear-gradient(var(--color-current), var(--color-current));
     @apply
+        font-bold
         bg-no-repeat
         transition-[background-size]
         duration-300;
     background-position: 0% 100%;
-    background-size: 100% 10px;
+    background-size: 100% 1px;
 
     &:hover {
         background-image: linear-gradient(var(--color-current), var(--color-current));
         background-position: 100% 100%;
-        background-size: 0% 10px;
+        background-size: 0% 1px;
     }
 }

@@ -4,9 +4,14 @@ import pic from '@images/profile.jpg';
 
 import { Icon } from 'astro-icon/components'
 import { getCollection, render } from 'astro:content';
+import { Image } from "astro:assets"
 
 const projectsData = await getCollection('projects');
-const experienceData = await getCollection('experience');
+const experienceData = (
+    await getCollection('experience')
+).sort(
+    (a, b) => a.data.id - b.data.id
+);
 ---
 
 <Layout>
@@ -29,13 +34,13 @@ const experienceData = await getCollection('experience');
             <div class="space-y-4">
                 <div>
                     <h1
-                        class="text-[clamp(4rem,5vw,5rem)] mb-1"
+                        class="text-[clamp(4rem,5vw,5rem)] mb-1 "
                         data-stagger-fade-in
                     >
                         Jeff Glenn
                     </h1>
                     <h2
-                        class="font-stretch-normal text-1p4 font-medium"
+                        class="font-stretch-normal text-1p6 font-medium"
                         data-stagger-fade-in
                     >
                         Web Designer &amp; Front-End Developer
@@ -45,21 +50,21 @@ const experienceData = await getCollection('experience');
                 <div class=" flex items-center justify-center gap-2">
                     <a
                         href="#about"
-                        class="btn glow-hover shadow-pink-500/10"
+                        class="btn glow-hover shadow-amber-500/5 dark:shadow-pink-500/5"
                         data-stagger-fade-in
                     >
                         About
                     </a>
                     <a
                         href="#projects"
-                        class="btn glow-hover shadow-pink-500/10"
+                        class="btn glow-hover shadow-amber-500/5 dark:shadow-pink-500/5"
                         data-stagger-fade-in
                     >
                         Experience
                     </a>
                     <a
                         href="mailto:jeff@jeffglenn.me"
-                        class="btn glow-hover shadow-pink-500/10"
+                        class="btn glow-hover shadow-amber-500/5 dark:shadow-pink-500/5"
                         data-stagger-fade-in
                     >
                         Contact
@@ -70,15 +75,16 @@ const experienceData = await getCollection('experience');
     </section>
 
     <section id="about" class="mb-16 wrapper max-w-prose space-y-2 scroll-mt-16">
+        <h2 class="text-[clamp(4rem,5vw,5rem)]" data-fade-in>Design and development, <span class="text-[1.25em] block font-playfair italic font-extrabold">built around your story.</span></h2>
         <p data-fade-in>Jeff is a Memphis-based designer and developer with over a decade of experience in web, print, motion, and photography. He specializes in taking projects from concept to completion, focusing on clean, effective design and thoughtful problem-solving.</p>
-        <p data-fade-in>As a partner at <a href="https://2dimes.com" class="underline decoration-pink-500">Paradigm Marketing & Creative</a>, Jeff helps businesses refine their digital presence with a mix of strategy and creativity. He started freelancing in 2014 and worked with Paradigm for over five years before officially joining the team.</p>
+        <p data-fade-in>As a partner at <a href="https://2dimes.com" class="link">Paradigm Marketing & Creative</a>, Jeff helps businesses refine their digital presence with a mix of strategy and creativity. He started freelancing in 2014 and worked with Paradigm for over five years before officially joining the team.</p>
         <p data-fade-in>Outside of work, Jeff enjoys backpacking in the Smoky Mountains, photography, and traveling with his family.</p>
     </section>
 
     <section class="my-16 wrapper">
         <div class="grid grid-cols-2 gap-1">
             <div class="p-2" data-fade-in>
-                <h2 class="text-pink-500 font-medium">Recent Projects</h2>
+                <h2 class="dark:text-pink-500 font-medium">Recent Projects</h2>
             </div>
 
             { projectsData.map(project => (
@@ -97,35 +103,108 @@ const experienceData = await getCollection('experience');
                             <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">{ tech }</li>
                         )) }
                     </ul>
-                    <img
-                        src={project.data.image.src }
-                        class="absolute s size-full object-cover -z-10 opacity-50"
+                    <Image
+                        src={ project.data.image.src }
                         alt=""
-                    >
+                        width=800
+                        height=800
+                    />
                 </a>
             ))}
         </div>
     </section>
 
+    <section class="py-8">
+        <div class="wrapper max-w-[1000px]">
+            <div
+                class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+            >
+                <ul x-ref="logos" class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Facebook" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Disney" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Airbnb" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Apple" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Spark" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Samsung" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Quora" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Sass" />
+                    </li>
+                </ul>
+                <ul x-ref="logos" class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Facebook" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Disney" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Airbnb" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Apple" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Spark" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Samsung" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Quora" />
+                    </li>
+                    <li>
+                        <img src="https://picsum.photos/seed/alice/200/100" alt="Sass" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <section class="wrapper max-w-prose">
-        <h2 class="mb-2 font-medium text-pink-500" data-fade-in>Work Experience</h2>
-        <div class="text-1p6 px-4 rounded-lg shadow-2xl backdrop-blur-lg backdrop-brightness-200 shadow-pink-500/20 dark:shadow-pink-500/10 overflow-clip" data-fade-in>
-            <ul class="divide-y divide-pink-500/10 dark:divide-white/10">
+        <h2 class="mb-2 font-medium dark:text-pink-500" data-fade-in>Work Experience</h2>
+        <div class="text-1p6 px-4 rounded-lg shadow-2xl shadow-amber-200/50 dark:shadow-pink-500/20 backdrop-blur-lg bg-white/40 dark:bg-transparent dark:backdrop-brightness-200 overflow-clip" data-fade-in>
+            <ul class="divide-y divide-amber-500/25 dark:divide-white/10">
                 { experienceData.map(async (experience) => {
                     const { Content } = await render(experience);
                     return (
                         <li class="flex items-start gap-4 py-4" data-fade-in>
-                            <div class="flex-1">
-                                <h3 class="text-2p4 font-semibold">
-                                    { experience.data.position }
-                                </h3>
-                                <h4 class="text-pink-500 font-stretch-normal">
-                                    <a href={ experience.data.companyUrl }>{ experience.data.company }</a>
-                                </h4>
+                            <div class="flex-1 space-y-2">
+                                <div class="space-y-p5">
+                                    <h3 class="text-2p4 font-semibold">
+                                        { experience.data.position }
+                                    </h3>
+                                    <h4 class="text-amber-700 dark:text-pink-500 font-stretch-normal">
+                                        { experience.data.companyUrl ? (
+                                            <a
+                                                href={ experience.data.companyUrl }
+                                                class="link"
+                                            >
+                                                { experience.data.company }
+                                            </a>
+                                        ) : (
+                                            experience.data.company
+                                        ) }
+                                    </h4>
+                                </div>
 
                                 <Content />
                             </div>
-                            <div class="shrink-0 bg-white/5 px-2 py-p5 rounded-lg text-1p4">
+                            <div class="shrink-0 text-1p2 rounded-lg px-2 py-p5 bg-white/40 dark:bg-white/10">
                                 { experience.data.dates }
                             </div>
                         </li>
@@ -136,16 +215,8 @@ const experienceData = await getCollection('experience');
 
     </section>
 
-    <section class="py-8">
-        <div class="wrapper">
-            <p>Logo list?</p>
-            <p>Allure, Ballet Memphis, Regency, Orpheum, Reinhart, Dixon, Brother</p>
-        </div>
-    </section>
 
-    <section>
-        Contact Information
-    </section>
+
 </Layout>
 
 <style>

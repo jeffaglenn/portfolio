@@ -31,9 +31,10 @@ const experience = defineCollection({
         base: "./src/content/experience",
     }),
     schema: z.object({
+        id: z.number(),
         position: z.string(),
         company: z.string(),
-        companyUrl: z.string(),
+        companyUrl: z.string().optional(),
         dates: z.string()
     })
 });

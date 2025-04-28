@@ -2,6 +2,8 @@
     /* Colors */
     --color-black: #000000;
     --color-white: #FFFFFF;
+    --color-current: currentColor;
+    --color-transparent: transparent;
 
     --color-gray-50: oklch(0.984 0.003 247.858);
     --color-gray-100: oklch(0.968 0.007 247.896);
@@ -47,4 +49,14 @@
     --text-8  : 8rem;
     --text-9  : 9rem;
     --text-10 : 10rem;
+
+    --animate-infinite-scroll: infinite-scroll 25s linear infinite;
+    @keyframes infinite-scroll {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-100%);
+        }
+    }
 }

@@ -15,7 +15,23 @@
         dark:backdrop-brightness-200
         ring
         ring-inset
-        ring-pink-500/20
+        ring-amber-500/30
         dark:ring-pink-500/10
         rounded-xl;
+}
+
+.link {
+    background-image: linear-gradient(var(--color-current), var(--color-current));
+    @apply
+        bg-no-repeat
+        transition-[background-size]
+        duration-300;
+    background-position: 0% 100%;
+    background-size: 100% 10px;
+
+    &:hover {
+        background-image: linear-gradient(var(--color-current), var(--color-current));
+        background-position: 100% 100%;
+        background-size: 0% 10px;
+    }
 }

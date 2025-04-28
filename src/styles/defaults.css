@@ -25,6 +25,7 @@
 
     /* Font Families */
     --font-mona  : "Mona Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-playfair: "Playfair", serif;
 
     /* Text Sizes */
     --text-1  : 1rem;

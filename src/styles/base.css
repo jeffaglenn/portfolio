@@ -1,11 +1,8 @@
 @layer base {
     html {
         @apply
-            bg-gradient-to-br
-            from-white
-            to-amber-400
-            dark:from-gray-950
-            dark:to-gray-950
+            bg-cyan-50
+            dark:bg-gray-950
             text-[10px]
             scroll-smooth
             font-mona
@@ -16,7 +13,7 @@
         @apply
             text-1p8
             md:text-2
-            text-gray-800
+            text-cyan-900
             dark:text-gray-200;
     }
 

@@ -9,15 +9,15 @@
         py-1
         backdrop-blur-lg
         dark:text-white
-        bg-white/40
+        bg-white
         dark:bg-transparent
         dark:backdrop-brightness-200
         ring
         ring-inset
-        ring-amber-500/30
+        ring-cyan-500/20
         dark:ring-pink-500/10
         shadow-xl
-        shadow-amber-500/5
+        shadow-cyan-500/5
         dark:shadow-pink-500/5
         rounded-xl;
 }

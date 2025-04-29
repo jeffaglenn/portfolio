@@ -25,7 +25,7 @@
         "technologies": ["Astro.js", "Alpine.js", "TailwindCSS"],
         "url": "https://brotherdtg.com",
         "image": {
-            "src": "https://picsum.photos/seed/jeff/1600/900",
+            "src": "@images/brother.webp",
             "alt": "Orpheum Theater Group"
         }
     },
@@ -45,7 +45,7 @@
         "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS", "Algolia"],
         "url": "https://reinhartlaw.com",
         "image": {
-            "src": "https://picsum.photos/seed/megan/1600/900",
+            "src": "@images/reinhart.webp",
             "alt": "Orpheum Theater Group"
         }
     },
@@ -55,7 +55,7 @@
         "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS", "GSAP"],
         "url": "https://thomasfamilylaw.net",
         "image": {
-            "src": "https://picsum.photos/seed/walt/1600/900",
+            "src": "@images/thomasfamilylaw.webp",
             "alt": "Orpheum Theater Group"
         }
     },
@@ -65,7 +65,7 @@
         "technologies": ["Wordpress", "TailwindCSS", "GSAP"],
         "url": "https://thehenryclt.com",
         "image": {
-            "src": "https://picsum.photos/seed/alice/1600/900",
+            "src": "@images/henry.webp",
             "alt": "Orpheum Theater Group"
         }
     },

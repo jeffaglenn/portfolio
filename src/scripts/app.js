@@ -140,7 +140,6 @@ fadeInAnimation('[data-stagger-projects]', {
     onScrollOptions: {
         enter: 'bottom-=200 stop',
         leave: 'top+=200 bottom',
-        sync: 0.25,
         repeat: false
     },
 });

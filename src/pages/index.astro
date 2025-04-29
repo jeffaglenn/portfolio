@@ -20,15 +20,15 @@ const experienceData = (
 ---
 
 <Layout>
-	<section class="h-screen flex items-center justify-center">
+	<section class="wrapper h-screen flex items-center justify-center">
         <div class="text-center flex flex-col items-center">
             <div
-                class="confetti relative size-[125px] mb-4 ring-2 ring-cyan-400/50 dark:ring-white/50 rounded-full rounded-bl-none"
+                class="relative size-[125px] mb-4 ring-2 ring-cyan-400/50 dark:ring-white/50 rounded-full rounded-bl-none"
                 data-stagger-hero
             >
                 <div class="absolute glow">
-                    <div class="absolute size-[125px] bg-yellow-200 dark:bg-blue-500  dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_8s_linear_infinite_reverse] blur"></div>
-                    <div class="absolute size-[125px] bg-yellow-100 dark:bg-purple-500  dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_4s_linear_infinite] blur"></div>
+                    <div class="absolute size-[125px] bg-green-300 dark:bg-blue-500 dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_8s_linear_infinite_reverse] blur"></div>
+                    <div class="absolute size-[125px] bg-cyan-200 dark:bg-purple-500 dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_4s_linear_infinite] blur"></div>
                     <div class="absolute size-[125px] bg-white dark:bg-yellow-200 dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_6s_linear_infinite] blur"></div>
                 </div>
                 <div class="absolute size-full rounded-full rounded-bl-none">
@@ -52,24 +52,24 @@ const experienceData = (
                     </h2>
                 </div>
 
-                <div class=" flex items-center justify-center gap-2">
+                <div class=" flex flex-wrap items-center justify-center gap-1 md:gap-2">
                     <a
                         href="#about"
-                        class="btn glow-hover"
+                        class="btn glow-hover flex-1"
                         data-stagger-hero
                     >
                         About
                     </a>
                     <a
                         href="#projects"
-                        class="btn glow-hover"
+                        class="btn glow-hover flex-1"
                         data-stagger-hero
                     >
                         Experience
                     </a>
                     <a
                         href="mailto:jeff@jeffglenn.me"
-                        class="btn glow-hover"
+                        class="btn glow-hover flex-1"
                         data-stagger-hero
                     >
                         Contact
@@ -146,15 +146,15 @@ const experienceData = (
     </section>
 
     <section id="projects" class="my-16 wrapper scroll-mt-16">
-        <div class="grid grid-cols-3 gap-1">
-            <div class="p-2 self-end text-right" data-stagger-projects>
+        <div class="grid md:grid-cols-3 gap-1">
+            <div class="mb-2 md:p-2 md:self-end md:text-right" data-stagger-projects>
                 <h2 class="dark:text-pink-500 font-medium">Recent Projects</h2>
             </div>
 
             { projectsData.map(project => (
                 <a
                     href={ project.data.url }
-                    class="flex flex-col justify-between aspect-video relative z-10 font-semibold p-2 rounded-lg backdrop-brightness-125 dark:backdrop-brightness-200 overflow-clip"
+                    class="flex flex-col justify-between aspect-video relative z-10 font-semibold p-2 rounded-lg backdrop-brightness-110 dark:backdrop-brightness-200 overflow-clip"
                     data-stagger-projects
                     data-project
                 >
@@ -184,22 +184,21 @@ const experienceData = (
 
     <section class="wrapper max-w-prose mb-16">
         <h2 class="mb-2 font-medium dark:text-pink-500" data-fade-in>Experience</h2>
-        <div class="text-1p6 px-4 rounded-lg shadow-xl shadow-amber-500/5 dark:shadow-pink-500/5 backdrop-blur-lg bg-white/40 dark:bg-transparent dark:backdrop-brightness-200 overflow-clip" data-fade-in>
-            <ul class="divide-y divide-amber-500/25 dark:divide-white/10">
+        <div class="text-1p6 sm:px-4 rounded-lg sm:shadow-xl shadow-cyan-500/5 dark:shadow-pink-500/5 backdrop-blur-lg sm:bg-white/40 dark:bg-transparent dark:sm:backdrop-brightness-200 overflow-clip" data-fade-in>
+            <ul class="divide-y divide-cyan-500/10 dark:divide-white/10">
                 { experienceData.map(async (experience) => {
                     const { Content } = await render(experience);
                     return (
-                        <li class="flex items-start gap-4 py-4" data-fade-in>
+                        <li class="flex items-start gap-4 py-2 sm:py-4" data-fade-in>
                             <div class="flex-1 space-y-2">
                                 <div class="space-y-p5">
                                     <h3 class="text-2p4 font-semibold">
                                         { experience.data.position }
                                     </h3>
-                                    <h4 class="text-amber-700 dark:text-pink-500 font-stretch-normal">
+                                    <h4 class="dark:text-pink-500 font-medium font-stretch-normal opacity-50 dark:opacity-100">
                                         { experience.data.companyUrl ? (
                                             <a
                                                 href={ experience.data.companyUrl }
-                                                class="link"
                                             >
                                                 { experience.data.company }
                                             </a>
@@ -211,7 +210,7 @@ const experienceData = (
 
                                 <Content />
                             </div>
-                            <div class="shrink-0 text-1p2 rounded-lg px-2 py-p5 bg-white/40 dark:bg-white/10">
+                            <div class="hidden sm:block shrink-0 text-1p2 rounded-lg px-2 py-p5 text-white bg-cyan-900 dark:bg-white/10">
                                 { experience.data.dates }
                             </div>
                         </li>
@@ -219,11 +218,7 @@ const experienceData = (
                 })}
             </ul>
         </div>
-
     </section>
-
-
-
 </Layout>
 
 <style>

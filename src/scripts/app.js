@@ -108,30 +108,48 @@ if (!isTouchDevice()) {
 }
 
 
-animate('[data-stagger-fade-in]', {
-    y: {
-        from: '10rem',
-    },
-    opacity: {
-        from: 0,
-    },
+
+
+
+
+
+function fadeInAnimation(target, { delay, onScrollOptions = {} } = {}) {
+    const params = {
+        y: { from: '10rem' },
+        opacity: { from: 0 },
+    };
+    if (delay) {
+        params.delay = delay;
+    }
+    animate(target, {
+        ...params,
+        autoplay: onScroll(onScrollOptions),
+    });
+}
+
+// Fade-in animations
+fadeInAnimation('[data-stagger-hero]', {
     delay: stagger(100),
-    autoplay: onScroll({
-        enter: 'bottom-=200 top',
-    })
+    onScrollOptions: {
+        enter: 'bottom-=200 top'
+    },
+});
+
+fadeInAnimation('[data-stagger-projects]', {
+    delay: stagger(100),
+    onScrollOptions: {
+        enter: 'bottom-=200 stop',
+        leave: 'top+=200 bottom',
+        sync: 0.25,
+        repeat: false
+    },
 });
 
 utils.$('[data-fade-in]').forEach(item => {
-    animate(item, {
-        y: {
-            from: '10rem',
+    fadeInAnimation(item, {
+        onScrollOptions: {
+            enter: 'bottom-=200 top'
         },
-        opacity: {
-            from: 0,
-        },
-        autoplay: onScroll({
-            enter: 'bottom-=200 top',
-        })
     });
 });
 
@@ -196,30 +214,29 @@ utils.$('[data-project]').forEach(item => {
     const image = item.querySelector('img');
 
     utils.set(image, {
-        scale: 1,
+        scale: 1.1,
         opacity: 0.25,
+        filter: 'saturate(0) blur(5px)',
     });
 
     // // Animate in on hover with bounce
     item.addEventListener('mouseenter', () => {
         animate(image, {
-            scale: [1, 1.1],
             opacity: {
                 to: 1,
             },
-            // ease: 'outElastic(.75, .75)',
-            duration: 1000
+            filter: 'saturate(1) blur(0px)',
+            duration: 500
         });
     });
     // // Animate out on mouse leave
     item.addEventListener('mouseleave', () => {
         animate(image, {
-            scale: [1.1, 1],
             opacity: {
                 to: 0.1,
             },
-            // ease: 'inElastic(.75, .75)',
-            duration: 1000
+            filter: 'saturate(0) blur(5px)',
+            duration: 500
         });
     });
 
@@ -232,8 +249,8 @@ utils.$('[data-project]').forEach(item => {
         const { left, top, width, height } = item.getBoundingClientRect();
         const hw = width / 2;
         const hh = height / 2;
-        const overflowX = width * -0.05;
-        const overflowY = height * -0.05;
+        const overflowX = width * 0.05;
+        const overflowY = height * 0.05;
         const normX = utils.clamp((e.clientX - left - hw) / hw, -1, 1);
         const normY = utils.clamp((e.clientY - top - hh) / hh, -1, 1);
         content.x(normX * overflowX);

@@ -24,7 +24,7 @@ const experienceData = (
         <div class="text-center flex flex-col items-center">
             <div
                 class="confetti relative size-[125px] mb-4 ring-2 ring-cyan-400/50 dark:ring-white/50 rounded-full rounded-bl-none"
-                data-stagger-fade-in
+                data-stagger-hero
             >
                 <div class="absolute glow">
                     <div class="absolute size-[125px] bg-yellow-200 dark:bg-blue-500  dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_8s_linear_infinite_reverse] blur"></div>
@@ -40,13 +40,13 @@ const experienceData = (
                 <div>
                     <h1
                         class="text-[clamp(4rem,5vw,5rem)] mb-1 "
-                        data-stagger-fade-in
+                        data-stagger-hero
                     >
                         Jeff Glenn
                     </h1>
                     <h2
                         class="font-stretch-normal text-1p6 font-medium"
-                        data-stagger-fade-in
+                        data-stagger-hero
                     >
                         Web Designer &amp; Front-End Developer
                     </h2>
@@ -56,21 +56,21 @@ const experienceData = (
                     <a
                         href="#about"
                         class="btn glow-hover"
-                        data-stagger-fade-in
+                        data-stagger-hero
                     >
                         About
                     </a>
                     <a
                         href="#projects"
                         class="btn glow-hover"
-                        data-stagger-fade-in
+                        data-stagger-hero
                     >
                         Experience
                     </a>
                     <a
                         href="mailto:jeff@jeffglenn.me"
                         class="btn glow-hover"
-                        data-stagger-fade-in
+                        data-stagger-hero
                     >
                         Contact
                     </a>
@@ -80,7 +80,7 @@ const experienceData = (
     </section>
 
     <section id="about" class="mb-16 wrapper max-w-prose space-y-2 scroll-mt-16">
-        <h2 class="text-[clamp(4rem,5vw,5rem)]" data-fade-in>Design and development, <span class="text-[1.25em] block font-lora italic font-bold">built around your story.</span></h2>
+        <h2 class="text-[clamp(4rem,5vw,5rem)]" data-fade-in>Design and development, <span class="text-[1.2em] block font-lora italic font-bold">built around your story.</span></h2>
         <p data-fade-in>
             Jeff is a Memphis-based designer and developer with over a decade of experience in web, print, motion, and photography. He specializes in taking projects from concept to completion, focusing on clean, effective design and thoughtful problem-solving.
         </p>
@@ -145,27 +145,31 @@ const experienceData = (
         </p>
     </section>
 
-    <section class="my-16 wrapper">
+    <section id="projects" class="my-16 wrapper scroll-mt-16">
         <div class="grid grid-cols-3 gap-1">
-            <div class="p-2 self-end text-right" data-fade-in>
+            <div class="p-2 self-end text-right" data-stagger-projects>
                 <h2 class="dark:text-pink-500 font-medium">Recent Projects</h2>
             </div>
 
             { projectsData.map(project => (
                 <a
                     href={ project.data.url }
-                    class="flex flex-col justify-between aspect-video relative z-10 font-semibold p-2 rounded-lg backdrop-brightness-200 overflow-clip"
-                    data-fade-in
+                    class="flex flex-col justify-between aspect-video relative z-10 font-semibold p-2 rounded-lg backdrop-brightness-125 dark:backdrop-brightness-200 overflow-clip"
+                    data-stagger-projects
                     data-project
                 >
                     <div>
-                        <h2>{ project.data.title } <Icon name="external" class="inline size-[15px] align-baseline" /></h2>
+                        <h2 class="text-1p8 font-stretch-100%">{ project.data.title }</h2>
                     </div>
-                    <ul class="text-1 flex flex-wrap gap-1 mt-p5">
-                        { project.data.technologies.map(tech => (
-                            <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">{ tech }</li>
-                        )) }
-                    </ul>
+                    <div>
+                        <p class="text-1p2 font-normal"><Icon name="link" class="inline" /> { project.data.url.replace(/^https?:\/\//, '') }</p>
+                        <ul class="text-1 flex flex-wrap gap-1 mt-p5">
+                            { project.data.technologies.map(tech => (
+                                <li class="bg-white/5 border border-white/10 px-p5 py-p25 rounded-lg">{ tech }</li>
+                            )) }
+                        </ul>
+                    </div>
+
                     <Image
                         src={ project.data.image.src }
                         alt=""

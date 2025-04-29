@@ -1,3 +1,13 @@
+// --------------------------------- //
+// Imports
+// --------------------------------- //
+
+import { animate, onScroll, utils, stagger, createAnimatable } from 'animejs';
+
+// --------------------------------- //
+// End Imports
+// --------------------------------- //
+
 function isTouchDevice() {
     return window.matchMedia("(pointer: coarse)").matches;
 }
@@ -62,28 +72,7 @@ function revertToOriginalImage() {
 // --------------------------------- //
 // Glow Effect & Mousemove Handling
 // --------------------------------- //
-// const glowContainer = document.querySelector(".glow");
-// const { left, top } = glowContainer.getBoundingClientRect();
-// const centerX = left + 62.5; // 125 / 2 - 125 is the width of the glow
-// const centerY = top + 62.5;  // 125 / 2 - 125 is the height of the glow
-// const maxDistance = 5;
-// const maxDistanceFromCenter = 200;
-
 document.addEventListener("mousemove", ({ clientX, clientY }) => {
-    // Calculate distance and angle from container center
-    // const dx = centerX - clientX;
-    // const dy = centerY - clientY;
-    // const distance = Math.min(
-    //     (Math.sqrt(dx * dx + dy * dy) / maxDistanceFromCenter) * maxDistance,
-    //     maxDistance
-    // );
-    // const angle = Math.atan2(dy, dx);
-
-    // Move the glow container
-    // glowContainer.style.transform = `translate(${Math.cos(angle) * distance}px, ${
-    //     Math.sin(angle) * distance
-    // }px)`;
-
     // Change profile pic if the mouse has moved > 100px in any direction
     if (Math.abs(clientX - lastMouseX) > 100 || Math.abs(clientY - lastMouseY) > 100) {
         document.getElementById("profile-pic").src = getRandomImage();
@@ -119,11 +108,6 @@ if (!isTouchDevice()) {
 }
 
 
-
-
-
-import { animate, onScroll, utils, stagger, createAnimatable } from 'animejs';
-
 animate('[data-stagger-fade-in]', {
     y: {
         from: '10rem',
@@ -151,31 +135,114 @@ utils.$('[data-fade-in]').forEach(item => {
     });
 });
 
-// utils.$('[data-project]').forEach(item => {
-//     let bounds = item.getBoundingClientRect();
+utils.$('.popup-hover').forEach(item => {
 
-//     const refreshBounds = () => bounds = item.getBoundingClientRect();
-//     let image = item.querySelector('img');
+    const refreshBounds = () => bounds = item.getBoundingClientRect();
+    let popupContentContainer = item.querySelector('.popup-content');
 
-//     const animatableImage = createAnimatable(image, {
-//         x: 500,
-//         y: 500,
-//         ease: 'out(3)',
-//     });
-//     const onMouseMove = e => {
-//         const { width, height, left, top } = bounds;
-//         const hw = width / 2;
-//         const hh = height / 2;
-//         const x = utils.clamp(e.clientX - left - hw, -hw, hw);
-//         const y = utils.clamp(e.clientY - top - hh, -hh, hh);
-//         animatableImage.x(x);
-//         animatableImage.y(y);
-//     }
+    // Initialize popup at scale 0
+    utils.set(popupContentContainer, {
+        scale: 0,
+        opacity: 0,
+        zIndex: 1000,
+    });
 
-//     window.addEventListener('mousemove', onMouseMove);
-//     project.addEventListener('scroll', refreshBounds);
-// });
+    // // Animate in on hover with bounce
+    item.addEventListener('mouseenter', () => {
+        animate(popupContentContainer, {
+            scale: [0.6, 1],
+            opacity: {
+                to: 1,
+            },
+            ease: 'outElastic(.75, .75)',
+            duration: 500
+        });
+    });
+    // // Animate out on mouse leave
+    item.addEventListener('mouseleave', () => {
+        animate(popupContentContainer, {
+            scale: [1, 0.6],
+            opacity: {
+                to: 0,
+            },
+            ease: 'inElastic(.75, .75)',
+            duration: 250
+        });
+    });
 
-// const project = document.querySelector('[data-project]');
+    const content = createAnimatable(popupContentContainer, {
+        x: 500,
+        y: 500,
+        ease: 'out(3)',
+    });
+
+    const onMouseMove = e => {
+        const bounds = item.getBoundingClientRect();
+        const { width, height, left, top } = bounds;
+        const hw = width / 2;
+        const hh = height / 2;
+        const x = utils.clamp(e.clientX - left - hw, -hw, hw);
+        const y = utils.clamp(e.clientY - top - hh, -hh, hh);
+        content.x(x);
+        content.y(y);
+    }
+
+    item.addEventListener('mousemove', onMouseMove);
+    popupContentContainer.addEventListener('scroll', refreshBounds);
+});
 
 
+utils.$('[data-project]').forEach(item => {
+    const image = item.querySelector('img');
+
+    utils.set(image, {
+        scale: 1,
+        opacity: 0.25,
+    });
+
+    // // Animate in on hover with bounce
+    item.addEventListener('mouseenter', () => {
+        animate(image, {
+            scale: [1, 1.1],
+            opacity: {
+                to: 1,
+            },
+            // ease: 'outElastic(.75, .75)',
+            duration: 1000
+        });
+    });
+    // // Animate out on mouse leave
+    item.addEventListener('mouseleave', () => {
+        animate(image, {
+            scale: [1.1, 1],
+            opacity: {
+                to: 0.1,
+            },
+            // ease: 'inElastic(.75, .75)',
+            duration: 1000
+        });
+    });
+
+    const content = createAnimatable(image, {
+        x: 2000,
+        y: 2000,
+    });
+
+    const onMouseMove = e => {
+        const { left, top, width, height } = item.getBoundingClientRect();
+        const hw = width / 2;
+        const hh = height / 2;
+        const overflowX = width * -0.05;
+        const overflowY = height * -0.05;
+        const normX = utils.clamp((e.clientX - left - hw) / hw, -1, 1);
+        const normY = utils.clamp((e.clientY - top - hh) / hh, -1, 1);
+        content.x(normX * overflowX);
+        content.y(normY * overflowY);
+    };
+
+    item.addEventListener('mousemove', onMouseMove);
+    item.addEventListener('mouseleave', () => {
+        content.x(0);
+        content.y(0);
+    });
+});

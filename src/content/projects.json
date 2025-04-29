@@ -5,7 +5,7 @@
         "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS"],
         "url": "https://www.orpheum-memphis.com",
         "image": {
-            "src": "https://picsum.photos/seed/orpheum/1600/900",
+            "src": "@images/orpheum.webp",
             "alt": "Orpheum Theater Group"
         }
     },
@@ -15,7 +15,7 @@
         "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS"],
         "url": "https://dixon.org",
         "image": {
-            "src": "https://picsum.photos/seed/paradigm/1600/900",
+            "src": "@images/dixon.webp",
             "alt": "Orpheum Theater Group"
         }
     },
@@ -35,7 +35,7 @@
         "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS"],
         "url": "https://newregencyhomes.com",
         "image": {
-            "src": "https://picsum.photos/seed/glenn/1600/900",
+            "src": "@images/regency.webp",
             "alt": "Orpheum Theater Group"
         }
     },
@@ -75,7 +75,7 @@
         "technologies": ["Craft CMS", "TailwindCSS", "Alpine.js"],
         "url": "https://staufusa.com",
         "image": {
-            "src": "https://picsum.photos/seed/2dimes/1600/900",
+            "src": "@images/stauf.webp",
             "alt": "Orpheum Theater Group"
         }
     },
@@ -85,7 +85,7 @@
         "technologies": ["Craft CMS", "TailwindCSS", "Alpine.js"],
         "url": "https://beautylawnspray.com",
         "image": {
-            "src": "https://picsum.photos/seed/2dimes/1600/900",
+            "src": "@images/beautylawn.webp",
             "alt": "Orpheum Theater Group"
         }
     }

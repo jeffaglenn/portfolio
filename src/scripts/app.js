@@ -70,7 +70,7 @@ function revertToOriginalImage() {
 }
 
 // --------------------------------- //
-// Glow Effect & Mousemove Handling
+// Mousemove Handling
 // --------------------------------- //
 document.addEventListener("mousemove", ({ clientX, clientY }) => {
     // Change profile pic if the mouse has moved > 100px in any direction
@@ -215,7 +215,6 @@ utils.$('[data-project]').forEach(item => {
     utils.set(image, {
         scale: 1.1,
         opacity: 0.25,
-        filter: 'saturate(0) blur(5px)',
     });
 
     // // Animate in on hover with bounce
@@ -224,7 +223,6 @@ utils.$('[data-project]').forEach(item => {
             opacity: {
                 to: 1,
             },
-            filter: 'saturate(1) blur(0px)',
             duration: 500
         });
     });
@@ -234,14 +232,13 @@ utils.$('[data-project]').forEach(item => {
             opacity: {
                 to: 0.1,
             },
-            filter: 'saturate(0) blur(5px)',
             duration: 500
         });
     });
 
     const content = createAnimatable(image, {
-        x: 2000,
-        y: 2000,
+        x: 1000,
+        y: 1000,
     });
 
     const onMouseMove = e => {

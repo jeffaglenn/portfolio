@@ -1,8 +1,31 @@
 ---
 import "@styles/styles.css";
 
+import { SEO } from "astro-seo";
 import { Icon } from 'astro-icon/components'
 import HeaderIcons from 'src/components/header-icons.astro';
+
+// grab any per-page overrides
+const { seo = {} } = Astro.props;
+
+// inline fallbacks
+const pageSeo = {
+    title:       seo.title       ?? 'Memphis Web Designer & Front-End Developer | Jeff Glenn',
+    description: seo.description ?? 'Jeff Glenn is a Memphis-based web designer and front-end developer specializing in clean, effective design. Explore his portfolio, recent projects, and creative work in web, print, motion, and photography.',
+    canonical:   seo.canonical   ?? 'https://jeffglenn.me',
+    openGraph: {
+        basic: {
+            title: seo.ogTitle ?? seo.title ?? 'Memphis Web Designer & Front-End Developer | Jeff Glenn',
+            type:  seo.ogType  ?? 'website',
+            image: seo.ogImage ?? 'https://jeffglenn.me/default-og-image.png',
+            url:   seo.ogUrl   ?? 'https://jeffglenn.me',
+        },
+    },
+    twitter: {
+        creator: seo.twitterCreator ?? '@jeffaglenn',
+    },
+};
+
 ---
 
 <!doctype html>
@@ -27,7 +50,7 @@ import HeaderIcons from 'src/components/header-icons.astro';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 
-		<title>Astro Basics</title>
+		<SEO {...pageSeo} />
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

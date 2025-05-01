@@ -6,4 +6,4 @@ companyUrl: "https://2dimes.com"
 dates: "2017-Present"
 ---
 
-Dolores voluptatem non enim aut ex necessitatibus ipsa harum omnis veniam. Pariatur cum et modi sed officia aspernatur veritatis vel. Eius possimus dolores non ipsum quo.
+As Partner and Web Director at Paradigm Marketing & Creative, I oversee all web projects from strategy through execution, ensuring quality and alignment with client goals. I also remain hands-on in development, building and maintaining websites that support long-term growth and performance.

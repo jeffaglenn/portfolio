@@ -5,4 +5,4 @@ company: "Deluge Studios"
 dates: "2009-2014"
 ---
 
-Dolores voluptatem non enim aut ex necessitatibus ipsa harum omnis veniam. Pariatur cum et modi sed officia aspernatur veritatis vel. Eius possimus dolores non ipsum quo.
+At Deluge Studios, I worked across client management, design, and front-end development, guiding projects from initial concept through final delivery. I translated client goals into effective digital solutions, built responsive websites, and maintained clear communication throughout the process to ensure timely, on-brand results.

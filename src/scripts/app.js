@@ -86,7 +86,6 @@ document.addEventListener("mousemove", ({ clientX, clientY }) => {
 });
 
 
-
 // ------------------ //
 // Button Hover Effect
 // ------------------ //
@@ -115,7 +114,7 @@ if (!isTouchDevice()) {
 
 function fadeInAnimation(target, { delay, onScrollOptions = {} } = {}) {
     const params = {
-        y: { from: '10rem' },
+        y: { from: '75px' },
         opacity: { from: 0 },
     };
     if (delay) {
@@ -138,9 +137,7 @@ fadeInAnimation('[data-stagger-hero]', {
 fadeInAnimation('[data-stagger-projects]', {
     delay: stagger(100),
     onScrollOptions: {
-        enter: 'bottom-=200 stop',
-        leave: 'top+=200 bottom',
-        repeat: false
+        enter: 'bottom-=200 top'
     },
 });
 

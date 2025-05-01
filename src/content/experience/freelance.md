@@ -5,4 +5,4 @@ company: "Freelance"
 dates: "2013-2017"
 ---
 
-Dolores voluptatem non enim aut ex necessitatibus ipsa harum omnis veniam. Pariatur cum et modi sed officia aspernatur veritatis vel. Eius possimus dolores non ipsum quo.
+As a freelance web designer and developer, I partnered with clients to create custom websites that balanced visual impact with performance and usability. I managed every stage of the process—from discovery and wireframing to design, development, and deployment—delivering tailored solutions that met business goals and elevated online presence.

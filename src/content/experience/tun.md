@@ -5,4 +5,4 @@ company: "The University Network"
 dates: "2007-2009"
 ---
 
-Dolores voluptatem non enim aut ex necessitatibus ipsa harum omnis veniam. Pariatur cum et modi sed officia aspernatur veritatis vel. Eius possimus dolores non ipsum quo.
+I conceptualized, designed, and produced 60-second motion graphic advertisements for college campuses nationwide, collaborating with internal teams to align messaging with student-focused initiatives and brand partnerships. Projects included campaigns for brands such as Coca-Cola, American Eagle, Dasani, and Nestea.

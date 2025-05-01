@@ -227,7 +227,7 @@ utils.$('[data-project]').forEach(item => {
     item.addEventListener('mouseleave', () => {
         animate(image, {
             opacity: {
-                to: 0.1,
+                to: 0.25,
             },
             duration: 500
         });

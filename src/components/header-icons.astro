@@ -24,20 +24,28 @@ import { Icon } from 'astro-icon/components'
     <div class="flex items-center justify-end gap-p5 ml-auto">
         <a
             href="mailto:hello@jeffglenn.me"
-            class="btn glow-hover mr-1 flex items-center gap-1"
+            class="hidden md:flex btn glow-hover mr-1 items-center gap-1"
         >
             <Icon name="chat" class="size-[15px]" />
             Say Hello
         </a>
         <a
+            href="mailto:hello@jeffglenn.me"
+            class="md:hidden grid place-items-center size-[40px] rounded-lg dark:text-white/75 border border-transparent hover:border-black/25 dark:hover:border-white/25"
+        >
+            <Icon name="envelope" />
+        </a>
+        <a
             href="https://www.linkedin.com/in/jeff-glenn-b821a6234/"
             class="grid place-items-center size-[40px] rounded-lg dark:text-white/75 border border-transparent hover:border-black/25 dark:hover:border-white/25"
+            target="_blank"
         >
             <Icon name="linkedin" />
         </a>
         <a
             href="https://github.com/jeffaglenn"
             class="grid place-items-center size-[40px] rounded-lg dark:text-white/75 border border-transparent hover:border-black/25 dark:hover:border-white/25"
+            target="_blank"
         >
             <Icon name="github" />
         </a>

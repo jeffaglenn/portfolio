@@ -127,21 +127,20 @@ function fadeInAnimation(target, { delay, onScrollOptions = {} } = {}) {
 }
 
 // Fade-in animations
-fadeInAnimation('[data-stagger-hero]', {
+fadeInAnimation('[data-staggerHero]', {
+    delay: stagger(100),
+});
+
+
+fadeInAnimation('[data-project]', {
     delay: stagger(100),
     onScrollOptions: {
-        enter: 'bottom-=200 top'
+        target: document.getElementById('projects'),
+        enter: 'bottom-=200 top',
     },
 });
 
-fadeInAnimation('[data-stagger-projects]', {
-    delay: stagger(100),
-    onScrollOptions: {
-        enter: 'bottom-=200 top'
-    },
-});
-
-utils.$('[data-fade-in]').forEach(item => {
+utils.$('[data-fadeIn]').forEach(item => {
     fadeInAnimation(item, {
         onScrollOptions: {
             enter: 'bottom-=200 top'

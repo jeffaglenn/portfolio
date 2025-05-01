@@ -20,11 +20,11 @@ const experienceData = (
 ---
 
 <Layout>
-	<section class="wrapper h-screen flex items-center justify-center">
+	<section class="wrapper h-svh flex items-center justify-center">
         <div class="text-center flex flex-col items-center">
             <div
                 class="relative size-[20vw] sm:size-[125px] mb-4 ring-2 ring-cyan-400/50 dark:ring-white/50 rounded-full rounded-bl-none"
-                data-stagger-hero
+                data-staggerHero
             >
                 <div class="absolute glow">
                     <div class="absolute size-[20vw] sm:size-[125px] bg-green-300 dark:bg-blue-500 dark:mix-blend-screen rounded-full rounded-bl-none animate-[rotate_8s_linear_infinite_reverse] blur"></div>
@@ -40,13 +40,13 @@ const experienceData = (
                 <div>
                     <h1
                         class="text-[clamp(4rem,5vw,5rem)] mb-1 "
-                        data-stagger-hero
+                        data-staggerHero
                     >
                         Jeff Glenn
                     </h1>
                     <h2
                         class="font-stretch-normal text-1p6 font-medium"
-                        data-stagger-hero
+                        data-staggerHero
                     >
                         Web Designer &amp; Front-End Developer
                     </h2>
@@ -56,21 +56,21 @@ const experienceData = (
                     <a
                         href="#about"
                         class="btn glow-hover flex-1"
-                        data-stagger-hero
+                        data-staggerHero
                     >
                         About
                     </a>
                     <a
                         href="#projects"
                         class="btn glow-hover flex-1"
-                        data-stagger-hero
+                        data-staggerHero
                     >
                         Experience
                     </a>
                     <a
                         href="mailto:hello@jeffglenn.me"
                         class="btn glow-hover flex-1"
-                        data-stagger-hero
+                        data-staggerHero
                     >
                         Contact
                     </a>
@@ -80,13 +80,13 @@ const experienceData = (
     </section>
 
     <section id="about" class="mb-16 wrapper max-w-prose space-y-2 scroll-mt-16">
-        <h2 class="text-[clamp(4rem,5vw,5rem)]" data-fade-in>Design and development, <span class="text-[1.2em] block font-lora italic font-bold">built around your story.</span></h2>
-        <p data-fade-in>
+        <h2 class="text-[clamp(4rem,5vw,5rem)]" data-fadeIn>Design and development, <span class="text-[1.2em] block font-lora italic font-bold">built around your story.</span></h2>
+        <p data-fadeIn>
             Jeff is a Memphis-based designer and developer with over a decade of experience in web, print, motion, and photography. He specializes in taking projects from concept to completion, focusing on clean, effective design and thoughtful problem-solving.
         </p>
-        <p data-fade-in>
+        <p data-fadeIn>
             As a partner at
-            <a href="https://2dimes.com" class="relative link popup-hover cursor-none">
+            <a href="https://2dimes.com" class="relative link popup-hover cursor-none" target="_blank">
                 Paradigm Marketing & Creative
                 <span class="pointer-events-none popup-content absolute top-1/2 left-1/2 -translate-1/2 size-[125px] backdrop-blur-md rounded-full p-1 backdrop-brightness-125 dark:backdrop-brightness-200 bg-white/50 dark:bg-black/50 shadow-lg">
                     <Icon name="paradigm-logo" class="size-full" />
@@ -94,7 +94,7 @@ const experienceData = (
             </a>
             , Jeff helps businesses refine their digital presence with a mix of strategy and creativity. He started freelancing in 2014 and worked with Paradigm for over five years before officially joining the team.
         </p>
-        <p data-fade-in>
+        <p data-fadeIn>
             Outside of work, Jeff enjoys
             <span class="relative popup-hover font-bold cursor-none">backpacking in the Smoky Mountains,
                 <span class="popup-content absolute top-1/2 left-1/2 -translate-1/2 w-[300px] h-auto pointer-events-none">
@@ -147,7 +147,7 @@ const experienceData = (
 
     <section id="projects" class="my-16 wrapper scroll-mt-16">
         <div class="grid md:grid-cols-3 gap-1">
-            <div class="mb-2 md:p-2 md:self-end md:text-right" data-stagger-projects>
+            <div class="mb-2 md:p-2 md:self-end md:text-right" data-project>
                 <h2 class="dark:text-pink-500 font-medium">Recent Projects</h2>
             </div>
 
@@ -155,7 +155,7 @@ const experienceData = (
                 <a
                     href={ project.data.url }
                     class="flex flex-col justify-between aspect-video relative z-10 font-semibold p-2 rounded-lg backdrop-brightness-110 dark:backdrop-brightness-200 overflow-clip border border-black/15 dark:border-white/10"
-                    data-stagger-projects
+                    target="_blank"
                     data-project
                 >
                     <div>
@@ -183,13 +183,13 @@ const experienceData = (
     </section>
 
     <section class="wrapper max-w-prose mb-16">
-        <h2 class="mb-2 font-medium dark:text-pink-500" data-fade-in>Experience</h2>
-        <div class="text-1p6 sm:px-4 rounded-lg sm:shadow-xl shadow-cyan-500/5 dark:shadow-pink-500/5 backdrop-blur-lg sm:bg-white/40 dark:bg-transparent dark:sm:backdrop-brightness-200 overflow-clip" data-fade-in>
+        <h2 class="mb-2 font-medium dark:text-pink-500" data-fadeIn>Experience</h2>
+        <div class="text-1p6 sm:px-4 rounded-lg sm:shadow-xl shadow-cyan-500/5 dark:shadow-pink-500/5 backdrop-blur-lg sm:bg-white/40 dark:bg-transparent dark:sm:backdrop-brightness-200 overflow-clip" data-fadeIn>
             <ul class="divide-y divide-cyan-500/10 dark:divide-white/10">
                 { experienceData.map(async (experience) => {
                     const { Content } = await render(experience);
                     return (
-                        <li class="flex items-start gap-4 py-2 sm:py-4" data-fade-in>
+                        <li class="flex items-start gap-4 py-2 sm:py-4" data-fadeIn>
                             <div class="flex-1 space-y-2">
                                 <div class="space-y-p5">
                                     <h3 class="text-2p4 font-semibold">
@@ -199,6 +199,7 @@ const experienceData = (
                                         { experience.data.companyUrl ? (
                                             <a
                                                 href={ experience.data.companyUrl }
+                                                target="_blank"
                                             >
                                                 { experience.data.company }
                                             </a>

@@ -2,7 +2,9 @@
 // Imports
 // --------------------------------- //
 
-import { animate, onScroll, utils, stagger, createAnimatable } from 'animejs';
+// import { animate, onScroll, utils, stagger, createAnimatable } from 'animejs';
+
+import { gsap } from "gsap";
 
 // --------------------------------- //
 // End Imports
@@ -112,146 +114,220 @@ if (!isTouchDevice()) {
 
 
 
-function fadeInAnimation(target, { delay, onScrollOptions = {} } = {}) {
-    const params = {
-        y: { from: '75px' },
-        opacity: { from: 0 },
-    };
-    if (delay) {
-        params.delay = delay;
-    }
-    animate(target, {
-        ...params,
-        autoplay: onScroll(onScrollOptions),
-    });
-}
+// function fadeInAnimation(target, { delay, onScrollOptions = {} } = {}) {
+//     const params = {
+//         y: { from: '75px' },
+//         opacity: { from: 0 },
+//     };
+//     if (delay) {
+//         params.delay = delay;
+//     }
+//     animate(target, {
+//         ...params,
+//         autoplay: onScroll(onScrollOptions),
+//     });
+// }
 
 // Fade-in animations
-fadeInAnimation('[data-staggerHero]', {
-    delay: stagger(100),
+// fadeInAnimation('[data-staggerHero]', {
+//     delay: stagger(100),
+// });
+
+
+// fadeInAnimation('[data-project]', {
+//     delay: stagger(100),
+//     onScrollOptions: {
+//         target: document.getElementById('projects'),
+//         enter: 'bottom-=200 top',
+//     },
+// });
+
+// utils.$('[data-fadeIn]').forEach(item => {
+//     fadeInAnimation(item, {
+//         onScrollOptions: {
+//             enter: 'bottom-=200 top'
+//         },
+//     });
+// });
+
+// utils.$('.popup-hover').forEach(item => {
+
+//     const refreshBounds = () => bounds = item.getBoundingClientRect();
+//     let popupContentContainer = item.querySelector('.popup-content');
+
+//     // Initialize popup at scale 0
+//     utils.set(popupContentContainer, {
+//         scale: 0,
+//         opacity: 0,
+//         zIndex: 1000,
+//     });
+
+//     // // Animate in on hover with bounce
+//     item.addEventListener('mouseenter', () => {
+//         animate(popupContentContainer, {
+//             scale: [0.6, 1],
+//             opacity: {
+//                 to: 1,
+//             },
+//             ease: 'outElastic(.75, .75)',
+//             duration: 500
+//         });
+//     });
+//     // // Animate out on mouse leave
+//     item.addEventListener('mouseleave', () => {
+//         animate(popupContentContainer, {
+//             scale: [1, 0.6],
+//             opacity: {
+//                 to: 0,
+//             },
+//             ease: 'inElastic(.75, .75)',
+//             duration: 250
+//         });
+//     });
+
+//     const content = createAnimatable(popupContentContainer, {
+//         x: 500,
+//         y: 500,
+//         ease: 'out(3)',
+//     });
+
+//     const onMouseMove = e => {
+//         const bounds = item.getBoundingClientRect();
+//         const { width, height, left, top } = bounds;
+//         const hw = width / 2;
+//         const hh = height / 2;
+//         const x = utils.clamp(e.clientX - left - hw, -hw, hw);
+//         const y = utils.clamp(e.clientY - top - hh, -hh, hh);
+//         content.x(x);
+//         content.y(y);
+//     }
+
+//     item.addEventListener('mousemove', onMouseMove);
+//     popupContentContainer.addEventListener('scroll', refreshBounds);
+// });
+
+
+// utils.$('[data-project]').forEach(item => {
+//     const image = item.querySelector('img');
+
+//     utils.set(image, {
+//         scale: 1.1,
+//         opacity: 0.25,
+//     });
+
+//     // // Animate in on hover with bounce
+//     item.addEventListener('mouseenter', () => {
+//         animate(image, {
+//             opacity: {
+//                 to: 1,
+//             },
+//             duration: 500
+//         });
+//     });
+//     // // Animate out on mouse leave
+//     item.addEventListener('mouseleave', () => {
+//         animate(image, {
+//             opacity: {
+//                 to: 0.25,
+//             },
+//             duration: 500
+//         });
+//     });
+
+//     const content = createAnimatable(image, {
+//         x: 1000,
+//         y: 1000,
+//     });
+
+//     const onMouseMove = e => {
+//         const { left, top, width, height } = item.getBoundingClientRect();
+//         const hw = width / 2;
+//         const hh = height / 2;
+//         const overflowX = width * 0.05;
+//         const overflowY = height * 0.05;
+//         const normX = utils.clamp((e.clientX - left - hw) / hw, -1, 1);
+//         const normY = utils.clamp((e.clientY - top - hh) / hh, -1, 1);
+//         content.x(normX * overflowX);
+//         content.y(normY * overflowY);
+//     };
+
+//     item.addEventListener('mousemove', onMouseMove);
+//     item.addEventListener('mouseleave', () => {
+//         content.x(0);
+//         content.y(0);
+//     });
+// });
+
+
+
+
+
+gsap.from('[data-staggerHero]', {
+    y: 75,
+    opacity: 0,
+    duration: 1,
+    ease: 'power2.out',
+    filter: 'blur(5px)',
+    stagger: 0.1
 });
 
 
-fadeInAnimation('[data-project]', {
-    delay: stagger(100),
-    onScrollOptions: {
-        target: document.getElementById('projects'),
-        enter: 'bottom-=200 top',
-    },
-});
+const popupHoverElements = document.querySelectorAll('.popup-hover');
 
-utils.$('[data-fadeIn]').forEach(item => {
-    fadeInAnimation(item, {
-        onScrollOptions: {
-            enter: 'bottom-=200 top'
-        },
-    });
-});
-
-utils.$('.popup-hover').forEach(item => {
-
-    const refreshBounds = () => bounds = item.getBoundingClientRect();
+popupHoverElements.forEach(item => {
     let popupContentContainer = item.querySelector('.popup-content');
 
-    // Initialize popup at scale 0
-    utils.set(popupContentContainer, {
-        scale: 0,
+    // // Initialize popup at scale 0
+    gsap.set(popupContentContainer, {
+        scale: 0.5,
         opacity: 0,
         zIndex: 1000,
     });
 
-    // // Animate in on hover with bounce
+    // Animate in on hover with bounce
     item.addEventListener('mouseenter', () => {
-        animate(popupContentContainer, {
-            scale: [0.6, 1],
-            opacity: {
-                to: 1,
-            },
-            ease: 'outElastic(.75, .75)',
-            duration: 500
+        gsap.to(popupContentContainer, {
+            scale: 1,
+            opacity: 1,
+            ease: 'back.out',
+            duration: .3,
         });
     });
-    // // Animate out on mouse leave
+    // Animate out on mouse leave
     item.addEventListener('mouseleave', () => {
-        animate(popupContentContainer, {
-            scale: [1, 0.6],
-            opacity: {
-                to: 0,
-            },
-            ease: 'inElastic(.75, .75)',
-            duration: 250
+        gsap.to(popupContentContainer, {
+            scale: 0.5,
+            opacity: 0,
+            ease: 'back.in',
+            duration: .3,
         });
     });
 
-    const content = createAnimatable(popupContentContainer, {
-        x: 500,
-        y: 500,
-        ease: 'out(3)',
+    let x = 0;
+    let y = 0;
+    let gsapTween = gsap.to(popupContentContainer, {
+        x: () => x,
+        y: () => y,
+        ease: 'power3.out',
+        duration: 0.3,
+        paused: true,
     });
 
-    const onMouseMove = e => {
+    // Listen to mousemove
+    const onMouseMove = (e) => {
         const bounds = item.getBoundingClientRect();
         const { width, height, left, top } = bounds;
         const hw = width / 2;
         const hh = height / 2;
-        const x = utils.clamp(e.clientX - left - hw, -hw, hw);
-        const y = utils.clamp(e.clientY - top - hh, -hh, hh);
-        content.x(x);
-        content.y(y);
-    }
+        const clampedX = gsap.utils.clamp(-hw, hw, e.clientX - left - hw);
+        const clampedY = gsap.utils.clamp(-hh, hh, e.clientY - top - hh);
 
-    item.addEventListener('mousemove', onMouseMove);
-    popupContentContainer.addEventListener('scroll', refreshBounds);
-});
+        x = clampedX;
+        y = clampedY;
 
-
-utils.$('[data-project]').forEach(item => {
-    const image = item.querySelector('img');
-
-    utils.set(image, {
-        scale: 1.1,
-        opacity: 0.25,
-    });
-
-    // // Animate in on hover with bounce
-    item.addEventListener('mouseenter', () => {
-        animate(image, {
-            opacity: {
-                to: 1,
-            },
-            duration: 500
-        });
-    });
-    // // Animate out on mouse leave
-    item.addEventListener('mouseleave', () => {
-        animate(image, {
-            opacity: {
-                to: 0.25,
-            },
-            duration: 500
-        });
-    });
-
-    const content = createAnimatable(image, {
-        x: 1000,
-        y: 1000,
-    });
-
-    const onMouseMove = e => {
-        const { left, top, width, height } = item.getBoundingClientRect();
-        const hw = width / 2;
-        const hh = height / 2;
-        const overflowX = width * 0.05;
-        const overflowY = height * 0.05;
-        const normX = utils.clamp((e.clientX - left - hw) / hw, -1, 1);
-        const normY = utils.clamp((e.clientY - top - hh) / hh, -1, 1);
-        content.x(normX * overflowX);
-        content.y(normY * overflowY);
+        // restart tween
+        gsapTween.invalidate().restart();
     };
 
     item.addEventListener('mousemove', onMouseMove);
-    item.addEventListener('mouseleave', () => {
-        content.x(0);
-        content.y(0);
-    });
 });

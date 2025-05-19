@@ -61,16 +61,6 @@
     },
     {
         "id": 7,
-        "title": "The Henry",
-        "technologies": ["Wordpress", "TailwindCSS", "GSAP"],
-        "url": "https://thehenryclt.com",
-        "image": {
-            "src": "@images/henry.webp",
-            "alt": "Orpheum Theater Group"
-        }
-    },
-    {
-        "id": 8,
         "title": "Stauf USA",
         "technologies": ["Craft CMS", "TailwindCSS", "Alpine.js"],
         "url": "https://staufusa.com",
@@ -80,7 +70,7 @@
         }
     },
     {
-        "id": 9,
+        "id": 8,
         "title": "Beauty Lawn Spray",
         "technologies": ["Craft CMS", "TailwindCSS", "Alpine.js"],
         "url": "https://beautylawnspray.com",

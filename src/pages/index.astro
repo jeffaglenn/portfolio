@@ -269,37 +269,37 @@ const hobbies = [
 
 	<section
 		id="contact"
-		class="mt-24 sm:mt-32 bg-brand text-white"
+		class="mt-24 sm:mt-32"
 		aria-labelledby="contact-heading"
 	>
-		<div class="wrapper pt-16 sm:pt-24 pb-10">
+		<div class="wrapper pb-10">
 		<h2 id="contact-heading" class="section-heading">
 			Let's work together
 		</h2>
 
-		<p class="mt-4 max-w-[48ch]">
+		<p class="mt-4 max-w-[48ch] text-ink-muted">
 			Have a project in mind, or just want to say hello? Email is the
 			fastest way to reach me.
 		</p>
 
 		<a
 			href={`mailto:${email}`}
-			class="link-inverse mt-6 inline-block text-headline font-semibold break-all"
+			class="link mt-6 inline-block text-headline font-semibold break-all"
 		>
 			{email}
 		</a>
 
-		<footer class="mt-20 sm:mt-28 pt-6 border-t border-white/30 flex flex-wrap items-center justify-between gap-4 text-label">
+		<footer class="mt-20 sm:mt-28 pt-6 border-t border-rule flex flex-wrap items-center justify-between gap-4 text-label text-ink-faint">
 			<p>
 				&copy; {new Date().getFullYear()} Jeff Glenn · Memphis,
 				Tennessee
 			</p>
-			<ul class="flex items-center -ml-[11px] sm:ml-0 sm:-mr-[11px]">
+			<ul class="flex items-center -ml-[11px] sm:ml-0 sm:-mr-[11px] text-ink-muted">
 				{elsewhere.map((item) => (
 					<li>
 						<a
 							href={item.href}
-							class="flex items-center justify-center size-10 rounded-full transition-colors hover:bg-white/15"
+							class="flex items-center justify-center size-10 rounded-full transition-colors hover:text-ink"
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label={`${item.label} (opens in a new tab)`}

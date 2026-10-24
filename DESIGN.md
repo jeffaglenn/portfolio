@@ -72,11 +72,8 @@ components:
     height: "36px"
   say-hello-button-hover:
     backgroundColor: "{colors.brand-deep}"
-  contact-band:
-    backgroundColor: "{colors.brand}"
-    textColor: "#ffffff"
   email-closing:
-    textColor: "#ffffff"
+    textColor: "{colors.brand}"
     typography: "{typography.headline}"
   visit-label:
     backgroundColor: "{colors.ink}"
@@ -138,10 +135,10 @@ The system must never read as sterile or corporate, trendy, or cutesy. Calm is n
 
 ## Colors
 
-White page, a cool near-black ink with two quieter steps, and one warm vermilion that is Jeff's signature. Vermilion is used with intent: it owns the call to action and the closing band, and marks hover and focus. It is never decoration.
+White page, a cool near-black ink with two quieter steps, and one warm vermilion that is Jeff's signature. Vermilion is used with intent: it owns the call to action and the email, and marks hover and focus. It is never decoration.
 
 ### Primary
-- **Vermilion** (`brand`, #cf3a21): the "Say hello" button, the full-bleed contact band, inline text links, section-button hovers, and the focus ring. 4.9:1 against white in both directions, so it works as small text on white and as a background under white text.
+- **Vermilion** (`brand`, #cf3a21): the "Say hello" button, inline text links (including the closing email), section-button hovers, and the focus ring. 4.9:1 against white in both directions, so it works as small text on white and as a background under white text.
 - **Deep Vermilion** (`brand-deep`, #a62b18): hover state for vermilion links and the "Say hello" button.
 - **Vermilion Tint** (`brand-tint`, #fde4dd): the text-selection background only.
 
@@ -150,11 +147,11 @@ White page, a cool near-black ink with two quieter steps, and one warm vermilion
 - **Wash Gray** (`wash`): the placeholder fill behind screenshots and the portrait while they load. Never a section background.
 - **Hairline Gray** (`rule`): every divider and frame border: the header's scrolled underline, experience row rules, the footer rule, screenshot frames, the popup frame.
 - **Ink** (`ink`): headings, body copy in About, project titles, the hobby phrases, and the "Visit site" label over screenshots (it must read on any image, which vermilion does not on warm photos).
-- **Muted Ink** (`ink-muted`): the tagline, the Memphis line, experience descriptions, and the header icons at rest.
+- **Muted Ink** (`ink-muted`): the tagline, the Memphis line, experience descriptions, contact copy, and the header and footer icons at rest.
 - **Faint Ink** (`ink-faint`): metadata only: dates, project stacks, the footer line, the hobby phrases' dotted underline.
 
 ### Named Rules
-**The Signature Color Rule.** Vermilion is the only hue. It goes to the action (Say hello, the email), to one large territory (the contact band), and to interaction feedback (hover, focus). It never fills decorative shapes, never tints sections other than Contact, and never sits on a photo. On the vermilion band, all text is white.
+**The Signature Color Rule.** Vermilion is the only hue. It goes to the action (Say hello, the email) and to interaction feedback (hover, focus). It never fills decorative shapes or section backgrounds, and never sits on a photo. Background gradients are undecided: the page stays white until one is chosen.
 
 **The One Theme Rule.** There is one theme, and it is light. Either would have served; light was chosen. Don't add a dark mode, a theme toggle, or `prefers-color-scheme` variants.
 
@@ -181,7 +178,7 @@ White page, a cool near-black ink with two quieter steps, and one warm vermilion
 
 Every section and the header share one centered container, 64rem wide (`.wrapper`), with 20px gutters (24px from 640px up), so all left and right edges line up. Running text is capped inside it (body copy at 65ch, contact copy at 48ch) rather than stretched to the full width; rules, the experience dates, and the footer span the whole container. The work grid is one column on phones and two columns (32px column gap, 40px row gap) from 640px. Nothing else reflows: phones get the same container at full width.
 
-The page reads top to bottom: portrait and name with the lede, then the section buttons (Work, About, Experience, Contact); Selected work; About; Experience; and a full-bleed vermilion contact band that also holds the footer. A 64px sticky header holds the small name (it fades in once the large one scrolls away), LinkedIn and GitHub icons, and the "Say hello" button.
+The page reads top to bottom: portrait and name with the lede, then the section buttons (Work, About, Experience, Contact); Selected work; About; Experience; and a closing contact section that also holds the footer. A 64px sticky header holds the small name (it fades in once the large one scrolls away), LinkedIn and GitHub icons, and the "Say hello" button.
 
 Spacing follows one rhythm with more space above a heading than below it: 96px between sections (128px from 640px up), 24 to 32px from a heading to its content, 28px of padding inside each experience row. 640px is the only breakpoint.
 
@@ -202,12 +199,11 @@ Gently rounded rectangles for every photographic surface: screenshot frames and 
 Quiet and always underlined.
 - **Rest:** Vermilion text with a 1px underline at 35% strength, offset 0.2em.
 - **Hover:** Deep Vermilion; the underline goes to full strength (200ms).
-- **Focus:** 2px Vermilion outline, 3px offset, 4px radius (global for every focusable element); white inside the contact band.
-- **On the band (`.link-inverse`):** white text with a 50% white underline that goes solid on hover.
-- **Closing email:** the inverse link at Headline size and weight, allowed to break anywhere on narrow screens.
+- **Focus:** 2px Vermilion outline, 3px offset, 4px radius (global for every focusable element).
+- **Closing email:** the same link at Headline size and weight, allowed to break anywhere on narrow screens.
 
-### Contact Band
-The page ends in color. "Let's work together" sits on a full-bleed Vermilion band (64px top padding, 96px from 640px), with the copy, the email at Headline size, and the footer inside it, all in white. The footer rule is white at 30%; the LinkedIn and GitHub icons get a white 15% circle on hover.
+### Contact
+"Let's work together" on the white page, with the copy in Muted Ink, the email as a Vermilion link at Headline size, and the footer below a Hairline Gray rule: the copyright line in Faint Ink, and the LinkedIn and GitHub icons in Muted Ink, stepping to Ink on hover.
 
 ### Navigation
 - **Header:** Page White, sticky, with a transparent bottom border that turns Hairline Gray once the intro name leaves the viewport. LinkedIn and GitHub are 18px brand marks in Muted Ink inside 40px round hit areas, stepping to Ink on hover, shown at every width; each link carries an aria-label. The "Say hello" button is a mailto link styled as a filled Vermilion pill: 36px tall, 16px side padding, white Label text at 500, with a 16px speech-bubble icon. On hover it deepens to Deep Vermilion (200ms). It is the only filled button on the page.

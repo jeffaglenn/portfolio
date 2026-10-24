@@ -35,7 +35,7 @@ The category standard, played straight and executed at full craft: a clean, whit
 
 THESIS: A calm, white, single-column portfolio where the type and the real work carry everything. It turns down the glow, glass, and drifting color of the old site, and the novelty concepts too.
 
-OWN-WORLD: White ground, near-black type, and one vermilion signature color (#cf3a21) that owns the Say hello button, the full-bleed contact band, links, and hover/focus. Schibsted Grotesk for reading; Archivo Expanded for the name and section titles. Flat surfaces, hairline dividers, and gently rounded screenshot frames. No shadows, glows, blur, or gradients. Motion is authored and runs once: the intro copy rises in on load and screenshots wipe open as they scroll in (user request, 2026-10-23, revising the original quiet, motionless direction).
+OWN-WORLD: White ground, near-black type, and one vermilion signature color (#cf3a21) that owns the Say hello button, links (including the closing email), and hover/focus. The contact section is white (vermilion band removed 2026-10-24; background gradients deferred). Schibsted Grotesk for reading; Archivo Expanded for the name and section titles. Flat surfaces, hairline dividers, and gently rounded screenshot frames. No shadows, glows, blur, or gradients. Motion is authored and runs once: the intro copy rises in on load and screenshots wipe open as they scroll in (user request, 2026-10-23, revising the original quiet, motionless direction).
 
 STORY: The visitor meets Jeff (face and name) and learns in one sentence that he designs and builds websites. They see real client work, read a short first-person background, scan his experience, and email him.
 

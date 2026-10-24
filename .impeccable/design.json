@@ -308,14 +308,6 @@
       "description": "Signature: the round portrait that shuffles frames as the cursor moves.",
       "html": "<div class=\"ds-portrait\" role=\"img\" aria-label=\"Portrait\"></div>",
       "css": ".ds-portrait { width: 128px; height: 128px; border-radius: 9999px; background: var(--color-wash, #f3f4f6); object-fit: cover; }"
-    },
-    {
-      "name": "Contact Band",
-      "kind": "custom",
-      "refersTo": "contact-band",
-      "description": "The full-bleed Vermilion close: section title, copy, the inverse email at Headline size, and the footer, all in white.",
-      "html": "<section class=\"ds-contact\"><div class=\"ds-contact-inner\"><h2 class=\"ds-contact-title\">Let's work together</h2><p class=\"ds-contact-copy\">Have a project in mind, or just want to say hello? Email is the fastest way to reach me.</p><a href=\"#\" class=\"ds-contact-email\">hello@jeffglenn.me</a><footer class=\"ds-contact-foot\"><p>&copy; 2026 Jeff Glenn · Memphis, Tennessee</p><span class=\"ds-contact-icons\"><a href=\"#\" aria-label=\"LinkedIn\">in</a><a href=\"#\" aria-label=\"GitHub\">gh</a></span></footer></div></section>",
-      "css": ".ds-contact { background: var(--color-brand, #cf3a21); color: #fff; font-family: var(--font-sans); } .ds-contact-inner { max-width: 64rem; margin: 0 auto; padding: 96px 24px 40px; } .ds-contact :focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 4px; } .ds-contact-title { margin: 0; font-family: var(--font-name, 'Archivo Variable', sans-serif); font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); line-height: 1.1; font-weight: 600; font-stretch: 125%; letter-spacing: -0.02em; } .ds-contact-copy { margin: 16px 0 0; max-width: 48ch; font-size: 1.0625rem; line-height: 1.65; } .ds-contact-email { display: inline-block; margin-top: 24px; font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); line-height: 1.1; letter-spacing: -0.025em; font-weight: 600; word-break: break-all; color: #fff; text-decoration-line: underline; text-decoration-thickness: 1px; text-decoration-color: rgb(255 255 255 / 0.5); text-underline-offset: 0.2em; transition: text-decoration-color 200ms; } .ds-contact-email:hover { text-decoration-color: currentColor; } .ds-contact-foot { margin-top: 112px; padding-top: 24px; border-top: 1px solid rgb(255 255 255 / 0.3); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font-size: 0.875rem; line-height: 1.45; } .ds-contact-foot p { margin: 0; } .ds-contact-icons { display: flex; } .ds-contact-icons a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; color: #fff; text-decoration: none; transition: background-color 150ms; } .ds-contact-icons a:hover { background: rgb(255 255 255 / 0.15); }"
     }
   ],
   "narrative": {
@@ -332,7 +324,7 @@
     "rules": [
       {
         "name": "The Signature Color Rule",
-        "body": "Vermilion is the only hue. It goes to the action (Say hello, the email), to one large territory (the contact band), and to interaction feedback (hover, focus). It never fills decorative shapes, never tints sections other than Contact, and never sits on a photo. On the vermilion band, all text is white.",
+        "body": "Vermilion is the only hue. It goes to the action (Say hello, the email) and to interaction feedback (hover, focus). It never fills decorative shapes or section backgrounds, and never sits on a photo. Background gradients are undecided: the page stays white until one is chosen.",
         "section": "colors"
       },
       {

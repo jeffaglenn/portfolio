@@ -36,11 +36,6 @@
         border-radius: 4px;
     }
 
-    /* The contact band is vermilion, so its focus ring is white. */
-    #contact :focus-visible {
-        outline-color: #fff;
-    }
-
     img,
     svg {
         @apply
@@ -75,20 +70,6 @@
 
         &:hover {
             color: var(--color-brand-deep);
-            text-decoration-color: currentColor;
-        }
-    }
-
-    /* Links on the vermilion contact band. */
-    .link-inverse {
-        @apply text-white;
-        text-decoration-line: underline;
-        text-decoration-thickness: 1px;
-        text-decoration-color: rgb(255 255 255 / 0.5);
-        text-underline-offset: 0.2em;
-        transition: text-decoration-color 200ms;
-
-        &:hover {
             text-decoration-color: currentColor;
         }
     }

@@ -1,0 +1,55 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const email = 'hello@jeffglenn.me';
+
+const elsewhere = [
+    { label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/in/jeff-glenn-b821a6234/' },
+    { label: 'GitHub',   icon: 'github',   href: 'https://github.com/jeffaglenn' },
+];
+---
+
+<!--
+    The small name stays hidden while the large one in the intro is on
+    screen; app.js flips data-scrolled once it leaves.
+-->
+<header
+    id="site-header"
+    class="group sticky top-0 z-30 bg-page border-b border-transparent transition-colors duration-300 data-scrolled:border-rule"
+>
+    <div class="wrapper flex items-center gap-5 h-16">
+        <a
+            href="#top"
+            class="font-name font-medium font-stretch-expanded tracking-[-0.03em] text-ink opacity-0 -translate-y-1 transition duration-300 group-data-scrolled:opacity-100 group-data-scrolled:translate-y-0"
+            tabindex="-1"
+        >
+            Jeff Glenn
+        </a>
+
+        <!-- 40px hit areas around 18px marks; the negative margin keeps the button's spacing optical. -->
+        <ul class="flex items-center ml-auto -mr-2 text-ink-muted">
+            { elsewhere.map(item => (
+                <li>
+                    <a
+                        href={ item.href }
+                        class="flex items-center justify-center size-10 rounded-full hover:text-ink transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={ `${ item.label } (opens in a new tab)` }
+                    >
+                        <Icon name={ item.icon } aria-hidden="true" class="size-[18px]" />
+                    </a>
+                </li>
+            )) }
+        </ul>
+
+        <a
+            href={ `mailto:${ email }` }
+            class="inline-flex items-center gap-2 h-9 px-4 rounded-full bg-brand text-white text-label font-medium transition-colors duration-200 hover:bg-brand-deep"
+            aria-label={ `Say hello: email ${ email }` }
+        >
+            <Icon name="chat" aria-hidden="true" class="size-4" />
+            Say hello
+        </a>
+    </div>
+</header>

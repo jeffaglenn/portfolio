@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T12:00:00Z",
+  "title": "Design System: Jeff Glenn",
+  "extensions": {
+    "colorMeta": {
+      "brand": {
+        "role": "primary",
+        "displayName": "Vermilion",
+        "canonical": "#cf3a21",
+        "tonalRamp": [
+          "#5c190e",
+          "#7d2214",
+          "#a62b18",
+          "#cf3a21",
+          "#e05a40",
+          "#ec8670",
+          "#f5b5a6",
+          "#fde4dd"
+        ]
+      },
+      "brand-deep": {
+        "role": "primary",
+        "displayName": "Deep Vermilion",
+        "canonical": "#a62b18",
+        "tonalRamp": [
+          "#5c190e",
+          "#7d2214",
+          "#a62b18",
+          "#cf3a21",
+          "#e05a40",
+          "#ec8670",
+          "#f5b5a6",
+          "#fde4dd"
+        ]
+      },
+      "brand-tint": {
+        "role": "primary",
+        "displayName": "Vermilion Tint",
+        "canonical": "#fde4dd",
+        "tonalRamp": [
+          "#5c190e",
+          "#7d2214",
+          "#a62b18",
+          "#cf3a21",
+          "#e05a40",
+          "#ec8670",
+          "#f5b5a6",
+          "#fde4dd"
+        ]
+      },
+      "page": {
+        "role": "neutral",
+        "displayName": "Page White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#111827",
+          "#1f2937",
+          "#374151",
+          "#4b5563",
+          "#6b7280",
+          "#9ca3af",
+          "#d1d5db",
+          "#ffffff"
+        ]
+      },
+      "wash": {
+        "role": "neutral",
+        "displayName": "Wash Gray",
+        "canonical": "#f3f4f6",
+        "tonalRamp": [
+          "#111827",
+          "#1f2937",
+          "#374151",
+          "#4b5563",
+          "#6b7280",
+          "#9ca3af",
+          "#d1d5db",
+          "#f3f4f6"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline Gray",
+        "canonical": "#e5e7eb",
+        "tonalRamp": [
+          "#111827",
+          "#1f2937",
+          "#374151",
+          "#4b5563",
+          "#6b7280",
+          "#9ca3af",
+          "#e5e7eb",
+          "#f3f4f6"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#111827",
+        "tonalRamp": [
+          "#111827",
+          "#1f2937",
+          "#374151",
+          "#4b5563",
+          "#6b7280",
+          "#9ca3af",
+          "#d1d5db",
+          "#f3f4f6"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#4b5563",
+        "tonalRamp": [
+          "#111827",
+          "#1f2937",
+          "#374151",
+          "#4b5563",
+          "#6b7280",
+          "#9ca3af",
+          "#d1d5db",
+          "#f3f4f6"
+        ]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Faint Ink",
+        "canonical": "#6b7280",
+        "tonalRamp": [
+          "#111827",
+          "#1f2937",
+          "#374151",
+          "#4b5563",
+          "#6b7280",
+          "#9ca3af",
+          "#d1d5db",
+          "#f3f4f6"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name, once, in Archivo Expanded (width 125%); the largest type on the page. The header's small name uses the same face at body size, 700."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles in Archivo Expanded via .section-heading; the closing email at the same size in Schibsted Grotesk 600."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "The two lines under the name: the title at 600 in Ink, the tagline at 400 in Muted Ink."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Project and position names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "First-person copy, max 65ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Dates (tabular), project stacks, buttons, the Visit site label, footer."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing: entrance rise, frame reveal, screenshot zoom, underline draw, popup open."
+      },
+      {
+        "name": "duration-color",
+        "value": "200ms",
+        "purpose": "Link, Say hello, and section-button color changes."
+      },
+      {
+        "name": "duration-state",
+        "value": "300ms",
+        "purpose": "Header border and small-name fade."
+      },
+      {
+        "name": "duration-zoom",
+        "value": "700ms",
+        "purpose": "Project screenshot scale to 1.04 on hover."
+      },
+      {
+        "name": "underline-draw",
+        "value": "450ms expo-out, background-size 0% to 100% 1px",
+        "purpose": "Project title underline drawing in from the left on hover."
+      },
+      {
+        "name": "intro-pop",
+        "value": "900ms expo-out, scale 0.9 to 1 + fade",
+        "purpose": "Portrait entrance on load."
+      },
+      {
+        "name": "intro-rise",
+        "value": "800ms expo-out, translateY 12px + fade, 200ms + 70ms stagger",
+        "purpose": "Title, tagline, Memphis line, and section buttons rising in."
+      },
+      {
+        "name": "frame-reveal",
+        "value": "1000ms expo-out, clip-path inset(100% 0 0 0) to inset(0), 90ms stagger",
+        "purpose": "Work screenshot frames wiping open from the bottom, once."
+      },
+      {
+        "name": "visit-label",
+        "value": "in 250ms outExpo scale 0.85 to 1 + fade; out 150ms outQuad; follows cursor +14px",
+        "purpose": "Cursor-following Visit site pill over screenshots (fine pointer only)."
+      },
+      {
+        "name": "popup-open",
+        "value": "400ms outExpo, scale 0.92 to 1 + fade",
+        "purpose": "Hobby photo opening."
+      },
+      {
+        "name": "popup-close",
+        "value": "180ms outQuad, scale 1 to 0.92 + fade",
+        "purpose": "Hobby photo closing."
+      },
+      {
+        "name": "portrait-revert",
+        "value": "2000ms",
+        "purpose": "Shuffled portrait returns to the original frame."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "link",
+      "description": "Inline Vermilion text link with a 35% underline; deepens and goes solid on hover.",
+      "html": "<p class=\"ds-copy\">As a partner at <a href=\"#\" class=\"ds-link\">Paradigm Marketing &amp; Creative</a>, I help businesses.</p>",
+      "css": ".ds-copy { font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.65; color: var(--color-ink, #111827); } .ds-link { color: var(--color-brand, #cf3a21); text-decoration-line: underline; text-decoration-thickness: 1px; text-decoration-color: color-mix(in oklab, currentColor 35%, transparent); text-underline-offset: 0.2em; transition: color 200ms, text-decoration-color 200ms; } .ds-link:hover { color: var(--color-brand-deep, #a62b18); text-decoration-color: currentColor; } .ds-link:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Say Hello Button",
+      "kind": "button",
+      "refersTo": "say-hello-button",
+      "description": "The only filled button: a Vermilion mailto pill in the header that deepens on hover.",
+      "html": "<a href=\"#\" class=\"ds-hello\"><svg class=\"ds-hello-icon\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.75\" stroke=\"currentColor\" aria-hidden=\"true\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM2.25 12c0 4.556 4.03 8.25 9 8.25a9.764 9.764 0 0 0 2.555-.337A5.972 5.972 0 0 0 18 21a5.969 5.969 0 0 1-1.023-3.413C19.136 16.07 20.25 14.16 20.25 12c0-4.556-4.03-8.25-9-8.25s-9 3.694-9 8.25Z\"/></svg>Say hello</a>",
+      "css": ".ds-hello { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 16px; border-radius: 9999px; background: var(--color-brand, #cf3a21); color: #fff; font-family: var(--font-sans); font-size: 0.875rem; line-height: 1.45; font-weight: 500; text-decoration: none; transition: background-color 200ms; } .ds-hello:hover { background: var(--color-brand-deep, #a62b18); } .ds-hello:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-hello-icon { width: 16px; height: 16px; }"
+    },
+    {
+      "name": "Section Buttons",
+      "kind": "button",
+      "refersTo": "section-button",
+      "description": "Outlined pills under the intro that jump to Work, About, Experience, and Contact; border and label turn Vermilion on hover.",
+      "html": "<ul class=\"ds-sections\"><li><a href=\"#\">Work</a></li><li><a href=\"#\">About</a></li><li><a href=\"#\">Experience</a></li><li><a href=\"#\">Contact</a></li></ul>",
+      "css": ".ds-sections { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-family: var(--font-sans); font-size: 0.875rem; line-height: 1.45; font-weight: 500; } .ds-sections a { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 9999px; border: 1px solid var(--color-rule, #e5e7eb); color: var(--color-ink, #111827); text-decoration: none; transition: color 200ms, border-color 200ms; } .ds-sections a:hover { border-color: var(--color-brand, #cf3a21); color: var(--color-brand, #cf3a21); } .ds-sections a:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Site Header",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sticky white header in the 64rem container: small expanded name, LinkedIn and GitHub marks in Muted Ink, and the Say hello pill. Hairline appears once scrolled.",
+      "html": "<header class=\"ds-header\"><div class=\"ds-header-inner\"><a href=\"#\" class=\"ds-header-name\">Jeff Glenn</a><ul class=\"ds-header-icons\"><li><a href=\"#\" aria-label=\"LinkedIn\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z\"/></svg></a></li><li><a href=\"#\" aria-label=\"GitHub\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 12 .3\"/></svg></a></li></ul><a href=\"#\" class=\"ds-header-hello\">Say hello</a></div></header>",
+      "css": ".ds-header { background: var(--color-page, #fff); border-bottom: 1px solid var(--color-rule, #e5e7eb); font-family: var(--font-sans); } .ds-header-inner { max-width: 64rem; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; gap: 20px; } .ds-header-name { font-family: var(--font-name, 'Archivo Variable', sans-serif); font-weight: 500; font-stretch: 125%; letter-spacing: -0.03em; color: var(--color-ink, #111827); text-decoration: none; } .ds-header-icons { list-style: none; margin: 0 -8px 0 auto; padding: 0; display: flex; align-items: center; color: var(--color-ink-muted, #4b5563); } .ds-header-icons a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; color: inherit; transition: color 150ms; } .ds-header-icons a:hover { color: var(--color-ink, #111827); } .ds-header-icons svg { width: 18px; height: 18px; } .ds-header-icons a:focus-visible, .ds-header-hello:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-header-hello { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 9999px; background: var(--color-brand, #cf3a21); color: #fff; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: background-color 200ms; } .ds-header-hello:hover { background: var(--color-brand-deep, #a62b18); }"
+    },
+    {
+      "name": "Section Heading",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "Section title in Archivo Expanded at Headline size; it does not animate.",
+      "html": "<h2 class=\"ds-section-heading\">Selected work</h2>",
+      "css": ".ds-section-heading { margin: 0; font-family: var(--font-name, 'Archivo Variable', sans-serif); font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); line-height: 1.1; font-weight: 600; font-stretch: 125%; letter-spacing: -0.02em; color: var(--color-ink, #111827); transition: font-stretch 1000ms cubic-bezier(0.16, 1, 0.3, 1); }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "project-card-frame",
+      "description": "Hairline-framed 3:2 screenshot with title and stack; zooms on hover, draws a title underline, and shows the Ink Visit site pill over the image.",
+      "html": "<a href=\"#\" class=\"ds-project\"><div class=\"ds-project-frame\"><div class=\"ds-project-shot\"></div><span class=\"ds-visit\" aria-hidden=\"true\">Visit site <svg class=\"ds-visit-arrow\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.75\" stroke=\"currentColor\" aria-hidden=\"true\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25\"/></svg></span></div><div class=\"ds-project-row\"><h3 class=\"ds-project-title\"><span class=\"ds-draw\">Orpheum Theatre</span></h3></div><p class=\"ds-project-meta\">Craft CMS · Alpine.js · TailwindCSS</p></a>",
+      "css": ".ds-project { display: block; max-width: 30rem; border-radius: 12px; color: var(--color-ink, #111827); text-decoration: none; font-family: var(--font-sans); } .ds-project:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-project-frame { position: relative; overflow: hidden; border-radius: 12px; border: 1px solid var(--color-rule, #e5e7eb); background: var(--color-wash, #f3f4f6); } .ds-project-shot { aspect-ratio: 3 / 2; background: var(--color-wash, #f3f4f6); transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-project:hover .ds-project-shot { transform: scale(1.04); } .ds-visit { pointer-events: none; position: absolute; top: 50%; left: 50%; display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 9999px; background: var(--color-ink, #111827); color: #fff; font-size: 0.875rem; line-height: 1.45; font-weight: 500; white-space: nowrap; opacity: 0; transform: scale(0.85); transition: opacity 150ms ease-out, transform 150ms ease-out; } .ds-project:hover .ds-visit { opacity: 1; transform: scale(1); transition-duration: 250ms; transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); } .ds-visit-arrow { width: 14px; height: 14px; } .ds-project-row { margin-top: 12px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; } .ds-project-title { margin: 0; font-size: 1.125rem; line-height: 1.35; letter-spacing: -0.01em; font-weight: 600; } .ds-draw { background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 1px; transition: background-size 450ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-project:hover .ds-draw { background-size: 100% 1px; } .ds-project-meta { margin: 4px 0 0; font-size: 0.875rem; line-height: 1.45; color: var(--color-ink-faint, #6b7280); }"
+    },
+    {
+      "name": "Experience Row",
+      "kind": "custom",
+      "refersTo": "experience-row",
+      "description": "Position, dates, company, and description between hairline rules, spanning the 64rem container.",
+      "html": "<ol class=\"ds-exp\"><li><div class=\"ds-exp-head\"><h3>Partner &amp; Web Director</h3><p class=\"ds-exp-dates\">2017-Present</p></div><p class=\"ds-exp-co\"><a href=\"#\">Paradigm Marketing &amp; Creative</a></p><p class=\"ds-exp-desc\">I oversee all web projects from strategy through execution.</p></li></ol>",
+      "css": ".ds-exp { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-rule, #e5e7eb); font-family: var(--font-sans); max-width: 64rem; } .ds-exp li { padding: 28px 0; border-bottom: 1px solid var(--color-rule, #e5e7eb); } .ds-exp-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; } .ds-exp-head h3 { margin: 0; font-size: 1.125rem; line-height: 1.35; letter-spacing: -0.01em; font-weight: 600; color: var(--color-ink, #111827); } .ds-exp-dates { margin: 0; flex-shrink: 0; font-size: 0.875rem; line-height: 1.45; color: var(--color-ink-faint, #6b7280); font-variant-numeric: tabular-nums; } .ds-exp-co { margin: 2px 0 0; color: var(--color-ink-muted, #4b5563); } .ds-exp-co a { color: var(--color-brand, #cf3a21); text-decoration-line: underline; text-decoration-thickness: 1px; text-decoration-color: color-mix(in oklab, currentColor 35%, transparent); text-underline-offset: 0.2em; transition: color 200ms, text-decoration-color 200ms; } .ds-exp-co a:hover { color: var(--color-brand-deep, #a62b18); text-decoration-color: currentColor; } .ds-exp-co a:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-exp-desc { margin: 12px 0 0; max-width: 65ch; font-size: 1.0625rem; line-height: 1.65; color: var(--color-ink-muted, #4b5563); }"
+    },
+    {
+      "name": "Hobby Peek",
+      "kind": "custom",
+      "refersTo": "peek",
+      "description": "Signature: a hobby phrase in prose that opens a framed photo on hover, focus, or tap.",
+      "html": "<p class=\"ds-peek-copy\">Outside of work, I enjoy <button type=\"button\" class=\"ds-peek\">Sanibel Island<span class=\"ds-peek-photo\" aria-hidden=\"true\"><span class=\"ds-peek-img\"></span></span></button> and photography.</p>",
+      "css": ".ds-peek-copy { font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.65; color: var(--color-ink, #111827); padding-top: 180px; } .ds-peek { position: relative; display: inline; font: inherit; font-weight: 500; color: var(--color-ink, #111827); background: none; border: 0; padding: 0; cursor: default; text-decoration-line: underline; text-decoration-style: dotted; text-decoration-thickness: 2px; text-decoration-color: var(--color-ink-faint, #6b7280); text-underline-offset: 0.25em; } .ds-peek:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-peek-photo { pointer-events: none; position: absolute; bottom: 100%; left: 50%; margin-bottom: 12px; display: block; width: 240px; border-radius: 12px; border: 1px solid var(--color-rule, #e5e7eb); background: var(--color-page, #fff); padding: 6px; opacity: 0; transform: translateX(-50%) scale(0.92); transition: opacity 180ms ease-out, transform 180ms ease-out; z-index: 20; } .ds-peek:hover .ds-peek-photo, .ds-peek:focus-visible .ds-peek-photo { opacity: 1; transform: translateX(-50%) scale(1); transition-duration: 400ms; transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); } .ds-peek-img { display: block; aspect-ratio: 3 / 2; border-radius: 8px; background: var(--color-wash, #f3f4f6); }"
+    },
+    {
+      "name": "Portrait",
+      "kind": "custom",
+      "refersTo": "portrait",
+      "description": "Signature: the round portrait that shuffles frames as the cursor moves.",
+      "html": "<div class=\"ds-portrait\" role=\"img\" aria-label=\"Portrait\"></div>",
+      "css": ".ds-portrait { width: 128px; height: 128px; border-radius: 9999px; background: var(--color-wash, #f3f4f6); object-fit: cover; }"
+    },
+    {
+      "name": "Contact Band",
+      "kind": "custom",
+      "refersTo": "contact-band",
+      "description": "The full-bleed Vermilion close: section title, copy, the inverse email at Headline size, and the footer, all in white.",
+      "html": "<section class=\"ds-contact\"><div class=\"ds-contact-inner\"><h2 class=\"ds-contact-title\">Let's work together</h2><p class=\"ds-contact-copy\">Have a project in mind, or just want to say hello? Email is the fastest way to reach me.</p><a href=\"#\" class=\"ds-contact-email\">hello@jeffglenn.me</a><footer class=\"ds-contact-foot\"><p>&copy; 2026 Jeff Glenn · Memphis, Tennessee</p><span class=\"ds-contact-icons\"><a href=\"#\" aria-label=\"LinkedIn\">in</a><a href=\"#\" aria-label=\"GitHub\">gh</a></span></footer></div></section>",
+      "css": ".ds-contact { background: var(--color-brand, #cf3a21); color: #fff; font-family: var(--font-sans); } .ds-contact-inner { max-width: 64rem; margin: 0 auto; padding: 96px 24px 40px; } .ds-contact :focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 4px; } .ds-contact-title { margin: 0; font-family: var(--font-name, 'Archivo Variable', sans-serif); font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); line-height: 1.1; font-weight: 600; font-stretch: 125%; letter-spacing: -0.02em; } .ds-contact-copy { margin: 16px 0 0; max-width: 48ch; font-size: 1.0625rem; line-height: 1.65; } .ds-contact-email { display: inline-block; margin-top: 24px; font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); line-height: 1.1; letter-spacing: -0.025em; font-weight: 600; word-break: break-all; color: #fff; text-decoration-line: underline; text-decoration-thickness: 1px; text-decoration-color: rgb(255 255 255 / 0.5); text-underline-offset: 0.2em; transition: text-decoration-color 200ms; } .ds-contact-email:hover { text-decoration-color: currentColor; } .ds-contact-foot { margin-top: 112px; padding-top: 24px; border-top: 1px solid rgb(255 255 255 / 0.3); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font-size: 0.875rem; line-height: 1.45; } .ds-contact-foot p { margin: 0; } .ds-contact-icons { display: flex; } .ds-contact-icons a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; color: #fff; text-decoration: none; transition: background-color 150ms; } .ds-contact-icons a:hover { background: rgb(255 255 255 / 0.15); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Simple, light, typography-focused",
+    "overview": "This is a conventional designer-developer portfolio, executed at full craft. A white page holds one centered container, and the type and the real client work carry everything. It replaces the previous dark-first world of neon glows, drifting color blobs, and frosted glass; that look is not referenced or carried forward.\n\nThe feel is atmospheric, playful, and crafted. Personality comes from a few live, human details: the round portrait shuffles through its frames as the cursor moves, the hobbies in the About copy open real photos that drift slightly with the pointer, and the copy speaks in the first person. One warm vermilion gives the page a signature, and a small set of authored motions (the intro copy rising in on load, screenshots wiping open) shows the craft of someone who builds what he designs. There is still no glow, blur, or ambient looping motion.\n\nThe system must never read as sterile or corporate, trendy, or cutesy. Calm is not the same as cold: warmth comes from Jeff's face, voice, and photos, never from ornament. Concept metaphors (film credits, proof sheets, zines, and the like) are out.",
+    "keyCharacteristics": [
+      "One theme, and it is light: white ground, near-black ink, one vermilion signature color.",
+      "One centered container (64rem) for every section and the header; running text inside it is capped at a readable measure.",
+      "Type does the work: Schibsted Grotesk for reading, Archivo Expanded for the name and the section titles. Six roles, with hierarchy from size, weight, width, and tracking.",
+      "Flat: no shadows, glows, blur, glass, or gradients. Hairlines and whitespace separate.",
+      "Two signature live details (the shuffling portrait and the hobby photo popups), one load entrance, and scroll reveals that run once; nothing loops.",
+      "Craft bar: brianlovin.com and niklaspeterson.com."
+    ],
+    "rules": [
+      {
+        "name": "The Signature Color Rule",
+        "body": "Vermilion is the only hue. It goes to the action (Say hello, the email), to one large territory (the contact band), and to interaction feedback (hover, focus). It never fills decorative shapes, never tints sections other than Contact, and never sits on a photo. On the vermilion band, all text is white.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Theme Rule",
+        "body": "There is one theme, and it is light. Either would have served; light was chosen. Don't add a dark mode, a theme toggle, or `prefers-color-scheme` variants.",
+        "section": "colors"
+      },
+      {
+        "name": "The Wordmark Rule",
+        "body": "Archivo Expanded is for the name and the four section titles, nothing else. Body copy, ledes, project and position titles, labels, and buttons are Schibsted Grotesk. No italic serif accents, and no third face.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tightening Rule",
+        "body": "Tracking tightens as size grows (0 at body, -0.01em at title and lede, -0.02em on the expanded section titles, -0.03em on the expanded name). Small type is never letterspaced or uppercased.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Page Rule",
+        "body": "If an element seems to need a shadow, give it space or a hairline instead.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Once Rule",
+        "body": "Motion is either feedback for the visitor's own action or a one-time arrival. Nothing animates on a loop or repeats on scroll back up.",
+        "section": "motion"
+      }
+    ],
+    "dos": [
+      "**Do** keep the portrait and name as the first thing a visitor sees.",
+      "**Do** keep email one click away: the \"Say hello\" button in the header, the Contact button in the intro, and the address at the close at Headline size.",
+      "**Do** write all copy in the first person (\"I\").",
+      "**Do** let the real project screenshots and live URLs be the proof.",
+      "**Do** keep every section in the shared 64rem container and cap running text at 65ch inside it.",
+      "**Do** separate with whitespace first and a 1px Hairline Gray rule second.",
+      "**Do** keep motion to the entrance, the one-time reveals, and hover feedback, built on clip-path and transforms with expo-out easing, and give every one a `prefers-reduced-motion` path."
+    ],
+    "donts": [
+      "**Don't** add a dark theme, a theme toggle, or pink.",
+      "**Don't** use glows, blurred color blobs, glass, gradients, or shadows.",
+      "**Don't** add ambient or looping motion, parallax, or reveals on every block of text.",
+      "**Don't** add a second hue, tint more sections, or put Vermilion on photos or decorative shapes.",
+      "**Don't** use Archivo beyond the name and section titles, add a third typeface, or use uppercase letterspaced labels or eyebrow text above headings.",
+      "**Don't** introduce concept metaphors or novelty framing.",
+      "**Don't** invent testimonials, metrics, or client results."
+    ]
+  }
+}

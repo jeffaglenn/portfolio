@@ -15,6 +15,23 @@
     body {
         @apply
             text-body;
+        position: relative;
+    }
+
+    /* Background glow: a halo of vermilion and warm orange light falling from
+       the top of the window. It is pinned to the window, so it stays behind the
+       page as it scrolls, and the header frosts over it. */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+            radial-gradient(60rem 28rem at 50% -8%, rgb(207 58 33 / 0.16), transparent 70%),
+            radial-gradient(30rem 24rem at 12% 8%, rgb(251 146 60 / 0.14), transparent 70%),
+            radial-gradient(30rem 24rem at 88% 12%, rgb(251 146 60 / 0.13), transparent 70%),
+            radial-gradient(44rem 20rem at 50% 30%, rgb(251 146 60 / 0.06), transparent 70%);
     }
 
     h1,
@@ -96,6 +113,101 @@
     .project:hover .draw-underline,
     .project:focus-visible .draw-underline {
         background-size: 100% 1px;
+    }
+
+    /* Portrait glow: a bright white light behind the photo that slowly breathes. */
+    .portrait {
+        @apply relative w-fit;
+        isolation: isolate;
+
+        /* A large, bright white light that fades straight into the background,
+           with no color of its own. */
+        &::before {
+            content: "";
+            position: absolute;
+            inset: -55%;
+            z-index: -1;
+            border-radius: 9999px;
+            background: radial-gradient(
+                closest-side,
+                #fff 0%,
+                #fff 42%,
+                rgb(255 255 255 / 0.9) 54%,
+                rgb(255 255 255 / 0.55) 70%,
+                rgb(255 255 255 / 0.2) 84%,
+                rgb(255 255 255 / 0) 100%
+            );
+            pointer-events: none;
+            animation: portrait-glow 5s ease-in-out infinite alternate;
+        }
+
+        /* Sweep: two soft bands of light circle the photo in opposite directions,
+           a white one and a faint vermilion one, over a white core that breathes. */
+        & .portrait-aura {
+            position: absolute;
+            z-index: -1;
+            border-radius: 9999px;
+            pointer-events: none;
+        }
+
+        /* Vermilion band, behind everything, turning counter-clockwise. */
+        & .portrait-aura--accent {
+            inset: -20%;
+            filter: blur(33px) opacity(0.3);
+            background: conic-gradient(from 180deg, transparent 0deg, #cf3a21 40deg, #cf3a21 150deg, transparent 200deg, transparent 360deg);
+            animation: portrait-spin 16s linear infinite reverse;
+        }
+
+        /* White band, turning clockwise. */
+        & .portrait-aura--sweep {
+            inset: -16%;
+            filter: blur(30px);
+            background: conic-gradient(from 0deg, transparent 0deg, #fff 40deg, #fff 150deg, transparent 200deg, transparent 360deg);
+            animation: portrait-spin 12s linear infinite;
+        }
+
+        /* White core hugging the photo, slowly swelling and settling. */
+        & .portrait-aura--core {
+            inset: -2%;
+            filter: blur(9px);
+            background: #fff;
+            animation: portrait-core 8s ease-in-out infinite alternate;
+        }
+
+        & img {
+            box-shadow:
+                0 0 0 3px rgb(255 255 255 / 0.95),
+                0 0 28px 8px rgb(255 255 255 / 0.9);
+        }
+    }
+
+    /* Work card glow: on hover the screenshot gives off its own colored light
+       all around the frame (a blurred copy of the image sitting right behind it). */
+    .project {
+        isolation: isolate;
+    }
+
+    .card-glow {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 0.75rem;
+        filter: blur(30px) saturate(1.2);
+        opacity: 0;
+        transform: scale(0.98);
+        transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+        pointer-events: none;
+    }
+
+    .project:hover .card-glow,
+    .project:focus-visible .card-glow {
+        opacity: 0.45;
+        transform: scale(1.04);
     }
 
     /* Cursor-following label over project screenshots; app.js moves it. It sits on
@@ -218,6 +330,20 @@
     }
 }
 
+@keyframes portrait-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes portrait-core {
+    from { opacity: 0.55; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1.14); }
+}
+
+@keyframes portrait-glow {
+    from { opacity: 0.7; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1.08); }
+}
+
 @keyframes intro-pop {
     from { opacity: 0; transform: scale(0.9); }
 }
@@ -229,5 +355,14 @@
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
+    }
+
+    .card-glow {
+        transition: none;
+    }
+
+    .portrait::before,
+    .portrait .portrait-aura {
+        animation: none;
     }
 }

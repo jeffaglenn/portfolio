@@ -58,7 +58,7 @@
           "#1f2937",
           "#374151",
           "#4b5563",
-          "#6b7280",
+          "#5f6673",
           "#9ca3af",
           "#d1d5db",
           "#ffffff"
@@ -73,7 +73,7 @@
           "#1f2937",
           "#374151",
           "#4b5563",
-          "#6b7280",
+          "#5f6673",
           "#9ca3af",
           "#d1d5db",
           "#f3f4f6"
@@ -88,7 +88,7 @@
           "#1f2937",
           "#374151",
           "#4b5563",
-          "#6b7280",
+          "#5f6673",
           "#9ca3af",
           "#e5e7eb",
           "#f3f4f6"
@@ -103,7 +103,7 @@
           "#1f2937",
           "#374151",
           "#4b5563",
-          "#6b7280",
+          "#5f6673",
           "#9ca3af",
           "#d1d5db",
           "#f3f4f6"
@@ -118,7 +118,7 @@
           "#1f2937",
           "#374151",
           "#4b5563",
-          "#6b7280",
+          "#5f6673",
           "#9ca3af",
           "#d1d5db",
           "#f3f4f6"
@@ -127,13 +127,13 @@
       "ink-faint": {
         "role": "neutral",
         "displayName": "Faint Ink",
-        "canonical": "#6b7280",
+        "canonical": "#5f6673",
         "tonalRamp": [
           "#111827",
           "#1f2937",
           "#374151",
           "#4b5563",
-          "#6b7280",
+          "#5f6673",
           "#9ca3af",
           "#d1d5db",
           "#f3f4f6"
@@ -163,7 +163,7 @@
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Dates (tabular), project stacks, buttons, the Visit site label, footer."
+        "purpose": "Dates (tabular), project stacks, buttons, and the Visit site label."
       }
     },
     "shadows": [],
@@ -181,7 +181,12 @@
       {
         "name": "duration-state",
         "value": "300ms",
-        "purpose": "Header border and small-name fade."
+        "purpose": "Section-button and icon state changes."
+      },
+      {
+        "name": "header-fade",
+        "value": "1000ms cubic-bezier(0.33, 1, 0.68, 1)",
+        "purpose": "Header frosted backing and small name fading in together once the intro name scrolls away."
       },
       {
         "name": "duration-zoom",
@@ -265,9 +270,9 @@
       "name": "Site Header",
       "kind": "nav",
       "refersTo": "nav-link",
-      "description": "Sticky white header in the 64rem container: small expanded name, LinkedIn and GitHub marks in Muted Ink, and the Say hello pill. Hairline appears once scrolled.",
+      "description": "Sticky header in the 64rem container, transparent at the top and frosted (75% Page White over a 40px backdrop blur) once the intro name scrolls away, together with the small name: small expanded name, LinkedIn and GitHub marks in Muted Ink, and the Say hello pill. No bottom border.",
       "html": "<header class=\"ds-header\"><div class=\"ds-header-inner\"><a href=\"#\" class=\"ds-header-name\">Jeff Glenn</a><ul class=\"ds-header-icons\"><li><a href=\"#\" aria-label=\"LinkedIn\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z\"/></svg></a></li><li><a href=\"#\" aria-label=\"GitHub\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 12 .3\"/></svg></a></li></ul><a href=\"#\" class=\"ds-header-hello\">Say hello</a></div></header>",
-      "css": ".ds-header { background: var(--color-page, #fff); border-bottom: 1px solid var(--color-rule, #e5e7eb); font-family: var(--font-sans); } .ds-header-inner { max-width: 64rem; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; gap: 20px; } .ds-header-name { font-family: var(--font-name, 'Archivo Variable', sans-serif); font-weight: 500; font-stretch: 125%; letter-spacing: -0.03em; color: var(--color-ink, #111827); text-decoration: none; } .ds-header-icons { list-style: none; margin: 0 -8px 0 auto; padding: 0; display: flex; align-items: center; color: var(--color-ink-muted, #4b5563); } .ds-header-icons a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; color: inherit; transition: color 150ms; } .ds-header-icons a:hover { color: var(--color-ink, #111827); } .ds-header-icons svg { width: 18px; height: 18px; } .ds-header-icons a:focus-visible, .ds-header-hello:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-header-hello { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 9999px; background: var(--color-brand, #cf3a21); color: #fff; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: background-color 200ms; } .ds-header-hello:hover { background: var(--color-brand-deep, #a62b18); }"
+      "css": ".ds-header { background: rgb(255 255 255 / 0.75); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); font-family: var(--font-sans); } .ds-header-inner { max-width: 64rem; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; gap: 20px; } .ds-header-name { font-family: var(--font-name, 'Archivo Variable', sans-serif); font-weight: 500; font-stretch: 125%; letter-spacing: -0.03em; color: var(--color-ink, #111827); text-decoration: none; } .ds-header-icons { list-style: none; margin: 0 -8px 0 auto; padding: 0; display: flex; align-items: center; color: var(--color-ink-muted, #4b5563); } .ds-header-icons a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; color: inherit; transition: color 150ms; } .ds-header-icons a:hover { color: var(--color-ink, #111827); } .ds-header-icons svg { width: 18px; height: 18px; } .ds-header-icons a:focus-visible, .ds-header-hello:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-header-hello { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 9999px; background: var(--color-brand, #cf3a21); color: #fff; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: background-color 200ms; } .ds-header-hello:hover { background: var(--color-brand-deep, #a62b18); }"
     },
     {
       "name": "Section Heading",
@@ -275,7 +280,7 @@
       "refersTo": "headline",
       "description": "Section title in Archivo Expanded at Headline size; it does not animate.",
       "html": "<h2 class=\"ds-section-heading\">Selected work</h2>",
-      "css": ".ds-section-heading { margin: 0; font-family: var(--font-name, 'Archivo Variable', sans-serif); font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); line-height: 1.1; font-weight: 600; font-stretch: 125%; letter-spacing: -0.02em; color: var(--color-ink, #111827); transition: font-stretch 1000ms cubic-bezier(0.16, 1, 0.3, 1); }"
+      "css": ".ds-section-heading { margin: 0; font-family: var(--font-name, 'Archivo Variable', sans-serif); font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2rem); line-height: 1.1; font-weight: 600; font-stretch: 125%; letter-spacing: -0.02em; color: var(--color-ink, #111827); transition: font-stretch 1000ms cubic-bezier(0.16, 1, 0.3, 1); }"
     },
     {
       "name": "Project Card",
@@ -283,7 +288,7 @@
       "refersTo": "project-card-frame",
       "description": "Hairline-framed 3:2 screenshot with title and stack; zooms on hover, draws a title underline, and shows the Ink Visit site pill over the image.",
       "html": "<a href=\"#\" class=\"ds-project\"><div class=\"ds-project-frame\"><div class=\"ds-project-shot\"></div><span class=\"ds-visit\" aria-hidden=\"true\">Visit site <svg class=\"ds-visit-arrow\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.75\" stroke=\"currentColor\" aria-hidden=\"true\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25\"/></svg></span></div><div class=\"ds-project-row\"><h3 class=\"ds-project-title\"><span class=\"ds-draw\">Orpheum Theatre</span></h3></div><p class=\"ds-project-meta\">Craft CMS · Alpine.js · TailwindCSS</p></a>",
-      "css": ".ds-project { display: block; max-width: 30rem; border-radius: 12px; color: var(--color-ink, #111827); text-decoration: none; font-family: var(--font-sans); } .ds-project:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-project-frame { position: relative; overflow: hidden; border-radius: 12px; border: 1px solid var(--color-rule, #e5e7eb); background: var(--color-wash, #f3f4f6); } .ds-project-shot { aspect-ratio: 3 / 2; background: var(--color-wash, #f3f4f6); transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-project:hover .ds-project-shot { transform: scale(1.04); } .ds-visit { pointer-events: none; position: absolute; top: 50%; left: 50%; display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 9999px; background: var(--color-ink, #111827); color: #fff; font-size: 0.875rem; line-height: 1.45; font-weight: 500; white-space: nowrap; opacity: 0; transform: scale(0.85); transition: opacity 150ms ease-out, transform 150ms ease-out; } .ds-project:hover .ds-visit { opacity: 1; transform: scale(1); transition-duration: 250ms; transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); } .ds-visit-arrow { width: 14px; height: 14px; } .ds-project-row { margin-top: 12px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; } .ds-project-title { margin: 0; font-size: 1.125rem; line-height: 1.35; letter-spacing: -0.01em; font-weight: 600; } .ds-draw { background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 1px; transition: background-size 450ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-project:hover .ds-draw { background-size: 100% 1px; } .ds-project-meta { margin: 4px 0 0; font-size: 0.875rem; line-height: 1.45; color: var(--color-ink-faint, #6b7280); }"
+      "css": ".ds-project { display: block; max-width: 30rem; border-radius: 12px; color: var(--color-ink, #111827); text-decoration: none; font-family: var(--font-sans); } .ds-project:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-project-frame { position: relative; overflow: hidden; border-radius: 12px; border: 1px solid var(--color-rule, #e5e7eb); background: var(--color-wash, #f3f4f6); } .ds-project-shot { aspect-ratio: 3 / 2; background: var(--color-wash, #f3f4f6); transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-project:hover .ds-project-shot { transform: scale(1.04); } .ds-visit { pointer-events: none; position: absolute; top: 50%; left: 50%; display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 9999px; background: var(--color-ink, #111827); color: #fff; font-size: 0.875rem; line-height: 1.45; font-weight: 500; white-space: nowrap; opacity: 0; transform: scale(0.85); transition: opacity 150ms ease-out, transform 150ms ease-out; } .ds-project:hover .ds-visit { opacity: 1; transform: scale(1); transition-duration: 250ms; transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); } .ds-visit-arrow { width: 14px; height: 14px; } .ds-project-row { margin-top: 12px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; } .ds-project-title { margin: 0; font-size: 1.125rem; line-height: 1.35; letter-spacing: -0.01em; font-weight: 600; } .ds-draw { background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 1px; transition: background-size 450ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-project:hover .ds-draw { background-size: 100% 1px; } .ds-project-meta { margin: 4px 0 0; font-size: 0.875rem; line-height: 1.45; color: var(--color-ink-faint, #5f6673); }"
     },
     {
       "name": "Experience Row",
@@ -291,7 +296,7 @@
       "refersTo": "experience-row",
       "description": "Position, dates, company, and description between hairline rules, spanning the 64rem container.",
       "html": "<ol class=\"ds-exp\"><li><div class=\"ds-exp-head\"><h3>Partner &amp; Web Director</h3><p class=\"ds-exp-dates\">2017-Present</p></div><p class=\"ds-exp-co\"><a href=\"#\">Paradigm Marketing &amp; Creative</a></p><p class=\"ds-exp-desc\">I oversee all web projects from strategy through execution.</p></li></ol>",
-      "css": ".ds-exp { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-rule, #e5e7eb); font-family: var(--font-sans); max-width: 64rem; } .ds-exp li { padding: 28px 0; border-bottom: 1px solid var(--color-rule, #e5e7eb); } .ds-exp-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; } .ds-exp-head h3 { margin: 0; font-size: 1.125rem; line-height: 1.35; letter-spacing: -0.01em; font-weight: 600; color: var(--color-ink, #111827); } .ds-exp-dates { margin: 0; flex-shrink: 0; font-size: 0.875rem; line-height: 1.45; color: var(--color-ink-faint, #6b7280); font-variant-numeric: tabular-nums; } .ds-exp-co { margin: 2px 0 0; color: var(--color-ink-muted, #4b5563); } .ds-exp-co a { color: var(--color-brand, #cf3a21); text-decoration-line: underline; text-decoration-thickness: 1px; text-decoration-color: color-mix(in oklab, currentColor 35%, transparent); text-underline-offset: 0.2em; transition: color 200ms, text-decoration-color 200ms; } .ds-exp-co a:hover { color: var(--color-brand-deep, #a62b18); text-decoration-color: currentColor; } .ds-exp-co a:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-exp-desc { margin: 12px 0 0; max-width: 65ch; font-size: 1.0625rem; line-height: 1.65; color: var(--color-ink-muted, #4b5563); }"
+      "css": ".ds-exp { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-rule, #e5e7eb); font-family: var(--font-sans); max-width: 64rem; } .ds-exp li { padding: 28px 0; } .ds-exp-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; } .ds-exp-head h3 { margin: 0; font-size: 1.125rem; line-height: 1.35; letter-spacing: -0.01em; font-weight: 600; color: var(--color-ink, #111827); } .ds-exp-dates { margin: 0; flex-shrink: 0; font-size: 0.875rem; line-height: 1.45; color: var(--color-ink-faint, #5f6673); font-variant-numeric: tabular-nums; } .ds-exp-co { margin: 2px 0 0; color: var(--color-ink-muted, #4b5563); } .ds-exp-co a { color: var(--color-brand, #cf3a21); text-decoration-line: underline; text-decoration-thickness: 1px; text-decoration-color: color-mix(in oklab, currentColor 35%, transparent); text-underline-offset: 0.2em; transition: color 200ms, text-decoration-color 200ms; } .ds-exp-co a:hover { color: var(--color-brand-deep, #a62b18); text-decoration-color: currentColor; } .ds-exp-co a:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-exp-desc { margin: 12px 0 0; max-width: 65ch; font-size: 1.0625rem; line-height: 1.65; color: var(--color-ink-muted, #4b5563); }"
     },
     {
       "name": "Hobby Peek",
@@ -299,7 +304,7 @@
       "refersTo": "peek",
       "description": "Signature: a hobby phrase in prose that opens a framed photo on hover, focus, or tap.",
       "html": "<p class=\"ds-peek-copy\">Outside of work, I enjoy <button type=\"button\" class=\"ds-peek\">Sanibel Island<span class=\"ds-peek-photo\" aria-hidden=\"true\"><span class=\"ds-peek-img\"></span></span></button> and photography.</p>",
-      "css": ".ds-peek-copy { font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.65; color: var(--color-ink, #111827); padding-top: 180px; } .ds-peek { position: relative; display: inline; font: inherit; font-weight: 500; color: var(--color-ink, #111827); background: none; border: 0; padding: 0; cursor: default; text-decoration-line: underline; text-decoration-style: dotted; text-decoration-thickness: 2px; text-decoration-color: var(--color-ink-faint, #6b7280); text-underline-offset: 0.25em; } .ds-peek:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-peek-photo { pointer-events: none; position: absolute; bottom: 100%; left: 50%; margin-bottom: 12px; display: block; width: 240px; border-radius: 12px; border: 1px solid var(--color-rule, #e5e7eb); background: var(--color-page, #fff); padding: 6px; opacity: 0; transform: translateX(-50%) scale(0.92); transition: opacity 180ms ease-out, transform 180ms ease-out; z-index: 20; } .ds-peek:hover .ds-peek-photo, .ds-peek:focus-visible .ds-peek-photo { opacity: 1; transform: translateX(-50%) scale(1); transition-duration: 400ms; transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); } .ds-peek-img { display: block; aspect-ratio: 3 / 2; border-radius: 8px; background: var(--color-wash, #f3f4f6); }"
+      "css": ".ds-peek-copy { font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.65; color: var(--color-ink, #111827); padding-top: 180px; } .ds-peek { position: relative; display: inline; font: inherit; font-weight: 500; color: var(--color-ink, #111827); background: none; border: 0; padding: 0; cursor: default; text-decoration-line: underline; text-decoration-style: dotted; text-decoration-thickness: 2px; text-decoration-color: var(--color-ink-faint, #5f6673); text-underline-offset: 0.25em; } .ds-peek:focus-visible { outline: 2px solid var(--color-brand, #cf3a21); outline-offset: 3px; border-radius: 4px; } .ds-peek-photo { pointer-events: none; position: absolute; bottom: 100%; left: 50%; margin-bottom: 12px; display: block; width: 240px; border-radius: 12px; border: 1px solid var(--color-rule, #e5e7eb); background: var(--color-page, #fff); padding: 6px; opacity: 0; transform: translateX(-50%) scale(0.92); transition: opacity 180ms ease-out, transform 180ms ease-out; z-index: 20; } .ds-peek:hover .ds-peek-photo, .ds-peek:focus-visible .ds-peek-photo { opacity: 1; transform: translateX(-50%) scale(1); transition-duration: 400ms; transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); } .ds-peek-img { display: block; aspect-ratio: 3 / 2; border-radius: 8px; background: var(--color-wash, #f3f4f6); }"
     },
     {
       "name": "Portrait",
@@ -312,19 +317,19 @@
   ],
   "narrative": {
     "northStar": "Simple, light, typography-focused",
-    "overview": "This is a conventional designer-developer portfolio, executed at full craft. A white page holds one centered container, and the type and the real client work carry everything. It replaces the previous dark-first world of neon glows, drifting color blobs, and frosted glass; that look is not referenced or carried forward.\n\nThe feel is atmospheric, playful, and crafted. Personality comes from a few live, human details: the round portrait shuffles through its frames as the cursor moves, the hobbies in the About copy open real photos that drift slightly with the pointer, and the copy speaks in the first person. One warm vermilion gives the page a signature, and a small set of authored motions (the intro copy rising in on load, screenshots wiping open) shows the craft of someone who builds what he designs. There is still no glow, blur, or ambient looping motion.\n\nThe system must never read as sterile or corporate, trendy, or cutesy. Calm is not the same as cold: warmth comes from Jeff's face, voice, and photos, never from ornament. Concept metaphors (film credits, proof sheets, zines, and the like) are out.",
+    "overview": "This is a conventional designer-developer portfolio, executed at full craft. A white page holds one centered container, and the type and the real client work carry everything. It replaces the previous dark-first world of neon glows, drifting color blobs, and frosted glass; that look is not referenced or carried forward.\n\nThe feel is atmospheric, playful, and crafted. Personality comes from a few live, human details: the round portrait shuffles through its frames as the cursor moves, the hobbies in the About copy open real photos that drift slightly with the pointer, and the copy speaks in the first person. One warm vermilion gives the page a signature, and a small set of authored motions (the intro copy rising in on load, screenshots wiping open) shows the craft of someone who builds what he designs. Two soft glows add atmosphere: warm light pooling behind the intro, and each work card giving off its own colors on hover. There is still no ambient looping motion, and the only backdrop blur is the frosted sticky header.\n\nThe system must never read as sterile or corporate, trendy, or cutesy. Calm is not the same as cold: warmth comes from Jeff's face, voice, and photos, never from ornament. Concept metaphors (film credits, proof sheets, zines, and the like) are out.",
     "keyCharacteristics": [
       "One theme, and it is light: white ground, near-black ink, one vermilion signature color.",
       "One centered container (64rem) for every section and the header; running text inside it is capped at a readable measure.",
       "Type does the work: Schibsted Grotesk for reading, Archivo Expanded for the name and the section titles. Six roles, with hierarchy from size, weight, width, and tracking.",
-      "Flat: no shadows, glows, blur, glass, or gradients. Hairlines and whitespace separate.",
+      "Flat surfaces lit by two soft glows (the background behind the intro and the work cards on hover). No shadows or glass, except the frosted sticky header. Hairlines and whitespace separate.",
       "Two signature live details (the shuffling portrait and the hobby photo popups), one load entrance, and scroll reveals that run once; nothing loops.",
       "Craft bar: brianlovin.com and niklaspeterson.com."
     ],
     "rules": [
       {
         "name": "The Signature Color Rule",
-        "body": "Vermilion is the only hue. It goes to the action (Say hello, the email) and to interaction feedback (hover, focus). It never fills decorative shapes or section backgrounds, and never sits on a photo. Background gradients are undecided: the page stays white until one is chosen.",
+        "body": "Vermilion is the only hue. It goes to the action (Say hello, the email) and to interaction feedback (hover, focus). It never fills decorative shapes or section backgrounds, and never sits on a photo. The one exception is the background glow, where vermilion and a warm orange appear only as faint light (16% and 14% at their strongest).",
         "section": "colors"
       },
       {
@@ -348,8 +353,18 @@
         "section": "elevation"
       },
       {
+        "name": "The One Frost Rule",
+        "body": "Backdrop blur belongs to the sticky header alone. Popups, labels, cards, and sections stay opaque and flat; never add a second frosted surface.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Light Not Neon Rule",
+        "body": "Glows are soft light, never neon: large radii, soft falloff, no hard edges, no colored outlines, no glowing text. There are three: the background halo, the white portrait glow, and the work cards on hover. Small text over a glow must still pass 4.5:1.",
+        "section": "elevation"
+      },
+      {
         "name": "The Once Rule",
-        "body": "Motion is either feedback for the visitor's own action or a one-time arrival. Nothing animates on a loop or repeats on scroll back up.",
+        "body": "Motion is either feedback for the visitor's own action or a one-time arrival. Nothing animates on a loop or repeats on scroll back up, with one deliberate exception: the portrait's light breathes (5s and 8s) and its white and vermilion bands circle it slowly (12s and 16s); all of it stops under `prefers-reduced-motion`.",
         "section": "motion"
       }
     ],
@@ -364,7 +379,7 @@
     ],
     "donts": [
       "**Don't** add a dark theme, a theme toggle, or pink.",
-      "**Don't** use glows, blurred color blobs, glass, gradients, or shadows.",
+      "**Don't** add glows beyond the background and the work cards, use neon or hard-edged glows, shadows, or blurred color blobs, or add glass or backdrop blur anywhere but the sticky header.",
       "**Don't** add ambient or looping motion, parallax, or reveals on every block of text.",
       "**Don't** add a second hue, tint more sections, or put Vermilion on photos or decorative shapes.",
       "**Don't** use Archivo beyond the name and section titles, add a third typeface, or use uppercase letterspaced labels or eyebrow text above headings.",

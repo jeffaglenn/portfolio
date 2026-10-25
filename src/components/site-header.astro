@@ -14,17 +14,18 @@ const elsewhere = [
 ---
 
 <!--
-    The small name stays hidden while the large one in the intro is on
-    screen; app.js flips data-scrolled once it leaves.
+    The header is clear at the top of the page. Once the large name in the intro
+    scrolls away, app.js sets data-scrolled and the frosted backing and the
+    small name fade in together.
 -->
 <header
 	id="site-header"
-	class="group sticky top-0 z-30 bg-page/75 backdrop-blur-2xl border-b border-transparent transition-colors duration-300 data-scrolled:border-rule"
+	class="group sticky top-0 z-30 bg-transparent transition-[background-color,backdrop-filter] duration-1000 ease-[cubic-bezier(0.33,1,0.68,1)] data-scrolled:bg-page/75 data-scrolled:backdrop-blur-2xl"
 >
 	<div class="wrapper flex items-center gap-5 h-16">
 		<a
 			href="#top"
-			class="font-name font-medium font-stretch-expanded tracking-[-0.03em] text-ink opacity-0 -translate-y-1 transition duration-300 group-data-scrolled:opacity-100 group-data-scrolled:translate-y-0"
+			class="font-name font-medium font-stretch-expanded tracking-[-0.03em] text-ink opacity-0 -translate-y-1 transition duration-1000 ease-[cubic-bezier(0.33,1,0.68,1)] group-data-scrolled:opacity-100 group-data-scrolled:translate-y-0"
 			tabindex="-1"
 		>
 			Jeff Glenn

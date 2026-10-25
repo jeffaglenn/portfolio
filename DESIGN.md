@@ -10,18 +10,18 @@ colors:
   rule: "#e5e7eb"
   ink: "#111827"
   ink-muted: "#4b5563"
-  ink-faint: "#6b7280"
+  ink-faint: "#5f6673"
 typography:
   display:
     fontFamily: "Archivo Variable, Schibsted Grotesk Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(3rem, 1.6rem + 6vw, 5.5rem)"
+    fontSize: "clamp(3rem, 1.6rem + 6vw, 4.5rem)"
     fontWeight: 500
     fontStretch: "125%"
     lineHeight: 0.95
     letterSpacing: "-0.03em"
   headline:
     fontFamily: "Archivo Variable, Schibsted Grotesk Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem)"
+    fontSize: "clamp(1.75rem, 1.4rem + 1.2vw, 2rem)"
     fontWeight: 600
     fontStretch: "125%"
     lineHeight: 1.1
@@ -121,7 +121,7 @@ components:
 
 This is a conventional designer-developer portfolio, executed at full craft. A white page holds one centered container, and the type and the real client work carry everything. It replaces the previous dark-first world of neon glows, drifting color blobs, and frosted glass; that look is not referenced or carried forward.
 
-The feel is atmospheric, playful, and crafted. Personality comes from a few live, human details: the round portrait shuffles through its frames as the cursor moves, the hobbies in the About copy open real photos that drift slightly with the pointer, and the copy speaks in the first person. One warm vermilion gives the page a signature, and a small set of authored motions (the intro copy rising in on load, screenshots wiping open) shows the craft of someone who builds what he designs. There is still no glow, blur, or ambient looping motion.
+The feel is atmospheric, playful, and crafted. Personality comes from a few live, human details: the round portrait shuffles through its frames as the cursor moves, the hobbies in the About copy open real photos that drift slightly with the pointer, and the copy speaks in the first person. One warm vermilion gives the page a signature, and a small set of authored motions (the intro copy rising in on load, screenshots wiping open) shows the craft of someone who builds what he designs. Two soft glows add atmosphere: warm light pooling behind the intro, and each work card giving off its own colors on hover. There is still no ambient looping motion, and the only backdrop blur is the frosted sticky header.
 
 The system must never read as sterile or corporate, trendy, or cutesy. Calm is not the same as cold: warmth comes from Jeff's face, voice, and photos, never from ornament. Concept metaphors (film credits, proof sheets, zines, and the like) are out.
 
@@ -129,7 +129,7 @@ The system must never read as sterile or corporate, trendy, or cutesy. Calm is n
 - One theme, and it is light: white ground, near-black ink, one vermilion signature color.
 - One centered container (64rem) for every section and the header; running text inside it is capped at a readable measure.
 - Type does the work: Schibsted Grotesk for reading, Archivo Expanded for the name and the section titles. Six roles, with hierarchy from size, weight, width, and tracking.
-- Flat: no shadows, glows, blur, glass, or gradients. Hairlines and whitespace separate.
+- Flat surfaces lit by two soft glows (the background behind the intro and the work cards on hover). No shadows or glass, except the frosted sticky header. Hairlines and whitespace separate.
 - Two signature live details (the shuffling portrait and the hobby photo popups), one load entrance, and scroll reveals that run once; nothing loops.
 - Craft bar: brianlovin.com and niklaspeterson.com.
 
@@ -143,15 +143,15 @@ White page, a cool near-black ink with two quieter steps, and one warm vermilion
 - **Vermilion Tint** (`brand-tint`, #fde4dd): the text-selection background only.
 
 ### Neutral
-- **Page White** (`page`): the ground of the whole page, the sticky header, and the hobby photo frame.
+- **Page White** (`page`): the ground of the whole page, the sticky header (at 75%, frosted, once the intro name scrolls away), and the hobby photo frame.
 - **Wash Gray** (`wash`): the placeholder fill behind screenshots and the portrait while they load. Never a section background.
-- **Hairline Gray** (`rule`): every divider and frame border: the header's scrolled underline, experience row rules, the footer rule, screenshot frames, the popup frame.
+- **Hairline Gray** (`rule`): every divider and frame border: experience row rules, screenshot frames, the popup frame.
 - **Ink** (`ink`): headings, body copy in About, project titles, the hobby phrases, and the "Visit site" label over screenshots (it must read on any image, which vermilion does not on warm photos).
-- **Muted Ink** (`ink-muted`): the tagline, the Memphis line, experience descriptions, contact copy, and the header and footer icons at rest.
-- **Faint Ink** (`ink-faint`): metadata only: dates, project stacks, the footer line, the hobby phrases' dotted underline.
+- **Muted Ink** (`ink-muted`): the tagline, the Memphis line, experience descriptions, contact copy, and the header icons at rest.
+- **Faint Ink** (`ink-faint`, #5f6673): metadata only: dates, project stacks, the hobby phrases' dotted underline. Darkened from #6b7280 so it still passes 4.5:1 where the fixed background glow sits behind it.
 
 ### Named Rules
-**The Signature Color Rule.** Vermilion is the only hue. It goes to the action (Say hello, the email) and to interaction feedback (hover, focus). It never fills decorative shapes or section backgrounds, and never sits on a photo. Background gradients are undecided: the page stays white until one is chosen.
+**The Signature Color Rule.** Vermilion is the only hue. It goes to the action (Say hello, the email) and to interaction feedback (hover, focus). It never fills decorative shapes or section backgrounds, and never sits on a photo. The one exception is the background glow, where vermilion and a warm orange appear only as faint light (16% and 14% at their strongest).
 
 **The One Theme Rule.** There is one theme, and it is light. Either would have served; light was chosen. Don't add a dark mode, a theme toggle, or `prefers-color-scheme` variants.
 
@@ -162,12 +162,12 @@ White page, a cool near-black ink with two quieter steps, and one warm vermilion
 **Character:** A sturdy, slightly editorial grotesk carries the reading. Archivo Expanded sets the name and the four section titles, so the page's big type reads as one wordmark voice. Neither the name nor the section titles animate.
 
 ### Hierarchy
-- **Display** (Archivo Variable, 500, width 125%, fluid 3rem to 5.5rem, 0.95, -0.03em): the name, once, and the largest type on the page. The small name in the sticky header matches it exactly (Archivo, 500, width 125%, -0.03em) at body size.
-- **Headline** (Archivo Variable, 600, width 125%, fluid 1.75rem to 2.25rem, 1.1, -0.02em): section titles (Selected work, About, Experience, Let's work together), via `.section-heading`. The closing email uses the same size in Schibsted Grotesk at 600.
+- **Display** (Archivo Variable, 500, width 125%, fluid 3rem to 4.5rem, 0.95, -0.03em): the name, once, and the largest type on the page. The small name in the sticky header matches it exactly (Archivo, 500, width 125%, -0.03em) at body size.
+- **Headline** (Archivo Variable, 600, width 125%, fluid 1.75rem to 2rem, 1.1, -0.02em): section titles (Selected work, About, Experience, Let's work together), via `.section-heading`. The closing email uses the same size in Schibsted Grotesk at 600.
 - **Lede** (fluid 1.25rem to 1.5rem, 1.4, -0.01em): the two lines under the name. The title "Web Designer & Front-End Developer" is set at 600 in Ink, and the tagline "Design and development, built around your story." directly below it at 400 in Muted Ink. A Body line in Muted Ink (Memphis, the disciplines, since 2007) follows after a larger gap.
 - **Title** (600, 1.125rem, 1.35, -0.01em): project and position names.
 - **Body** (400, 1.0625rem, 1.65): first-person copy, held to 65ch.
-- **Label** (400 or 500, 0.875rem, 1.45): dates (tabular figures), project stacks joined with a middle dot, buttons, the Visit site label, and the footer.
+- **Label** (400 or 500, 0.875rem, 1.45): dates (tabular figures), project stacks joined with a middle dot, buttons, and the Visit site label.
 
 ### Named Rules
 **The Wordmark Rule.** Archivo Expanded is for the name and the four section titles, nothing else. Body copy, ledes, project and position titles, labels, and buttons are Schibsted Grotesk. No italic serif accents, and no third face.
@@ -176,18 +176,26 @@ White page, a cool near-black ink with two quieter steps, and one warm vermilion
 
 ## Layout
 
-Every section and the header share one centered container, 64rem wide (`.wrapper`), with 20px gutters (24px from 640px up), so all left and right edges line up. Running text is capped inside it (body copy at 65ch, contact copy at 48ch) rather than stretched to the full width; rules, the experience dates, and the footer span the whole container. The work grid is one column on phones and two columns (32px column gap, 40px row gap) from 640px. Nothing else reflows: phones get the same container at full width.
+Every section and the header share one centered container, 64rem wide (`.wrapper`), with 20px gutters (24px from 640px up), so all left and right edges line up. Running text is capped inside it (body copy at 65ch, contact copy at 48ch) rather than stretched to the full width; rules and the experience dates span the whole container. The work grid is one column on phones and two columns (32px column gap, 40px row gap) from 640px. Nothing else reflows: phones get the same container at full width.
 
-The page reads top to bottom: portrait and name with the lede, then the section buttons (Work, About, Experience, Contact); Selected work; About; Experience; and a closing contact section that also holds the footer. A 64px sticky header holds the small name (it fades in once the large one scrolls away), LinkedIn and GitHub icons, and the "Say hello" button.
+The page reads top to bottom: portrait and name with the lede, then the section buttons (Work, About, Experience, Contact); Selected work; About; Experience; and a closing contact section. There is no footer: the page ends on the email, and LinkedIn and GitHub live in the header. A 64px sticky header holds the small name (it fades in once the large one scrolls away), LinkedIn and GitHub icons, and the "Say hello" button.
 
 Spacing follows one rhythm with more space above a heading than below it: 96px between sections (128px from 640px up), 24 to 32px from a heading to its content, 28px of padding inside each experience row. 640px is the only breakpoint.
 
 ## Elevation & Depth
 
-Flat. There are no box shadows, glows, backdrop blur, or glass, including on the sticky header and the hobby popup. Depth is conveyed by a hairline border and a white frame (the popup sits above the copy on a 6px Page White mat with a Hairline Gray border), and by stacking order alone.
+Flat, lit by two glows. There are no box shadows, and no blur or glass except on the sticky header: once the intro name scrolls away it becomes 75% Page White over a 40px backdrop blur (`bg-page/75 backdrop-blur-2xl`), so the page shows softly through it as content scrolls underneath. At the very top it is fully transparent. The hobby popup, the Paradigm logo, and the "Visit site" label stay opaque. Elsewhere, depth is conveyed by a hairline border and a white frame (the popup sits above the copy on a 6px Page White mat with a Hairline Gray border), and by stacking order.
+
+- **Background glow (Halo):** a warm halo pinned to the window (`position: fixed`), so it stays behind the page as it scrolls: a wide vermilion pool at 16% falling from just above the top center, warm orange (#fb923c) pools at 14% top left and 13% top right, and a faint 6% orange wash a third of the way down. Each fades to transparent, so the page reads white with warm light falling from above; the frosted header picks it up once it frosts over. Still, no grain.
+- **Portrait glow:** see Portrait.
+- **Work card glow:** see Project Card.
 
 ### Named Rules
 **The Flat Page Rule.** If an element seems to need a shadow, give it space or a hairline instead.
+
+**The One Frost Rule.** Backdrop blur belongs to the sticky header alone. Popups, labels, cards, and sections stay opaque and flat; never add a second frosted surface.
+
+**The Light Not Neon Rule.** Glows are soft light, never neon: large radii, soft falloff, no hard edges, no colored outlines, no glowing text. There are three: the background halo, the white portrait glow, and the work cards on hover. Small text over a glow must still pass 4.5:1.
 
 ## Shapes
 
@@ -203,10 +211,10 @@ Quiet and always underlined.
 - **Closing email:** the same link at Headline size and weight, allowed to break anywhere on narrow screens.
 
 ### Contact
-"Let's work together" on the white page, with the copy in Muted Ink, the email as a Vermilion link at Headline size, and the footer below a Hairline Gray rule: the copyright line in Faint Ink, and the LinkedIn and GitHub icons in Muted Ink, stepping to Ink on hover.
+"Let's work together" on the white page, with the copy in Muted Ink and the email as a Vermilion link at Headline size. It is the last thing on the page, followed by 96px of space (128px from 640px); there is no footer or copyright line.
 
 ### Navigation
-- **Header:** Page White, sticky, with a transparent bottom border that turns Hairline Gray once the intro name leaves the viewport. LinkedIn and GitHub are 18px brand marks in Muted Ink inside 40px round hit areas, stepping to Ink on hover, shown at every width; each link carries an aria-label. The "Say hello" button is a mailto link styled as a filled Vermilion pill: 36px tall, 16px side padding, white Label text at 500, with a 16px speech-bubble icon. On hover it deepens to Deep Vermilion (200ms). It is the only filled button on the page.
+- **Header:** sticky and fully transparent at the top of the page, so the background shows through. Once the intro name scrolls under it, it fades to frosted (75% Page White over a 40px backdrop blur) at the same moment the small name fades in, both over 1000ms with a gentle cubic ease-out; both reverse when the name comes back into view. It has no bottom border. LinkedIn and GitHub are 18px brand marks in Muted Ink inside 40px round hit areas, stepping to Ink on hover, shown at every width; each link carries an aria-label. The "Say hello" button is a mailto link styled as a filled Vermilion pill: 36px tall, 16px side padding, white Label text at 500, with a 16px speech-bubble icon. On hover it deepens to Deep Vermilion (200ms). It is the only filled button on the page.
 
 ### Section Buttons
 Work, About, Experience, and Contact under the intro are outlined pills that jump to their sections: 40px tall, 16px side padding (14px with a 6px gap under 640px, so all four fit one row on a phone), Label size at 500 in Ink, a 1px Hairline Gray border, and a full radius. On hover the border and label turn Vermilion (200ms).
@@ -216,6 +224,7 @@ The screenshot is the proof; the card is just a frame and a caption.
 - **Frame:** 3:2 screenshot cropped from the top, inside a 12px-radius, 1px Hairline Gray border on a Wash Gray fill.
 - **Caption:** project name at Title, then the stack at Label in Faint Ink.
 - **Hover:** the screenshot scales to 1.04 over 700ms (expo-out); a 1px ink underline draws in under the title from the left (450ms). On a fine pointer, an Ink "Visit site ↗" pill follows the cursor over the screenshot, 14px below and right of the pointer, fading and scaling in over 250ms and out over 150ms. It lives on the card rather than inside the clipped frame, so it can run past the image edge, but it always stays 8px inside the window.
+- **Glow:** a blurred copy of the screenshot (blur 30px, saturation 1.2) sits directly behind the frame. On hover or keyboard focus it fades to 45% and grows to 104%, so the project's own colors spill out evenly on all four sides (500ms expo-out).
 - **Reveal:** each screenshot frame wipes open from the bottom (clip-path, 1000ms expo-out) the first time it scrolls into view; frames that arrive together open 90ms apart.
 
 ### Experience Row
@@ -230,6 +239,8 @@ Hovering the "Paradigm Marketing & Creative" link in About floats Paradigm's log
 ### Portrait (signature)
 A circle, 112px (128px from 640px up), on a Wash Gray fill. Moving the cursor more than 100px swaps it to a random frame from the set and returns to the original after 2s; a tap swaps it on touch screens. Both signature details stand still under `prefers-reduced-motion`.
 
+It sits on layered, slowly moving light (Sweep). At the back is a pure white radial glow about twice the photo's size, fading straight into the background and breathing on a 5s loop (opacity 0.7 to 1, scale 0.94 to 1.08). Over it, two soft bands of light circle the photo in opposite directions: a white band (conic gradient across about 160°, 30px blur, 16% past the photo) turning clockwise every 12s, and a faint Vermilion band (#cf3a21 at 30%, 33px blur, 20% past the photo) turning counter-clockwise every 16s, so a warm blush slowly passes the white. A white core hugging the photo (9px blur) swells and settles on an 8s loop (opacity 0.55 to 1, scale 0.9 to 1.14). The photo has a 3px white rim and a 28px white bloom. All of it holds still under `prefers-reduced-motion`. These are the only looping animations on the page.
+
 ## Motion
 
 One entrance, scroll reveals that run once, and hover feedback. Nothing loops, and everything is visible by default: the hidden starting states for scroll reveals apply only when scripts have run (`.js` on `<html>`) and motion is allowed.
@@ -240,7 +251,7 @@ One entrance, scroll reveals that run once, and hover feedback. Nothing loops, a
 - **Reduced motion:** no entrance and no reveals; the page renders in its final state. Color feedback stays.
 
 ### Named Rules
-**The Once Rule.** Motion is either feedback for the visitor's own action or a one-time arrival. Nothing animates on a loop or repeats on scroll back up.
+**The Once Rule.** Motion is either feedback for the visitor's own action or a one-time arrival. Nothing animates on a loop or repeats on scroll back up, with one deliberate exception: the portrait's light breathes (5s and 8s) and its white and vermilion bands circle it slowly (12s and 16s); all of it stops under `prefers-reduced-motion`.
 
 ## Do's and Don'ts
 
@@ -255,7 +266,7 @@ One entrance, scroll reveals that run once, and hover feedback. Nothing loops, a
 
 ### Don't:
 - **Don't** add a dark theme, a theme toggle, or pink.
-- **Don't** use glows, blurred color blobs, glass, gradients, or shadows.
+- **Don't** add glows beyond the background and the work cards, use neon or hard-edged glows, shadows, or blurred color blobs, or add glass or backdrop blur anywhere but the sticky header.
 - **Don't** add ambient or looping motion, parallax, or reveals on every block of text.
 - **Don't** add a second hue, tint more sections, or put Vermilion on photos or decorative shapes.
 - **Don't** use Archivo beyond the name and section titles, add a third typeface, or use uppercase letterspaced labels or eyebrow text above headings.

@@ -38,14 +38,6 @@ const sections = [
 	{ label: "Contact", href: "#contact" },
 ];
 
-const elsewhere = [
-	{
-		label: "LinkedIn",
-		icon: "linkedin",
-		href: "https://www.linkedin.com/in/jeff-glenn-b821a6234/",
-	},
-	{ label: "GitHub", icon: "github", href: "https://github.com/jeffaglenn" },
-];
 
 const hobbies = [
 	{
@@ -61,19 +53,24 @@ const hobbies = [
 
 <Layout>
 	<section class="wrapper pt-12 sm:pt-20">
-		<img
-			id="profile-pic"
-			src={pic.src}
-			alt="Jeff Glenn"
-			width="460"
-			height="460"
-			fetchpriority="high"
-			class="intro-pic size-28 sm:size-32 rounded-full bg-wash object-cover"
-		/>
+		<div class="portrait">
+			<span class="portrait-aura portrait-aura--accent" aria-hidden="true"></span>
+			<span class="portrait-aura portrait-aura--sweep" aria-hidden="true"></span>
+			<span class="portrait-aura portrait-aura--core" aria-hidden="true"></span>
+			<img
+				id="profile-pic"
+				src={pic.src}
+				alt="Jeff Glenn"
+				width="460"
+				height="460"
+				fetchpriority="high"
+				class="intro-pic size-28 sm:size-32 rounded-full bg-wash object-cover"
+			/>
+		</div>
 
 		<h1
 			id="intro-name"
-			class="mt-8 text-display font-name font-medium font-stretch-expanded tracking-[-0.03em]"
+			class="relative mt-8 text-display font-name font-medium font-stretch-expanded tracking-[-0.03em]"
 		>
 			Jeff Glenn
 		</h1>
@@ -122,6 +119,14 @@ const hobbies = [
 						target="_blank"
 						rel="noopener noreferrer"
 					>
+						<Image
+							src={project.data.image.src}
+							alt=""
+							aria-hidden="true"
+							widths={[400]}
+							sizes="200px"
+							class="card-glow"
+						/>
 						<div class="relative overflow-hidden rounded-xl border border-rule bg-wash" data-reveal="frame">
 							<Image
 								src={project.data.image.src}
@@ -272,7 +277,7 @@ const hobbies = [
 		class="mt-24 sm:mt-32"
 		aria-labelledby="contact-heading"
 	>
-		<div class="wrapper pb-10">
+		<div class="wrapper pb-24 sm:pb-32">
 		<h2 id="contact-heading" class="section-heading">
 			Let's work together
 		</h2>
@@ -288,28 +293,6 @@ const hobbies = [
 		>
 			{email}
 		</a>
-
-		<footer class="mt-20 sm:mt-28 pt-6 border-t border-rule flex flex-wrap items-center justify-between gap-4 text-label text-ink-faint">
-			<p>
-				&copy; {new Date().getFullYear()} Jeff Glenn · Memphis,
-				Tennessee
-			</p>
-			<ul class="flex items-center -ml-[11px] sm:ml-0 sm:-mr-[11px] text-ink-muted">
-				{elsewhere.map((item) => (
-					<li>
-						<a
-							href={item.href}
-							class="flex items-center justify-center size-10 rounded-full transition-colors hover:text-ink"
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label={`${item.label} (opens in a new tab)`}
-						>
-							<Icon name={item.icon} aria-hidden="true" class="size-[18px]" />
-						</a>
-					</li>
-				))}
-			</ul>
-		</footer>
 		</div>
 	</section>
 </Layout>

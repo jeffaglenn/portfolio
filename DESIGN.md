@@ -127,7 +127,7 @@ The system must never read as sterile or corporate, trendy, or cutesy. Calm is n
 
 **Key Characteristics:**
 - One theme, and it is light: white ground, near-black ink, one vermilion signature color.
-- One centered container (64rem) for every section and the header; running text inside it is capped at a readable measure.
+- One centered container (64rem) for every section; the header spans the full window width. Running text inside the container is capped at a readable measure.
 - Type does the work: Schibsted Grotesk for reading, Archivo Expanded for the name and the section titles. Six roles, with hierarchy from size, weight, width, and tracking.
 - Flat surfaces lit by two soft glows (the background behind the intro and the work cards on hover). No shadows or glass, except the frosted sticky header. Hairlines and whitespace separate.
 - Two signature live details (the shuffling portrait and the hobby photo popups), one load entrance, and scroll reveals that run once; nothing loops.
@@ -176,7 +176,7 @@ White page, a cool near-black ink with two quieter steps, and one warm vermilion
 
 ## Layout
 
-Every section and the header share one centered container, 64rem wide (`.wrapper`), with 20px gutters (24px from 640px up), so all left and right edges line up. Running text is capped inside it (body copy at 65ch, contact copy at 48ch) rather than stretched to the full width; rules and the experience dates span the whole container. The work grid is one column on phones and two columns (32px column gap, 40px row gap) from 640px. Nothing else reflows: phones get the same container at full width.
+Every section shares one centered container, 64rem wide (`.wrapper`), with 20px gutters (24px from 640px up), so all left and right edges line up. Running text is capped inside it (body copy at 65ch, contact copy at 48ch) rather than stretched to the full width; rules and the experience dates span the whole container. The work grid is one column on phones and two columns (32px column gap, 40px row gap) from 640px. Nothing else reflows: phones get the same container at full width.
 
 The page reads top to bottom: portrait and name with the lede, then the section buttons (Work, About, Experience, Contact); Selected work; About; Experience; and a closing contact section. There is no footer: the page ends on the email, and LinkedIn and GitHub live in the header. A 64px sticky header holds the small name (it fades in once the large one scrolls away), LinkedIn and GitHub icons, and the "Say hello" button.
 
@@ -214,7 +214,7 @@ Quiet and always underlined.
 "Let's work together" on the white page, with the copy in Muted Ink and the email as a Vermilion link at Headline size. It is the last thing on the page, followed by 96px of space (128px from 640px); there is no footer or copyright line.
 
 ### Navigation
-- **Header:** sticky and fully transparent at the top of the page, so the background shows through. Once the intro name scrolls under it, it fades to frosted (75% Page White over a 40px backdrop blur) at the same moment the small name fades in, both over 1000ms with a gentle cubic ease-out; both reverse when the name comes back into view. It has no bottom border. LinkedIn and GitHub are 18px brand marks in Muted Ink inside 40px round hit areas, stepping to Ink on hover, shown at every width; each link carries an aria-label. The "Say hello" button is a mailto link styled as a filled Vermilion pill: 36px tall, 16px side padding, white Label text at 500, with a 16px speech-bubble icon. On hover it deepens to Deep Vermilion (200ms). It is the only filled button on the page.
+- **Header:** full window width, not in the 64rem container (32px side padding, 20px under 640px), so the small name sits at the far left and the icons and Say hello at the far right. Sticky and fully transparent at the top of the page, so the background shows through. Once the intro name scrolls under it, it fades to frosted (75% Page White over a 40px backdrop blur) at the same moment the small name fades in, both over 1000ms with a gentle cubic ease-out; both reverse when the name comes back into view. It has no bottom border. LinkedIn and GitHub are 18px brand marks in Muted Ink inside 40px round hit areas, stepping to Ink on hover, shown at every width; each link carries an aria-label. The "Say hello" button is a mailto link styled as a filled Vermilion pill: 36px tall, 16px side padding, white Label text at 500, with a 16px speech-bubble icon. On hover it deepens to Deep Vermilion (200ms). It is the only filled button on the page.
 
 ### Section Buttons
 Work, About, Experience, and Contact under the intro are outlined pills that jump to their sections: 40px tall, 16px side padding (14px with a 6px gap under 640px, so all four fit one row on a phone), Label size at 500 in Ink, a 1px Hairline Gray border, and a full radius. On hover the border and label turn Vermilion (200ms).
@@ -260,7 +260,7 @@ One entrance, scroll reveals that run once, and hover feedback. Nothing loops, a
 - **Do** keep email one click away: the "Say hello" button in the header, the Contact button in the intro, and the address at the close at Headline size.
 - **Do** write all copy in the first person ("I").
 - **Do** let the real project screenshots and live URLs be the proof.
-- **Do** keep every section in the shared 64rem container and cap running text at 65ch inside it.
+- **Do** keep every section in the shared 64rem container (the header alone runs full width) and cap running text at 65ch inside it.
 - **Do** separate with whitespace first and a 1px Hairline Gray rule second.
 - **Do** keep motion to the entrance, the one-time reveals, and hover feedback, built on clip-path and transforms with expo-out easing, and give every one a `prefers-reduced-motion` path.
 

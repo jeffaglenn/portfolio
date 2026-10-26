@@ -1,33 +1,71 @@
 @layer base {
     html {
         @apply
-            bg-cyan-50
-            dark:bg-gray-950
-            text-[10px]
-            scroll-smooth
-            font-mona
+            bg-page
+            text-ink
+            font-sans
             antialiased;
+        scroll-behavior: smooth;
+        scroll-padding-top: 5rem;
+        caret-color: var(--color-brand);
+        scrollbar-color: #d1d5db transparent;
+        scrollbar-width: thin;
     }
 
     body {
         @apply
-            text-1p8
-            md:text-2
-            text-cyan-900
-            dark:text-gray-200;
+            text-body;
+        position: relative;
+    }
+
+    /* <main> reaches up behind the 64px sticky header, so the glow in it can too. */
+    main {
+        margin-top: -4rem;
+        padding-top: 4rem;
+    }
+
+    /* Background glow: a halo of vermilion and warm orange light falling from
+       the top of the window. It sticks to the top of the window, so it stays
+       behind the page as it scrolls, and the header frosts over it. It's
+       sticky inside <main> rather than fixed, so chroma.js's scroll filter on
+       <main> takes it in too (a filter would pin a fixed child to <main>). It
+       pulls itself up into main's top padding and takes no room in the page.
+       It also reaches 80px above the window (--glow-reach, out of sight), so
+       the split colors pull in more glow at the top edge instead of white;
+       the gradients are placed from the window's top, below that reach. */
+    .page-glow {
+        --glow-reach: 5rem;
+        position: sticky;
+        top: calc(-1 * var(--glow-reach));
+        z-index: -1;
+        height: calc(100vh + var(--glow-reach));
+        margin-top: calc(-4rem - var(--glow-reach));
+        margin-bottom: calc(4rem - 100vh);
+        pointer-events: none;
+        background:
+            radial-gradient(60rem 28rem at 50% calc(var(--glow-reach) - 8vh), rgb(207 58 33 / 0.16), transparent 70%),
+            radial-gradient(30rem 24rem at 12% calc(var(--glow-reach) + 8vh), rgb(251 146 60 / 0.14), transparent 70%),
+            radial-gradient(30rem 24rem at 88% calc(var(--glow-reach) + 12vh), rgb(251 146 60 / 0.13), transparent 70%),
+            radial-gradient(44rem 20rem at 50% calc(var(--glow-reach) + 30vh), rgb(251 146 60 / 0.06), transparent 70%);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        @apply
+            text-balance;
     }
 
     ::selection {
-        @apply
-            bg-black
-            text-white;
+        background: var(--color-brand-tint);
+        color: var(--color-ink);
     }
 
-    a:focus,
-    button:focus {
-        @apply
-            outline-none
-            ring-2;
+    :focus-visible {
+        outline: 2px solid var(--color-brand);
+        outline-offset: 3px;
+        border-radius: 4px;
     }
 
     img,
@@ -36,36 +74,277 @@
             max-w-full
             h-auto;
     }
-
-    /* Hide Alpine.js components that are hidden by default */
-    [x-cloak] {
-        @apply
-            hidden;
-    }
 }
 
 @layer components {
     .wrapper {
         @apply
             w-full
-            max-w-[128rem]
+            max-w-[64rem]
             mx-auto
-            px-[3vw];
-
-        /* &-no-padding {
-            @apply
-                max-w-screen-2xl
-                mx-auto;
-        } */
+            px-5
+            sm:px-6;
     }
 
-    .remove-scrollbars {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+    .link {
+        color: var(--color-brand);
+        text-decoration-line: underline;
+        text-decoration-thickness: 1px;
+        text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+        text-underline-offset: 0.2em;
+        transition: color 200ms, text-decoration-color 200ms;
 
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        &::-webkit-scrollbar {
-            display: none;
+        &:hover {
+            color: var(--color-brand-deep);
+            text-decoration-color: currentColor;
         }
+    }
+
+    /* Section titles share the name's face. */
+    .section-heading {
+        @apply
+            font-name
+            text-headline
+            font-semibold;
+        font-stretch: 125%;
+        letter-spacing: -0.02em;
+    }
+
+    /* Project title underline that draws in from the left. */
+    .draw-underline {
+        background-image: linear-gradient(currentColor, currentColor);
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+        background-size: 0% 1px;
+        transition: background-size 450ms var(--ease-out-expo);
+    }
+
+    .project:hover .draw-underline,
+    .project:focus-visible .draw-underline {
+        background-size: 100% 1px;
+    }
+
+    /* Portrait glow: a bright white light behind the photo that slowly breathes. */
+    .portrait {
+        @apply relative w-fit;
+        isolation: isolate;
+
+        /* A large, bright white light that fades straight into the background,
+           with no color of its own. */
+        &::before {
+            content: "";
+            position: absolute;
+            inset: -55%;
+            z-index: -1;
+            border-radius: 9999px;
+            background: radial-gradient(
+                closest-side,
+                #fff 0%,
+                #fff 42%,
+                rgb(255 255 255 / 0.9) 54%,
+                rgb(255 255 255 / 0.55) 70%,
+                rgb(255 255 255 / 0.2) 84%,
+                rgb(255 255 255 / 0) 100%
+            );
+            pointer-events: none;
+            animation: portrait-glow 5s ease-in-out infinite alternate;
+        }
+
+        /* Sweep: two soft bands of light circle the photo in opposite directions,
+           a white one and a faint vermilion one, over a white core that breathes. */
+        & .portrait-aura {
+            position: absolute;
+            z-index: -1;
+            border-radius: 9999px;
+            pointer-events: none;
+        }
+
+        /* Vermilion band, behind everything, turning counter-clockwise. */
+        & .portrait-aura--accent {
+            inset: -20%;
+            filter: blur(33px) opacity(0.3);
+            background: conic-gradient(from 180deg, transparent 0deg, #cf3a21 40deg, #cf3a21 150deg, transparent 200deg, transparent 360deg);
+            animation: portrait-spin 16s linear infinite reverse;
+        }
+
+        /* White band, turning clockwise. */
+        & .portrait-aura--sweep {
+            inset: -16%;
+            filter: blur(30px);
+            background: conic-gradient(from 0deg, transparent 0deg, #fff 40deg, #fff 150deg, transparent 200deg, transparent 360deg);
+            animation: portrait-spin 12s linear infinite;
+        }
+
+        /* White core hugging the photo, slowly swelling and settling. */
+        & .portrait-aura--core {
+            inset: -2%;
+            filter: blur(9px);
+            background: #fff;
+            animation: portrait-core 8s ease-in-out infinite alternate;
+        }
+
+        & img {
+            box-shadow:
+                0 0 0 3px rgb(255 255 255 / 0.95),
+                0 0 28px 8px rgb(255 255 255 / 0.9);
+        }
+    }
+
+    /* Over a work card the pointer hides and this disc stands in for it;
+       motion.js moves it. */
+    .project.has-cursor,
+    .project.has-cursor * {
+        cursor: none;
+    }
+
+    /* GSAP moves the outer box and takes over its transform (scale included),
+       so the span inside is the disc: it carries the look and the grow-in. */
+    .work-cursor {
+        position: fixed;
+        inset: 0 auto auto 0;
+        z-index: 90;
+        width: 71px;
+        height: 71px;
+        margin: -35.5px 0 0 -35.5px;
+        pointer-events: none;
+
+        & > span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            background: var(--color-ink);
+            color: #fff;
+            font-size: 0.6875rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            scale: 0.85;
+            transition: opacity 180ms, scale 250ms ease-out;
+        }
+
+        &.is-on > span {
+            opacity: 1;
+            scale: 1;
+        }
+    }
+
+    /* SplitText wrappers for the letter and line entrances. */
+    .split-char {
+        display: inline-block;
+    }
+
+    .split-line {
+        text-wrap: initial;
+    }
+
+    /* Hobby phrases in About that open a photo on hover, focus, or tap. */
+    /* Buttons always lay out as inline-blocks, so index.astro wraps each one with its
+       trailing punctuation in a nowrap span; the phrase itself may still wrap. */
+    .peek {
+        @apply
+            relative
+            inline
+            font-medium
+            text-ink
+            whitespace-normal
+            cursor-default;
+        text-decoration-line: underline;
+        text-decoration-style: dotted;
+        text-decoration-thickness: 2px;
+        text-decoration-color: var(--color-ink-faint);
+        text-underline-offset: 0.25em;
+    }
+
+    /* The Paradigm link: its logo floats over the text and follows the cursor (app.js). */
+    .logo-hover {
+        @apply relative;
+
+        @media (pointer: fine) {
+            cursor: none;
+        }
+    }
+
+    .logo-float {
+        @apply
+            pointer-events-none
+            absolute
+            top-1/2
+            left-1/2
+            -mt-14
+            -ml-14
+            block
+            size-28
+            rounded-full
+            border
+            border-rule
+            bg-page
+            p-1.5
+            opacity-0;
+        z-index: 20;
+    }
+
+    .peek-photo {
+        @apply
+            pointer-events-none
+            absolute
+            bottom-full
+            left-1/2
+            -translate-x-1/2
+            mb-3
+            block
+            w-[240px]
+            rounded-xl
+            border
+            border-rule
+            bg-page
+            p-1.5
+            opacity-0;
+        z-index: 20;
+
+        &.is-below {
+            @apply
+                bottom-auto
+                top-full
+                mb-0
+                mt-3;
+        }
+    }
+}
+
+/* Motion: motion.js fades the name and intro lines in, so they start hidden
+   while it loads. They show as they are without JavaScript, with reduced motion,
+   or if motion.js hasn't started within 3s (see the head script in Layout.astro). */
+html.js:not(.motion-off) {
+    & #intro-name,
+    & p.intro-rise {
+        opacity: 0;
+    }
+}
+
+@keyframes portrait-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes portrait-core {
+    from { opacity: 0.55; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1.14); }
+}
+
+@keyframes portrait-glow {
+    from { opacity: 0.7; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .portrait::before,
+    .portrait .portrait-aura {
+        animation: none;
     }
 }

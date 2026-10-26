@@ -2,18 +2,28 @@
 // Imports
 // --------------------------------- //
 
-import { animate, onScroll, utils, stagger, createAnimatable } from 'animejs';
+import { animate, utils, createAnimatable } from 'animejs';
 
 // --------------------------------- //
 // End Imports
 // --------------------------------- //
 
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 function isTouchDevice() {
     return window.matchMedia("(pointer: coarse)").matches;
 }
 
-if (isTouchDevice()) {
-    document.documentElement.classList.add('is-touch-device');
+// --------------------------------- //
+// Header: show the small name once the large one scrolls away
+// --------------------------------- //
+const header = document.getElementById('site-header');
+const introName = document.getElementById('intro-name');
+
+if (header && introName) {
+    new IntersectionObserver(([entry]) => {
+        header.toggleAttribute('data-scrolled', !entry.isIntersecting);
+    }, { rootMargin: '-64px 0px 0px 0px' }).observe(introName);
 }
 
 // --------------------------------- //
@@ -51,207 +61,257 @@ const images = [
     "/profile-pic/profile28.webp",
 ];
 
-let availableImages = [...images];
+const profilePic = document.getElementById("profile-pic");
+
+// Shuffles only pick frames that have finished loading and decoding, so a swap
+// is always instant instead of pointing at a photo that's still downloading.
+const readyImages = [];
+const decodedFrames = []; // holding the decoded images keeps them in memory
+let availableImages = [];
 let lastMouseX = 0;
 let lastMouseY = 0;
-let originalImage = document.getElementById("profile-pic").src;
+let originalImage = profilePic?.src;
 let revertTimeout;
+let profileInView = true;
 
 function getRandomImage() {
     if (!availableImages.length) {
-        availableImages = [...images];
+        availableImages = [...readyImages];
     }
+    if (!availableImages.length) return null;
     const index = Math.floor(Math.random() * availableImages.length);
     return availableImages.splice(index, 1)[0];
 }
 
-function revertToOriginalImage() {
-    document.getElementById("profile-pic").src = originalImage;
-}
-
-// --------------------------------- //
-// Mousemove Handling
-// --------------------------------- //
-document.addEventListener("mousemove", ({ clientX, clientY }) => {
-    // Change profile pic if the mouse has moved > 100px in any direction
-    if (Math.abs(clientX - lastMouseX) > 100 || Math.abs(clientY - lastMouseY) > 100) {
-        document.getElementById("profile-pic").src = getRandomImage();
-        lastMouseX = clientX;
-        lastMouseY = clientY;
-
-        // Clear the previous timeout and set a new one
-        clearTimeout(revertTimeout);
-        revertTimeout = setTimeout(revertToOriginalImage, 2000);
-    }
-});
-
-
-// ------------------ //
-// Button Hover Effect
-// ------------------ //
-const buttonHover = (e) => {
-    const { currentTarget: target } = e;
-
-    const rect = target.getBoundingClientRect(),
-        x = e.clientX - rect.left,
-        y = e.clientY - rect.top;
-
-    target.style.setProperty('--button-mouse-x', `${ x }px`);
-    target.style.setProperty('--button-mouse-y', `${ y }px`);
-}
-
-if (!isTouchDevice()) {
-    for(const button of document.querySelectorAll('.glow-hover')) {
-        button.onmousemove = (e) => buttonHover(e)
-    }
-}
-
-
-
-
-
-
-
-function fadeInAnimation(target, { delay, onScrollOptions = {} } = {}) {
-    const params = {
-        y: { from: '75px' },
-        opacity: { from: 0 },
+function preloadFrames() {
+    // Random order, so the first frames to arrive aren't always the same ones.
+    const queue = utils.shuffle([...images]);
+    const loadNext = () => {
+        const src = queue.shift();
+        if (!src) return;
+        const frame = new Image();
+        frame.fetchPriority = 'low';
+        frame.src = src;
+        frame.decode()
+            .then(() => {
+                decodedFrames.push(frame);
+                readyImages.push(src);
+                availableImages.push(src);
+            })
+            .catch(() => {})
+            .finally(loadNext);
     };
-    if (delay) {
-        params.delay = delay;
+    // A few at a time, so the frames trickle in without crowding the rest of the page.
+    for (let i = 0; i < 4; i++) loadNext();
+}
+
+function revertToOriginalImage() {
+    profilePic.src = originalImage;
+}
+
+function shuffleProfilePic() {
+    const next = getRandomImage();
+    if (!next) return; // nothing has loaded yet; the next move will try again
+    profilePic.src = next;
+
+    // Clear the previous timeout and set a new one
+    clearTimeout(revertTimeout);
+    revertTimeout = setTimeout(revertToOriginalImage, 2000);
+}
+
+if (profilePic) {
+    // Start loading the other frames as soon as the portrait itself is in,
+    // rather than waiting for the whole page.
+    if (profilePic.complete) {
+        preloadFrames();
+    } else {
+        profilePic.addEventListener('load', preloadFrames, { once: true });
     }
-    animate(target, {
-        ...params,
-        autoplay: onScroll(onScrollOptions),
+
+    new IntersectionObserver(([entry]) => {
+        profileInView = entry.isIntersecting;
+    }).observe(profilePic);
+
+    // --------------------------------- //
+    // Mousemove Handling
+    // --------------------------------- //
+    document.addEventListener("mousemove", ({ clientX, clientY }) => {
+        if (!profileInView || reducedMotion.matches) return;
+
+        // Change profile pic if the mouse has moved > 100px in any direction
+        if (Math.abs(clientX - lastMouseX) > 100 || Math.abs(clientY - lastMouseY) > 100) {
+            shuffleProfilePic();
+            lastMouseX = clientX;
+            lastMouseY = clientY;
+        }
+    });
+
+    // No cursor on touch screens, so a tap shuffles instead.
+    profilePic.addEventListener('click', () => {
+        if (isTouchDevice()) shuffleProfilePic();
     });
 }
 
-// Fade-in animations
-fadeInAnimation('[data-staggerHero]', {
-    delay: stagger(100),
-});
+// ------------------ //
+// Hobby photo popups
+// ------------------ //
+utils.$('.peek').forEach(item => {
+    const photo = item.querySelector('.peek-photo');
+    if (!photo) return;
 
+    utils.set(photo, { scale: 0.92 });
 
-fadeInAnimation('[data-project]', {
-    delay: stagger(100),
-    onScrollOptions: {
-        target: document.getElementById('projects'),
-        enter: 'bottom-=200 top',
-    },
-});
+    let open = false;
 
-utils.$('[data-fadeIn]').forEach(item => {
-    fadeInAnimation(item, {
-        onScrollOptions: {
-            enter: 'bottom-=200 top'
-        },
-    });
-});
+    const show = () => {
+        if (open) return;
+        open = true;
+        item.setAttribute('aria-expanded', 'true');
+        photo.hidden = false;
 
-utils.$('.popup-hover').forEach(item => {
+        // Open below the phrase when there's no room above it under the header.
+        const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+        photo.classList.remove('is-below');
+        utils.set(photo, { x: 0 });
+        if (photo.getBoundingClientRect().top < headerBottom + 12) {
+            photo.classList.add('is-below');
+        }
 
-    const refreshBounds = () => bounds = item.getBoundingClientRect();
-    let popupContentContainer = item.querySelector('.popup-content');
+        // Keep the photo inside the viewport when the phrase sits near an edge.
+        const { left, right } = photo.getBoundingClientRect();
+        const margin = 12;
+        let shift = 0;
+        if (left < margin) shift = margin - left;
+        if (right > window.innerWidth - margin) shift = window.innerWidth - margin - right;
+        utils.set(photo, { x: shift });
 
-    // Initialize popup at scale 0
-    utils.set(popupContentContainer, {
-        scale: 0,
-        opacity: 0,
-        zIndex: 1000,
-    });
-
-    // // Animate in on hover with bounce
-    item.addEventListener('mouseenter', () => {
-        animate(popupContentContainer, {
-            scale: [0.6, 1],
-            opacity: {
-                to: 1,
-            },
-            ease: 'outElastic(.75, .75)',
-            duration: 500
+        if (reducedMotion.matches) {
+            utils.set(photo, { scale: 1, opacity: 1 });
+            return;
+        }
+        animate(photo, {
+            scale: 1,
+            opacity: 1,
+            ease: 'outExpo',
+            duration: 400,
         });
-    });
-    // // Animate out on mouse leave
-    item.addEventListener('mouseleave', () => {
-        animate(popupContentContainer, {
-            scale: [1, 0.6],
-            opacity: {
-                to: 0,
-            },
-            ease: 'inElastic(.75, .75)',
-            duration: 250
+    };
+
+    const hide = () => {
+        if (!open) return;
+        open = false;
+        item.setAttribute('aria-expanded', 'false');
+
+        if (reducedMotion.matches) {
+            utils.set(photo, { scale: 0.92, opacity: 0 });
+            photo.hidden = true;
+            return;
+        }
+        animate(photo, {
+            scale: 0.92,
+            opacity: 0,
+            ease: 'outQuad',
+            duration: 180,
+            // Take it out of layout once gone, so a closed photo near the
+            // window edge can't widen the page.
+            onComplete: () => { if (!open) photo.hidden = true; },
         });
+    };
+
+    item.addEventListener('mouseenter', show);
+    item.addEventListener('mouseleave', hide);
+    item.addEventListener('focus', show);
+    item.addEventListener('blur', hide);
+    item.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+    item.addEventListener('click', () => {
+        if (isTouchDevice()) open ? hide() : show();
     });
 
-    const content = createAnimatable(popupContentContainer, {
+    // On a fine pointer the photo drifts a little with the cursor.
+    if (!isTouchDevice()) {
+        const drift = createAnimatable(photo, {
+            y: 400,
+            rotate: 400,
+            ease: 'out(3)',
+        });
+
+        item.addEventListener('mousemove', e => {
+            if (reducedMotion.matches) return;
+            const { left, width } = item.getBoundingClientRect();
+            const norm = utils.clamp((e.clientX - left) / width * 2 - 1, -1, 1);
+            drift.rotate(norm * 3);
+            drift.y(-Math.abs(norm) * 4);
+        });
+    }
+});
+
+// ------------------ //
+// Paradigm logo that floats over its link and follows the cursor
+// ------------------ //
+utils.$('.logo-hover').forEach(link => {
+    const logo = link.querySelector('.logo-float');
+    if (!logo) return;
+
+    utils.set(logo, { scale: 0.85 });
+
+    const follow = createAnimatable(logo, {
         x: 500,
         y: 500,
         ease: 'out(3)',
     });
 
-    const onMouseMove = e => {
-        const bounds = item.getBoundingClientRect();
-        const { width, height, left, top } = bounds;
-        const hw = width / 2;
-        const hh = height / 2;
-        const x = utils.clamp(e.clientX - left - hw, -hw, hw);
-        const y = utils.clamp(e.clientY - top - hh, -hh, hh);
-        content.x(x);
-        content.y(y);
-    }
+    let shown = false;
 
-    item.addEventListener('mousemove', onMouseMove);
-    popupContentContainer.addEventListener('scroll', refreshBounds);
-});
-
-
-utils.$('[data-project]').forEach(item => {
-    const image = item.querySelector('img');
-
-    utils.set(image, {
-        scale: 1.1,
-        opacity: 0.25,
-    });
-
-    // // Animate in on hover with bounce
-    item.addEventListener('mouseenter', () => {
-        animate(image, {
-            opacity: {
-                to: 1,
-            },
-            duration: 500
-        });
-    });
-    // // Animate out on mouse leave
-    item.addEventListener('mouseleave', () => {
-        animate(image, {
-            opacity: {
-                to: 0.25,
-            },
-            duration: 500
-        });
-    });
-
-    const content = createAnimatable(image, {
-        x: 1000,
-        y: 1000,
-    });
-
-    const onMouseMove = e => {
-        const { left, top, width, height } = item.getBoundingClientRect();
-        const hw = width / 2;
-        const hh = height / 2;
-        const overflowX = width * 0.05;
-        const overflowY = height * 0.05;
-        const normX = utils.clamp((e.clientX - left - hw) / hw, -1, 1);
-        const normY = utils.clamp((e.clientY - top - hh) / hh, -1, 1);
-        content.x(normX * overflowX);
-        content.y(normY * overflowY);
+    const show = () => {
+        shown = true;
+        logo.hidden = false;
+        if (reducedMotion.matches) {
+            utils.set(logo, { scale: 1, opacity: 1 });
+            return;
+        }
+        animate(logo, { scale: 1, opacity: 1, ease: 'outExpo', duration: 350 });
     };
 
-    item.addEventListener('mousemove', onMouseMove);
-    item.addEventListener('mouseleave', () => {
-        content.x(0);
-        content.y(0);
+    const hide = () => {
+        shown = false;
+        if (reducedMotion.matches) {
+            utils.set(logo, { scale: 0.85, opacity: 0 });
+            logo.hidden = true;
+            return;
+        }
+        animate(logo, {
+            scale: 0.85,
+            opacity: 0,
+            ease: 'outQuad',
+            duration: 150,
+            onComplete: () => { if (!shown) logo.hidden = true; },
+        });
+    };
+
+    // Keep the logo centered on the pointer, but inside the link's box.
+    const place = (e, instant) => {
+        const { left, top, width, height } = link.getBoundingClientRect();
+        const x = utils.clamp(e.clientX - left - width / 2, -width / 2, width / 2);
+        const y = utils.clamp(e.clientY - top - height / 2, -height / 2, height / 2);
+        const duration = instant || reducedMotion.matches ? 0 : undefined;
+        follow.x(x, duration);
+        follow.y(y, duration);
+    };
+
+    if (!isTouchDevice()) {
+        link.addEventListener('mouseenter', e => {
+            place(e, true);
+            show();
+        });
+        link.addEventListener('mousemove', e => place(e));
+        link.addEventListener('mouseleave', hide);
+    }
+
+    // Keyboard focus shows it centered on the link.
+    link.addEventListener('focus', () => {
+        follow.x(0, 0);
+        follow.y(0, 0);
+        show();
     });
+    link.addEventListener('blur', hide);
 });

@@ -23,3 +23,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local tool output
+.playwright-mcp/
+
+# Impeccable working files (decision sketches, review screenshots)
+.impeccable/decision/
+.impeccable/review/

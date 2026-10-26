@@ -1,0 +1,44 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "mona sans",
+        "files": [
+          ".impeccable/decision/assigned.html"
+        ],
+        "createdAt": "2026-10-23T22:16:56.721Z",
+        "reason": "model decided: throwaway decision-round sketch of a rejected/unbuilt direction, not shipping UI"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "mona sans",
+        "files": [
+          ".impeccable/decision/pick.html"
+        ],
+        "createdAt": "2026-10-23T22:16:56.745Z",
+        "reason": "model decided: throwaway decision-round sketch of a rejected/unbuilt direction, not shipping UI"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "helvetica neue",
+        "files": [
+          ".impeccable/decision/r2-assigned.html"
+        ],
+        "createdAt": "2026-10-23T22:16:56.768Z",
+        "reason": "model decided: throwaway decision-round sketch of a rejected/unbuilt direction, not shipping UI"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "helvetica neue",
+        "files": [
+          ".impeccable/decision/r2-pick.html"
+        ],
+        "createdAt": "2026-10-23T22:16:56.791Z",
+        "reason": "model decided: throwaway decision-round sketch of a rejected/unbuilt direction, not shipping UI"
+      }
+    ]
+  }
+}

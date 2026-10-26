@@ -1,52 +1,80 @@
 ---
+import "@fontsource-variable/schibsted-grotesk";
+import "@fontsource-variable/archivo/wdth.css";
 import "@styles/styles.css";
 
+// The Latin files of both faces, preloaded so the name and intro (which wait
+// for their fonts) can show sooner.
+import archivoLatin from "@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url";
+import schibstedLatin from "@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2?url";
+
 import { SEO } from "astro-seo";
-import { Icon } from 'astro-icon/components'
-import HeaderIcons from 'src/components/header-icons.astro';
+import SiteHeader from 'src/components/site-header.astro';
+
+interface Props {
+    seo?: {
+        title?: string;
+        description?: string;
+        noindex?: boolean;
+    };
+}
 
 // grab any per-page overrides
 const { seo = {} } = Astro.props;
 
-// inline fallbacks
+const title = seo.title ?? 'Memphis Web Designer & Front-End Developer | Jeff Glenn';
+const description = seo.description ?? 'Jeff Glenn is a Memphis-based web designer and front-end developer specializing in clean, effective design. Explore his portfolio, recent projects, and creative work in web, print, motion, and photography.';
+const url = new URL(Astro.url.pathname, Astro.site);
+
 const pageSeo = {
-    title:       seo.title       ?? 'Memphis Web Designer & Front-End Developer | Jeff Glenn',
-    description: seo.description ?? 'Jeff Glenn is a Memphis-based web designer and front-end developer specializing in clean, effective design. Explore his portfolio, recent projects, and creative work in web, print, motion, and photography.',
-    canonical:   seo.canonical   ?? 'https://jeffglenn.me',
+    title,
+    description,
+    canonical: url,
+    noindex: seo.noindex ?? false,
     openGraph: {
         basic: {
-            title: seo.ogTitle ?? seo.title ?? 'Memphis Web Designer & Front-End Developer | Jeff Glenn',
-            type:  seo.ogType  ?? 'website',
-            image: seo.ogImage ?? 'https://jeffglenn.me/default-og-image.png',
-            url:   seo.ogUrl   ?? 'https://jeffglenn.me',
+            title,
+            type: 'website',
+            image: new URL('/og-image.jpg', Astro.site).href,
+            url,
+        },
+        optional: {
+            description,
+            siteName: 'Jeff Glenn',
+        },
+        image: {
+            type: 'image/jpeg',
+            width: 1200,
+            height: 630,
+            alt: 'Jeff Glenn, Web Designer & Front-End Developer',
         },
     },
     twitter: {
-        creator: seo.twitterCreator ?? '@jeffaglenn',
+        card: 'summary_large_image' as const,
+        creator: '@jeffaglenn',
     },
 };
-
 ---
 
 <!doctype html>
-<html
-    lang="en"
-    x-data="{
-        theme: localStorage.getItem('theme') || 'dark'
-    }"
-    x-init="
-        $watch('theme', val => localStorage.setItem('theme', val));
-        localStorage.setItem('theme', theme);
-    "
-    x-bind:data-theme="
-        theme === 'system'
-        ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-        : theme
-    "
->
+<html lang="en">
 	<head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XF305V4VZQ"></script>
-        <script>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <script is:inline>
+            document.documentElement.classList.add('js');
+            // motion.js fades the intro in; if it hasn't started within 3s
+            // (slow connection, blocked script), show the page as it is.
+            setTimeout(() => {
+                const root = document.documentElement;
+                if (!root.classList.contains('motion-on')) root.classList.add('motion-off');
+            }, 3000);
+        </script>
+
+        <!-- Google Analytics -->
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XF305V4VZQ"></script>
+        <script is:inline>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -54,9 +82,11 @@ const pageSeo = {
             gtag('config', 'G-XF305V4VZQ');
         </script>
 
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+        <link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href={schibstedLatin} as="font" type="font/woff2" crossorigin />
+
 		<meta name="generator" content={Astro.generator} />
+        <meta name="theme-color" content="#ffffff" />
 
         <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
@@ -66,32 +96,25 @@ const pageSeo = {
         <link rel="manifest" href="/favicon/site.webmanifest" />
 
 		<SEO {...pageSeo} />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,500&family=Mona+Sans:wdth,wght@75..125,200..900&display=swap" rel="stylesheet">
     </head>
-	<body>
-        <a class="sr-only focus:not-sr-only" href="#main-content">Skip to Main Content</a>
+	<body id="top">
+        <a
+            class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-page focus:px-4 focus:py-2 focus:text-label focus:font-medium focus:text-brand focus:border focus:border-rule"
+            href="#main-content"
+        >
+            Skip to main content
+        </a>
 
-        <HeaderIcons />
+        <SiteHeader />
 
-        <main id="#main-content">
+        <main id="main-content">
+            <div class="page-glow" aria-hidden="true"></div>
             <slot />
         </main>
-
-        <Icon name="bg-svg-1" class="fixed -top-1/4 -right-1/4 size-full text-cyan-200 dark:text-red-500 -z-10 opacity-100 sm:opacity-25 dark:opacity-50 dark:sm:opacity-15 blur-[150px] animate-[spin_15s_linear_infinite] " />
-        <Icon name="bg-svg-2" class="fixed -bottom-1/4 -left-1/4 size-full text-white dark:text-purple-500 -z-10 opacity-50 dark:opacity-50 dark:sm:opacity-10 blur-[150px] animate-[spin_18s_linear_infinite_reverse]" />
 	</body>
 </html>
 
 <script>
     import "../scripts/app.js";
+    import "../scripts/motion.js";
 </script>
-
-<style>
-    @keyframes rotate {
-        from {  -webkit-transform: rotate(0deg) rotate(0deg); }
-        to   {  -webkit-transform: rotate(360deg) rotate(-360deg); }
-    }
-</style>

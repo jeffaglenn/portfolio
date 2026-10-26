@@ -4,79 +4,55 @@
         "title": "Orpheum Theater Group",
         "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS"],
         "url": "https://www.orpheum-memphis.com",
-        "image": {
-            "src": "@images/orpheum.webp",
-            "alt": "Orpheum Theater Group"
-        }
+        "image": "@images/orpheum.webp"
     },
     {
         "id": 2,
         "title": "Dixon Gallery & Gardens",
         "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS"],
         "url": "https://dixon.org",
-        "image": {
-            "src": "@images/dixon.webp",
-            "alt": "Orpheum Theater Group"
-        }
+        "image": "@images/dixon.webp"
     },
     {
         "id": 3,
         "title": "Brother Direct to Garment Printing",
         "technologies": ["Astro.js", "Alpine.js", "TailwindCSS"],
         "url": "https://brotherdtg.com",
-        "image": {
-            "src": "@images/brother.webp",
-            "alt": "Orpheum Theater Group"
-        }
+        "image": "@images/brother.webp"
     },
     {
         "id": 4,
         "title": "Regency Homebuilders",
         "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS"],
         "url": "https://newregencyhomes.com",
-        "image": {
-            "src": "@images/regency.webp",
-            "alt": "Orpheum Theater Group"
-        }
+        "image": "@images/regency.webp"
     },
     {
         "id": 5,
         "title": "Reinhart Law",
         "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS", "Algolia"],
         "url": "https://reinhartlaw.com",
-        "image": {
-            "src": "@images/reinhart.webp",
-            "alt": "Orpheum Theater Group"
-        }
+        "image": "@images/reinhart.webp"
     },
     {
         "id": 6,
         "title": "Thomas Family Law",
         "technologies": ["Craft CMS", "Alpine.js", "TailwindCSS", "GSAP"],
         "url": "https://thomasfamilylaw.net",
-        "image": {
-            "src": "@images/thomasfamilylaw.webp",
-            "alt": "Orpheum Theater Group"
-        }
+        "image": "@images/thomasfamilylaw.webp"
     },
     {
         "id": 7,
         "title": "Stauf USA",
         "technologies": ["Craft CMS", "TailwindCSS", "Alpine.js"],
         "url": "https://staufusa.com",
-        "image": {
-            "src": "@images/stauf.webp",
-            "alt": "Orpheum Theater Group"
-        }
+        "image": "@images/stauf.webp"
     },
     {
         "id": 8,
         "title": "Beauty Lawn Spray",
         "technologies": ["Craft CMS", "TailwindCSS", "Alpine.js"],
         "url": "https://beautylawnspray.com",
-        "image": {
-            "src": "@images/beautylawn.webp",
-            "alt": "Orpheum Theater Group"
-        }
+        "image": "@images/beautylawn.webp"
     }
 ]

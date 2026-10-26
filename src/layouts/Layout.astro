@@ -3,45 +3,65 @@ import "@fontsource-variable/schibsted-grotesk";
 import "@fontsource-variable/archivo/wdth.css";
 import "@styles/styles.css";
 
+// The Latin files of both faces, preloaded so the name and intro (which wait
+// for their fonts) can show sooner.
+import archivoLatin from "@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url";
+import schibstedLatin from "@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2?url";
+
 import { SEO } from "astro-seo";
 import SiteHeader from 'src/components/site-header.astro';
+
+interface Props {
+    seo?: {
+        title?: string;
+        description?: string;
+        noindex?: boolean;
+    };
+}
 
 // grab any per-page overrides
 const { seo = {} } = Astro.props;
 
-// inline fallbacks
+const title = seo.title ?? 'Memphis Web Designer & Front-End Developer | Jeff Glenn';
+const description = seo.description ?? 'Jeff Glenn is a Memphis-based web designer and front-end developer specializing in clean, effective design. Explore his portfolio, recent projects, and creative work in web, print, motion, and photography.';
+const url = new URL(Astro.url.pathname, Astro.site);
+
 const pageSeo = {
-    title:       seo.title       ?? 'Memphis Web Designer & Front-End Developer | Jeff Glenn',
-    description: seo.description ?? 'Jeff Glenn is a Memphis-based web designer and front-end developer specializing in clean, effective design. Explore his portfolio, recent projects, and creative work in web, print, motion, and photography.',
-    canonical:   seo.canonical   ?? 'https://jeffglenn.me',
+    title,
+    description,
+    canonical: url,
+    noindex: seo.noindex ?? false,
     openGraph: {
         basic: {
-            title: seo.ogTitle ?? seo.title ?? 'Memphis Web Designer & Front-End Developer | Jeff Glenn',
-            type:  seo.ogType  ?? 'website',
-            image: seo.ogImage ?? 'https://jeffglenn.me/default-og-image.png',
-            url:   seo.ogUrl   ?? 'https://jeffglenn.me',
+            title,
+            type: 'website',
+            image: new URL('/og-image.jpg', Astro.site).href,
+            url,
+        },
+        optional: {
+            description,
+            siteName: 'Jeff Glenn',
+        },
+        image: {
+            type: 'image/jpeg',
+            width: 1200,
+            height: 630,
+            alt: 'Jeff Glenn, Web Designer & Front-End Developer',
         },
     },
     twitter: {
-        creator: seo.twitterCreator ?? '@jeffaglenn',
+        card: 'summary_large_image' as const,
+        creator: '@jeffaglenn',
     },
 };
-
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XF305V4VZQ"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-XF305V4VZQ');
-        </script>
-
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <script is:inline>
             document.documentElement.classList.add('js');
             // motion.js fades the intro in; if it hasn't started within 3s
@@ -51,7 +71,20 @@ const pageSeo = {
                 if (!root.classList.contains('motion-on')) root.classList.add('motion-off');
             }, 3000);
         </script>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Google Analytics -->
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XF305V4VZQ"></script>
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-XF305V4VZQ');
+        </script>
+
+        <link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href={schibstedLatin} as="font" type="font/woff2" crossorigin />
+
 		<meta name="generator" content={Astro.generator} />
         <meta name="theme-color" content="#ffffff" />
 

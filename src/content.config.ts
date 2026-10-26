@@ -6,12 +6,8 @@ const projects = defineCollection({
     schema: ({image}) => z.object({
         title: z.string(),
         url: z.string(),
-        image: z.object(
-            {
-                src: image(),
-                alt: z.string(),
-            }
-        ),
+        // Shown with empty alt text: the card's title already names the project.
+        image: image(),
         technologies: z.array(z.enum([
             'Craft CMS',
             'Alpine.js',

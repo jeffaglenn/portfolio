@@ -48,6 +48,7 @@ init().catch(error => {
 // --------------------------------- //
 function initHero() {
     const name = document.getElementById('intro-name');
+    if (!name) return; // only the home page has the intro
     const split = new SplitText(name, { type: 'chars', charsClass: 'split-char' });
     gsap.set(name, { opacity: 1 });
     gsap.from(split.chars, {
@@ -104,6 +105,7 @@ function initHeadings() {
 // Work cards ease up into place, a row at a time.
 function initCards() {
     const cards = gsap.utils.toArray('.project');
+    if (!cards.length) return;
     gsap.set(cards, { opacity: 0 });
     ScrollTrigger.batch(cards, {
         start: 'top 88%',
@@ -118,6 +120,7 @@ function initCards() {
 // About paragraphs and experience rows ease in as they arrive.
 function initRows() {
     [['#about', '#about p'], ['#experience', '#experience li']].forEach(([section, items]) => {
+        if (!document.querySelector(section)) return;
         gsap.from(items, {
             y: 12,
             opacity: 0,
@@ -134,6 +137,9 @@ function initRows() {
 // behind the pointer. Everywhere else the cursor is the system arrow.
 // --------------------------------- //
 function initWorkCursor() {
+    const projects = document.querySelectorAll('.project');
+    if (!projects.length) return;
+
     const disc = document.createElement('div');
     disc.className = 'work-cursor';
     disc.setAttribute('aria-hidden', 'true');
@@ -148,7 +154,7 @@ function initWorkCursor() {
         y(e.clientY);
     }, { passive: true });
 
-    document.querySelectorAll('.project').forEach(project => {
+    projects.forEach(project => {
         project.addEventListener('mouseenter', e => {
             gsap.set(disc, { x: e.clientX, y: e.clientY });
             disc.classList.add('is-on');

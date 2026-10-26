@@ -120,7 +120,7 @@ export function initChroma() {
 
     scroll.last = window.scrollY;
 
-    function tick(time, deltaMs) {
+    function tick(_time, deltaMs) {
         if (deltaMs <= 0) return;
 
         // A browser that can't keep up with the filter goes back to plain

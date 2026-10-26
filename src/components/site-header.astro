@@ -22,6 +22,14 @@ const elsewhere = [
 	id="site-header"
 	class="group sticky top-0 z-30 bg-transparent transition-[background-color,backdrop-filter] duration-1000 ease-[cubic-bezier(0.33,1,0.68,1)] data-scrolled:bg-page/75 data-scrolled:backdrop-blur-2xl"
 >
+	<!-- Inside the header, so it stays above it when chroma.js lifts the header into the top layer. -->
+	<a
+		class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-page focus:px-4 focus:py-2 focus:text-label focus:font-medium focus:text-brand focus:border focus:border-rule"
+		href="#main-content"
+	>
+		Skip to main content
+	</a>
+
 	<div class="flex items-center gap-5 h-16 px-5 sm:px-8">
 		<a
 			href="#top"

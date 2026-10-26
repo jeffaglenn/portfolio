@@ -208,6 +208,10 @@
         scale: 0.85;
         transition: opacity 180ms, scale 250ms ease-out;
         pointer-events: none;
+        /* chroma.js lifts it into the top layer as a popover; no popover frame. */
+        border: 0;
+        padding: 0;
+        overflow: visible;
 
         &.is-on {
             opacity: 1;
@@ -296,6 +300,21 @@
                 mt-3;
         }
     }
+}
+
+/* chroma.js lifts the header into the top layer (with the work cursor) to
+   keep it out of the scroll effect. Undo the popover defaults so it sits across the top of the window as
+   it does in the page. Unlayered, so it outranks the header's own `sticky`. */
+#site-header:popover-open {
+    position: fixed;
+    inset: 0 0 auto;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: inherit;
+    overflow: visible;
 }
 
 /* Motion: motion.js fades the name and intro lines in, so they start hidden

@@ -125,7 +125,7 @@ components:
 
 This is a conventional designer-developer portfolio, executed at full craft. A white page holds one centered container, and the type and the real client work carry everything. It replaces the previous dark-first world of neon glows, drifting color blobs, and frosted glass; that look is not referenced or carried forward.
 
-The feel is atmospheric, playful, and crafted. Personality comes from a few live, human details: the round portrait shuffles through its frames as the cursor moves, the hobbies in the About copy open real photos that drift slightly with the pointer, and the copy speaks in the first person. One warm vermilion gives the page a signature, and quiet, authored motion (the name settling in letter by letter on load, titles and rows easing in as you scroll, and a "Visit" cursor over the work) shows the craft of someone who builds what he designs. Two soft glows add atmosphere: warm light falling from the top of the window, and white light around the portrait. There is still no ambient looping motion, and the only backdrop blur is the frosted sticky header.
+The feel is atmospheric, playful, and crafted. Personality comes from a few live, human details: the round portrait shuffles through its frames as the cursor moves, the hobbies in the About copy open real photos that drift slightly with the pointer, and the copy speaks in the first person. One warm vermilion gives the page a signature, and quiet, authored motion (the name settling in letter by letter on load, titles and rows easing in as you scroll, the page parting into color plates when it scrolls fast, and a "Visit" cursor over the work) shows the craft of someone who builds what he designs. Two soft glows add atmosphere: warm light falling from the top of the window, and white light around the portrait. There is still no ambient looping motion, and the only backdrop blur is the frosted sticky header.
 
 The system must never read as sterile or corporate, trendy, or cutesy. Calm is not the same as cold: warmth comes from Jeff's face, voice, and photos, never from ornament. Concept metaphors (film credits, proof sheets, zines, and the like) are out.
 
@@ -134,7 +134,7 @@ The system must never read as sterile or corporate, trendy, or cutesy. Calm is n
 - One centered container (64rem) for every section; the header spans the full window width. Running text inside the container is capped at a readable measure.
 - Type does the work: Schibsted Grotesk for reading, Archivo Expanded for the name and the section titles. Six roles, with hierarchy from size, weight, width, and tracking.
 - Flat surfaces lit by two soft glows (the warm background halo and the white portrait light). No shadows or glass, except the frosted sticky header. Hairlines and whitespace separate.
-- Two signature live details (the shuffling portrait and the hobby photo popups), one load entrance, and scroll entrances that run once.
+- Two signature live details (the shuffling portrait and the hobby photo popups), one load entrance, scroll entrances that run once, and a color split that follows scroll speed.
 - Craft bar: brianlovin.com and niklaspeterson.com.
 
 ## Colors
@@ -216,7 +216,7 @@ Quiet and always underlined.
 "Let's connect" on the white page, with no copy under it, just the email as a button: the "Say hello" pill a size up (48px tall, 24px side padding, white Body text at 500, 20px speech-bubble icon), labeled with the address itself. On hover it deepens to Deep Vermilion (200ms). It is the last thing on the page, followed by 96px of space (128px from 640px); there is no footer or copyright line.
 
 ### Navigation
-- **Header:** full window width, not in the 64rem container (32px side padding, 20px under 640px), so the small name sits at the far left and the icons and Say hello at the far right. Sticky and fully transparent at the top of the page, so the background shows through. Once the intro name scrolls under it, it fades to frosted (75% Page White over a 40px backdrop blur) at the same moment the small name fades in, both over 1000ms with a gentle cubic ease-out; both reverse when the name comes back into view. It has no bottom border. LinkedIn and GitHub are 18px brand marks in Muted Ink inside 40px round hit areas, stepping to Ink on hover, shown at every width; each link carries an aria-label. The "Say hello" button is a mailto link styled as a filled Vermilion pill: 36px tall, 16px side padding, white Label text at 500, with a 16px speech-bubble icon. On hover it deepens to Deep Vermilion (200ms). It and the closing email button are the only filled buttons on the page.
+- **Header:** full window width, not in the 64rem container (32px side padding, 20px under 640px), so the small name sits at the far left and the icons and Say hello at the far right. Sticky and fully transparent at the top of the page, so the background shows through. Once the intro name scrolls under it, it fades to frosted (75% Page White over a 40px backdrop blur) at the same moment the small name fades in, both over 1000ms with a gentle cubic ease-out; both reverse when the name comes back into view. It has no bottom border. LinkedIn and GitHub are 18px brand marks in Muted Ink inside 40px round hit areas, stepping to Ink on hover, shown at every width; each link carries an aria-label. The "Say hello" button is a mailto link styled as a filled Vermilion pill: 36px tall, 16px side padding, white Label text at 500, with a 16px speech-bubble icon. On hover it deepens to Deep Vermilion (200ms). It and the closing email button are the only filled buttons on the page. The header stays sharp while the page splits during a scroll (see Motion).
 
 ### Section Buttons
 Work, About, Experience, and Contact under the intro are outlined pills that jump to their sections: 40px tall, 16px side padding (14px with a 6px gap under 640px, so all four fit one row on a phone), Label size at 500 in Ink, a 1px Hairline Gray border, and a full radius. On hover the border and label turn Vermilion (200ms).
@@ -225,7 +225,7 @@ Work, About, Experience, and Contact under the intro are outlined pills that jum
 The screenshot is the proof; the card is just a frame and a caption.
 - **Frame:** 3:2 screenshot cropped from the top, inside a 12px-radius, 1px Hairline Gray border on a Wash Gray fill.
 - **Caption:** project name at Title, then the stack at Label in Faint Ink.
-- **Hover:** the screenshot scales to 1.04 over 700ms (expo-out); a 1px ink underline draws in under the title from the left (450ms). On a fine pointer the system cursor hides over the card and an 84px Ink disc reading "Visit ↗" stands in for it, following the pointer with a 250ms lag and scaling in from 0.85 (250ms). Everywhere else the cursor is the system arrow.
+- **Hover:** the screenshot scales to 1.04 over 700ms (expo-out); a 1px ink underline draws in under the title from the left (450ms). On a fine pointer the system cursor hides over the card and an 84px Ink disc reading "Visit ↗" stands in for it, following the pointer with a 250ms lag and scaling in from 0.85 (250ms); it stays sharp during the scroll chroma. Everywhere else the cursor is the system arrow.
 - **Entrance:** cards fade in and ease up 20px as their row scrolls into view (900ms, power3 ease-out, 80ms apart).
 
 ### Experience Row
@@ -244,18 +244,19 @@ It sits on layered, slowly moving light (Sweep). At the back is a pure white rad
 
 ## Motion
 
-Quiet, type-led motion with GSAP (`src/scripts/motion.js`): one entrance on load, entrances that run once as you scroll, and hover feedback. Every move is a few pixels with a soft power3 ease-out; nothing flies in.
+Quiet, type-led motion with GSAP (`src/scripts/motion.js`): one entrance on load, entrances that run once as you scroll, a color split that follows scroll speed, and hover feedback. Every move is a few pixels with a soft power3 ease-out; nothing flies in.
 
 - **Intro (on load, about 1.5s):** the name's letters settle up 14px and fade in, 25ms apart (900ms each); the title, tagline, and Memphis line follow line by line, up 10px (800ms, starting at 400ms); the four section buttons rise 8px (700ms, starting at 750ms). The portrait has no entrance.
 - **Section titles:** letters settle up 8px and fade in, 15ms apart, when the title reaches 85% of the window.
 - **Work cards:** see Project Card.
 - **About and Experience:** paragraphs and rows ease up 12px and fade in, 70ms apart, when the section reaches 80% of the window.
+- **Scroll chroma** (`src/scripts/chroma.js`): while the page scrolls, everything on it splits into red, green, and blue plates, the way a lens splits light at speed. Red and blue part in opposite directions along the scroll (angle 90°) in proportion to its speed, up to 15px each way at 4,000px/s and faster, and bend apart along a soft noise field (warp 60) as they go. The split rises quickly, so a short flick shows, and settles over about half a second; scrolling up parts the plates the other way. At rest the filter comes off and the page renders untouched. It is one SVG filter on the root element, so it takes in the halo too; the header and the "Visit" cursor are lifted into the top layer so they stay sharp. A browser that can't hold about 30fps with it on turns it off for the rest of the visit. In dev only, a panel (`src/components/chroma-panel.astro`, never shipped) tunes split, warp, angle, and the full-strength speed.
 - **Feedback:** color changes 200 to 300ms; screenshot zoom 700ms; underline draw 450ms; the "Visit" cursor over the work.
 - **Visible by default:** the name and intro lines start hidden only when scripts are running (`.js` on `<html>`), and show as they are if motion is reduced, if JavaScript is off, or if `motion.js` hasn't started within 3s (a safety timer in the head of `Layout.astro`). Cards, titles, and rows are hidden by the script itself, so they can't get stuck.
-- **Reduced motion:** no entrances and no "Visit" cursor; the page renders in its final state. Color feedback stays.
+- **Reduced motion:** no entrances, no scroll chroma, and no "Visit" cursor; the page renders in its final state. Color feedback stays.
 
 ### Named Rules
-**The Once Rule.** Motion is either feedback for the visitor's own action or a one-time arrival. Nothing animates on a loop or repeats on scroll back up, with one deliberate exception: the portrait's light breathes (5s and 8s) and its white and vermilion bands circle it slowly (12s and 16s); all of it stops under `prefers-reduced-motion`.
+**The Once Rule.** Motion is either feedback for the visitor's own action or a one-time arrival. Nothing animates on a loop or repeats on scroll back up, with one deliberate exception: the portrait's light breathes (5s and 8s) and its white and vermilion bands circle it slowly (12s and 16s); all of it stops under `prefers-reduced-motion`. The scroll chroma is feedback too: it follows the scroll in both directions and is gone the moment the page stops.
 
 ## Do's and Don'ts
 
@@ -266,12 +267,13 @@ Quiet, type-led motion with GSAP (`src/scripts/motion.js`): one entrance on load
 - **Do** let the real project screenshots and live URLs be the proof.
 - **Do** keep every section in the shared 64rem container (the header alone runs full width) and cap running text at 65ch inside it.
 - **Do** separate with whitespace first and a 1px Hairline Gray rule second.
-- **Do** keep motion to the entrance, the one-time scroll entrances, and hover feedback: small moves (8 to 20px) with a soft ease-out, each with a `prefers-reduced-motion` path.
+- **Do** keep motion to the entrance, the one-time scroll entrances, the scroll chroma, and hover feedback: small moves (8 to 20px) with a soft ease-out, each with a `prefers-reduced-motion` path.
 
 ### Don't:
 - **Don't** add a dark theme, a theme toggle, or pink.
 - **Don't** add glows beyond the background and the portrait, use neon or hard-edged glows, shadows, or blurred color blobs, or add glass or backdrop blur anywhere but the sticky header.
 - **Don't** add ambient or looping motion, parallax, smooth-scroll libraries, cursor effects outside the work, or magnetic buttons.
+- **Don't** drive the chroma split with anything but scroll speed (no hover or pointer triggers), let it reach the header or the "Visit" cursor, or leave it on at rest.
 - **Don't** add a second hue, tint more sections, or put Vermilion on photos or decorative shapes.
 - **Don't** use Archivo beyond the name and section titles, add a third typeface, or use uppercase letterspaced labels or eyebrow text above headings.
 - **Don't** introduce concept metaphors or novelty framing.

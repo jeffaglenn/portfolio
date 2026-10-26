@@ -1,12 +1,14 @@
 // --------------------------------- //
 // Motion: the page is type in motion, quietly. Letters settle in a few pixels
 // at a time, section titles and rows arrive as you scroll, work cards ease up
-// into place, and over the work the cursor becomes a "Visit" disc.
+// into place, and over the work the cursor becomes a "Visit" disc. While the
+// page scrolls, its colors part (chroma.js).
 // --------------------------------- //
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import { initChroma } from './chroma.js';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -32,6 +34,8 @@ async function init() {
     initRows();
 
     if (window.matchMedia('(pointer: fine)').matches) initWorkCursor();
+    // After the cursor exists, so chroma can keep it out of its effect.
+    initChroma();
 }
 
 init().catch(error => {

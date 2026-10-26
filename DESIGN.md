@@ -83,7 +83,7 @@ components:
     backgroundColor: "{colors.ink}"
     textColor: "#ffffff"
     rounded: "{rounded.full}"
-    size: "84px"
+    size: "71px"
   nav-link:
     textColor: "{colors.ink-muted}"
     typography: "{typography.label}"
@@ -225,7 +225,7 @@ Work, About, Experience, and Contact under the intro are outlined pills that jum
 The screenshot is the proof; the card is just a frame and a caption.
 - **Frame:** 3:2 screenshot cropped from the top, inside a 12px-radius, 1px Hairline Gray border on a Wash Gray fill.
 - **Caption:** project name at Title, then the stack at Label in Faint Ink.
-- **Hover:** the screenshot scales to 1.04 over 700ms (expo-out); a 1px ink underline draws in under the title from the left (450ms). On a fine pointer the system cursor hides over the card and an 84px Ink disc reading "Visit ↗" stands in for it, following the pointer with a 250ms lag and scaling in from 0.85 (250ms); it stays sharp during the scroll chroma. Everywhere else the cursor is the system arrow.
+- **Hover:** the screenshot scales to 1.04 over 700ms (expo-out); a 1px ink underline draws in under the title from the left (450ms). On a fine pointer the system cursor hides over the card and a 71px Ink disc reading "Visit ↗" (white, 11px at 500) stands in for it, following the pointer with a 250ms lag and scaling in from 0.85 (250ms); it stays sharp during the scroll chroma. Everywhere else the cursor is the system arrow.
 - **Entrance:** cards fade in and ease up 20px as their row scrolls into view (900ms, power3 ease-out, 80ms apart).
 
 ### Experience Row

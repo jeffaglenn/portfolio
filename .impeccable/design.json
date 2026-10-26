@@ -236,7 +236,7 @@
       {
         "name": "work-cursor",
         "value": "follow 250ms power3; scale 0.85 to 1 over 250ms ease-out; opacity 180ms",
-        "purpose": "The 84px Ink \"Visit ↗\" disc standing in for the cursor over work cards (fine pointer only, off under reduced motion)."
+        "purpose": "The 71px Ink \"Visit ↗\" disc standing in for the cursor over work cards (fine pointer only, off under reduced motion)."
       },
       {
         "name": "popup-open",
@@ -319,9 +319,9 @@
       "name": "Work Cursor",
       "kind": "custom",
       "refersTo": "work-cursor",
-      "description": "An 84px Ink disc reading \"Visit ↗\" in white at 13px/500 that follows the pointer over work cards only (the system cursor hides there via .project.has-cursor). Scales 0.85 to 1 over 250ms, fades over 180ms; not shown with reduced motion or coarse pointers. Stays sharp during the scroll chroma.",
+      "description": "A 71px Ink disc reading \"Visit ↗\" in white at 11px/500 that follows the pointer over work cards only (the system cursor hides there via .project.has-cursor). Scales 0.85 to 1 over 250ms, fades over 180ms; not shown with reduced motion or coarse pointers. Stays sharp during the scroll chroma.",
       "html": "<div class=\"ds-work-cursor\" aria-hidden=\"true\"><span>Visit&nbsp;↗</span></div>",
-      "css": ".ds-work-cursor { display: flex; align-items: center; justify-content: center; width: 84px; height: 84px; border-radius: 9999px; background: var(--color-ink, #111827); color: #fff; font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 500; white-space: nowrap; pointer-events: none; opacity: 1; scale: 1; transition: opacity 180ms, scale 250ms ease-out; }"
+      "css": ".ds-work-cursor { display: flex; align-items: center; justify-content: center; width: 71px; height: 71px; border-radius: 9999px; background: var(--color-ink, #111827); color: #fff; font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 500; white-space: nowrap; pointer-events: none; opacity: 1; scale: 1; transition: opacity 180ms, scale 250ms ease-out; }"
     },
     {
       "name": "Experience Row",

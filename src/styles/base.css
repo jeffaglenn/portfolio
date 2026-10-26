@@ -181,56 +181,47 @@
         }
     }
 
-    /* Work card glow: on hover the screenshot gives off its own colored light
-       all around the frame (a blurred copy of the image sitting right behind it). */
-    .project {
-        isolation: isolate;
+    /* Over a work card the pointer hides and this disc stands in for it;
+       motion.js moves it. */
+    .project.has-cursor,
+    .project.has-cursor * {
+        cursor: none;
     }
 
-    .card-glow {
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: -1;
-        width: 100%;
-        aspect-ratio: 3 / 2;
-        object-fit: cover;
-        object-position: top;
-        border-radius: 0.75rem;
-        filter: blur(30px) saturate(1.2);
+    .work-cursor {
+        position: fixed;
+        inset: 0 auto auto 0;
+        z-index: 90;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 84px;
+        height: 84px;
+        margin: -42px 0 0 -42px;
+        border-radius: 9999px;
+        background: var(--color-ink);
+        color: #fff;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        white-space: nowrap;
         opacity: 0;
-        transform: scale(0.98);
-        transition: opacity 500ms var(--ease-out-expo), transform 500ms var(--ease-out-expo);
+        scale: 0.85;
+        transition: opacity 180ms, scale 250ms ease-out;
         pointer-events: none;
+
+        &.is-on {
+            opacity: 1;
+            scale: 1;
+        }
     }
 
-    .project:hover .card-glow,
-    .project:focus-visible .card-glow {
-        opacity: 0.45;
-        transform: scale(1.04);
+    /* SplitText wrappers for the letter and line entrances. */
+    .split-char {
+        display: inline-block;
     }
 
-    /* Cursor-following label over project screenshots; app.js moves it. It sits on
-       the card, not inside the clipped frame, so it can run past the image edge. */
-    .visit-label {
-        @apply
-            pointer-events-none
-            absolute
-            top-0
-            left-0
-            z-10
-            inline-flex
-            items-center
-            gap-1.5
-            h-8
-            px-3
-            rounded-full
-            bg-ink
-            text-white
-            text-label
-            font-medium
-            whitespace-nowrap
-            opacity-0;
+    .split-line {
+        text-wrap: initial;
     }
 
     /* Hobby phrases in About that open a photo on hover, focus, or tap. */
@@ -307,26 +298,13 @@
     }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    /* Intro entrance: the portrait scales in, then the copy under the name rises in. */
-    .intro-pic {
-        animation: intro-pop 900ms var(--ease-out-expo) both;
-    }
-
-    .intro-rise {
-        animation: intro-rise 800ms var(--ease-out-expo) both;
-        animation-delay: calc(200ms + var(--i, 0) * 70ms);
-    }
-
-    /* Work screenshots wipe open from the bottom as they scroll in. */
-    .js [data-reveal="frame"] {
-        clip-path: inset(100% 0 0 0 round 0.75rem);
-        transition: clip-path 1000ms var(--ease-out-expo);
-        transition-delay: var(--reveal-delay, 0ms);
-    }
-
-    .js [data-reveal="frame"].is-in {
-        clip-path: inset(0 0 0 0 round 0.75rem);
+/* Motion: motion.js fades the name and intro lines in, so they start hidden
+   while it loads. They show as they are without JavaScript, with reduced motion,
+   or if motion.js hasn't started within 3s (see the head script in Layout.astro). */
+html.js:not(.motion-off) {
+    & #intro-name,
+    & p.intro-rise {
+        opacity: 0;
     }
 }
 
@@ -344,21 +322,9 @@
     to { opacity: 1; transform: scale(1.08); }
 }
 
-@keyframes intro-pop {
-    from { opacity: 0; transform: scale(0.9); }
-}
-
-@keyframes intro-rise {
-    from { opacity: 0; transform: translateY(0.75rem); }
-}
-
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
-    }
-
-    .card-glow {
-        transition: none;
     }
 
     .portrait::before,

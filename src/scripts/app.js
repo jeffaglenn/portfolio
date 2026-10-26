@@ -63,7 +63,11 @@ const images = [
 
 const profilePic = document.getElementById("profile-pic");
 
-let availableImages = [...images];
+// Shuffles only pick frames that have finished loading and decoding, so a swap
+// is always instant instead of pointing at a photo that's still downloading.
+const readyImages = [];
+const decodedFrames = []; // holding the decoded images keeps them in memory
+let availableImages = [];
 let lastMouseX = 0;
 let lastMouseY = 0;
 let originalImage = profilePic?.src;
@@ -72,10 +76,33 @@ let profileInView = true;
 
 function getRandomImage() {
     if (!availableImages.length) {
-        availableImages = [...images];
+        availableImages = [...readyImages];
     }
+    if (!availableImages.length) return null;
     const index = Math.floor(Math.random() * availableImages.length);
     return availableImages.splice(index, 1)[0];
+}
+
+function preloadFrames() {
+    // Random order, so the first frames to arrive aren't always the same ones.
+    const queue = utils.shuffle([...images]);
+    const loadNext = () => {
+        const src = queue.shift();
+        if (!src) return;
+        const frame = new Image();
+        frame.fetchPriority = 'low';
+        frame.src = src;
+        frame.decode()
+            .then(() => {
+                decodedFrames.push(frame);
+                readyImages.push(src);
+                availableImages.push(src);
+            })
+            .catch(() => {})
+            .finally(loadNext);
+    };
+    // A few at a time, so the frames trickle in without crowding the rest of the page.
+    for (let i = 0; i < 4; i++) loadNext();
 }
 
 function revertToOriginalImage() {
@@ -83,7 +110,9 @@ function revertToOriginalImage() {
 }
 
 function shuffleProfilePic() {
-    profilePic.src = getRandomImage();
+    const next = getRandomImage();
+    if (!next) return; // nothing has loaded yet; the next move will try again
+    profilePic.src = next;
 
     // Clear the previous timeout and set a new one
     clearTimeout(revertTimeout);
@@ -91,10 +120,13 @@ function shuffleProfilePic() {
 }
 
 if (profilePic) {
-    // Warm the cache so swaps don't flash an empty frame.
-    window.addEventListener('load', () => {
-        images.forEach(src => { new Image().src = src; });
-    }, { once: true });
+    // Start loading the other frames as soon as the portrait itself is in,
+    // rather than waiting for the whole page.
+    if (profilePic.complete) {
+        preloadFrames();
+    } else {
+        profilePic.addEventListener('load', preloadFrames, { once: true });
+    }
 
     new IntersectionObserver(([entry]) => {
         profileInView = entry.isIntersecting;
@@ -212,66 +244,6 @@ utils.$('.peek').forEach(item => {
         });
     }
 });
-
-// ------------------ //
-// Scroll reveals: work screenshots wipe open
-// ------------------ //
-const revealables = utils.$('[data-reveal]');
-
-if (revealables.length) {
-    const revealObserver = new IntersectionObserver(entries => {
-        // Things that arrive together (a row of cards) open one after another.
-        entries
-            .filter(entry => entry.isIntersecting)
-            .forEach((entry, i) => {
-                entry.target.style.setProperty('--reveal-delay', `${i * 90}ms`);
-                entry.target.classList.add('is-in');
-                revealObserver.unobserve(entry.target);
-            });
-    }, { rootMargin: '0px 0px -10% 0px' });
-
-    revealables.forEach(el => revealObserver.observe(el));
-}
-
-// ------------------ //
-// "Visit site" label that follows the cursor over project screenshots
-// ------------------ //
-if (!isTouchDevice()) {
-    utils.$('.project [data-reveal="frame"]').forEach(frame => {
-        const label = frame.closest('.project')?.querySelector('.visit-label');
-        if (!label) return;
-
-        const follow = createAnimatable(label, {
-            x: 350,
-            y: 350,
-            ease: 'out(3)',
-        });
-
-        const place = (e, instant) => {
-            const { left, top } = frame.getBoundingClientRect();
-            // Sit just below and right of the pointer so the cursor stays visible.
-            // It may run past the card, but never past the window edge.
-            const x = Math.min(e.clientX - left + 14, window.innerWidth - left - label.offsetWidth - 8);
-            const y = Math.min(e.clientY - top + 14, window.innerHeight - top - label.offsetHeight - 8);
-            if (instant || reducedMotion.matches) {
-                follow.x(x, 0);
-                follow.y(y, 0);
-            } else {
-                follow.x(x);
-                follow.y(y);
-            }
-        };
-
-        frame.addEventListener('mouseenter', e => {
-            place(e, true);
-            animate(label, { opacity: 1, scale: [0.85, 1], duration: 250, ease: 'outExpo' });
-        });
-        frame.addEventListener('mousemove', e => place(e));
-        frame.addEventListener('mouseleave', () => {
-            animate(label, { opacity: 0, scale: 0.85, duration: 150, ease: 'outQuad' });
-        });
-    });
-}
 
 // ------------------ //
 // Paradigm logo that floats over its link and follows the cursor

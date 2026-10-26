@@ -42,7 +42,15 @@ const pageSeo = {
         </script>
 
 		<meta charset="UTF-8" />
-        <script is:inline>document.documentElement.classList.add('js');</script>
+        <script is:inline>
+            document.documentElement.classList.add('js');
+            // motion.js fades the intro in; if it hasn't started within 3s
+            // (slow connection, blocked script), show the page as it is.
+            setTimeout(() => {
+                const root = document.documentElement;
+                if (!root.classList.contains('motion-on')) root.classList.add('motion-off');
+            }, 3000);
+        </script>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
         <meta name="theme-color" content="#ffffff" />
@@ -74,4 +82,5 @@ const pageSeo = {
 
 <script>
     import "../scripts/app.js";
+    import "../scripts/motion.js";
 </script>

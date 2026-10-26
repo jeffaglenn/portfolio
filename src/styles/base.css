@@ -18,20 +18,35 @@
         position: relative;
     }
 
+    /* <main> reaches up behind the 64px sticky header, so the glow in it can too. */
+    main {
+        margin-top: -4rem;
+        padding-top: 4rem;
+    }
+
     /* Background glow: a halo of vermilion and warm orange light falling from
-       the top of the window. It is pinned to the window, so it stays behind the
-       page as it scrolls, and the header frosts over it. */
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
+       the top of the window. It sticks to the top of the window, so it stays
+       behind the page as it scrolls, and the header frosts over it. It's
+       sticky inside <main> rather than fixed, so chroma.js's scroll filter on
+       <main> takes it in too (a filter would pin a fixed child to <main>). It
+       pulls itself up into main's top padding and takes no room in the page.
+       It also reaches 80px above the window (--glow-reach, out of sight), so
+       the split colors pull in more glow at the top edge instead of white;
+       the gradients are placed from the window's top, below that reach. */
+    .page-glow {
+        --glow-reach: 5rem;
+        position: sticky;
+        top: calc(-1 * var(--glow-reach));
         z-index: -1;
+        height: calc(100vh + var(--glow-reach));
+        margin-top: calc(-4rem - var(--glow-reach));
+        margin-bottom: calc(4rem - 100vh);
         pointer-events: none;
         background:
-            radial-gradient(60rem 28rem at 50% -8%, rgb(207 58 33 / 0.16), transparent 70%),
-            radial-gradient(30rem 24rem at 12% 8%, rgb(251 146 60 / 0.14), transparent 70%),
-            radial-gradient(30rem 24rem at 88% 12%, rgb(251 146 60 / 0.13), transparent 70%),
-            radial-gradient(44rem 20rem at 50% 30%, rgb(251 146 60 / 0.06), transparent 70%);
+            radial-gradient(60rem 28rem at 50% calc(var(--glow-reach) - 8vh), rgb(207 58 33 / 0.16), transparent 70%),
+            radial-gradient(30rem 24rem at 12% calc(var(--glow-reach) + 8vh), rgb(251 146 60 / 0.14), transparent 70%),
+            radial-gradient(30rem 24rem at 88% calc(var(--glow-reach) + 12vh), rgb(251 146 60 / 0.13), transparent 70%),
+            radial-gradient(44rem 20rem at 50% calc(var(--glow-reach) + 30vh), rgb(251 146 60 / 0.06), transparent 70%);
     }
 
     h1,
@@ -208,10 +223,6 @@
         scale: 0.85;
         transition: opacity 180ms, scale 250ms ease-out;
         pointer-events: none;
-        /* chroma.js lifts it into the top layer as a popover; no popover frame. */
-        border: 0;
-        padding: 0;
-        overflow: visible;
 
         &.is-on {
             opacity: 1;
@@ -300,21 +311,6 @@
                 mt-3;
         }
     }
-}
-
-/* chroma.js lifts the header into the top layer (with the work cursor) to
-   keep it out of the scroll effect. Undo the popover defaults so it sits across the top of the window as
-   it does in the page. Unlayered, so it outranks the header's own `sticky`. */
-#site-header:popover-open {
-    position: fixed;
-    inset: 0 0 auto;
-    width: auto;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    color: inherit;
-    overflow: visible;
 }
 
 /* Motion: motion.js fades the name and intro lines in, so they start hidden

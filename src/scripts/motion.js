@@ -33,9 +33,9 @@ async function init() {
     initCards();
     initRows();
 
-    if (window.matchMedia('(pointer: fine)').matches) initWorkCursor();
-    // After the cursor exists, so chroma can keep it out of its effect.
     initChroma();
+
+    if (window.matchMedia('(pointer: fine)').matches) initWorkCursor();
 }
 
 init().catch(error => {

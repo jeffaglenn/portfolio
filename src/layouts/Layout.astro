@@ -5,7 +5,6 @@ import "@styles/styles.css";
 
 import { SEO } from "astro-seo";
 import SiteHeader from 'src/components/site-header.astro';
-import ChromaPanel from 'src/components/chroma-panel.astro';
 
 // grab any per-page overrides
 const { seo = {} } = Astro.props;
@@ -66,13 +65,19 @@ const pageSeo = {
 		<SEO {...pageSeo} />
     </head>
 	<body id="top">
+        <a
+            class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-page focus:px-4 focus:py-2 focus:text-label focus:font-medium focus:text-brand focus:border focus:border-rule"
+            href="#main-content"
+        >
+            Skip to main content
+        </a>
+
         <SiteHeader />
 
         <main id="main-content">
+            <div class="page-glow" aria-hidden="true"></div>
             <slot />
         </main>
-
-        {import.meta.env.DEV && <ChromaPanel />}
 	</body>
 </html>
 

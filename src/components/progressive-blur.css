@@ -83,21 +83,21 @@
 
   position: absolute;
   inset: 0;
-  -webkit-backdrop-filter: blur(calc(var(--b) * var(--pb-strength, 1)));
-          backdrop-filter: blur(calc(var(--b) * var(--pb-strength, 1)));
+  -webkit-backdrop-filter: blur(calc(var(--b) * var(--pb-strength, 1))) saturate(var(--sat)) brightness(var(--bright));
+          backdrop-filter: blur(calc(var(--b) * var(--pb-strength, 1))) saturate(var(--sat)) brightness(var(--bright));
   -webkit-mask-image: var(--pb-mask);
           mask-image: var(--pb-mask);
 }
 
 /* --i = band position, --b = base blur radius (doubles each layer) */
-.progressive-blur > :nth-child(1) { --i: 0; --b: 0.5px; }
-.progressive-blur > :nth-child(2) { --i: 1; --b: 1px; }
-.progressive-blur > :nth-child(3) { --i: 2; --b: 2px; }
-.progressive-blur > :nth-child(4) { --i: 3; --b: 4px; }
-.progressive-blur > :nth-child(5) { --i: 4; --b: 8px; }
-.progressive-blur > :nth-child(6) { --i: 5; --b: 16px; }
-.progressive-blur > :nth-child(7) { --i: 6; --b: 32px; }
-.progressive-blur > :nth-child(8) { --i: 7; --b: 64px; }
+.progressive-blur > :nth-child(1) { --i: 0; --b: 0.5px; --sat: 100%; --bright: 101% }
+.progressive-blur > :nth-child(2) { --i: 1; --b: 1px; --sat: 100%; --bright: 102% }
+.progressive-blur > :nth-child(3) { --i: 2; --b: 2px; --sat: 110%; --bright: 103% }
+.progressive-blur > :nth-child(4) { --i: 3; --b: 4px; --sat: 110%; --bright: 104% }
+.progressive-blur > :nth-child(5) { --i: 4; --b: 8px; --sat: 120%; --bright: 105% }
+.progressive-blur > :nth-child(6) { --i: 5; --b: 16px; --sat: 120%; --bright: 106% }
+.progressive-blur > :nth-child(7) { --i: 6; --b: 32px; --sat: 130%; --bright: 107% }
+.progressive-blur > :nth-child(8) { --i: 7; --b: 64px; --sat: 130%; --bright: 108% }
 
 /* --- Optional: .is-scroll-aware ----------------------------------------
    Pure-CSS scroll-driven animation tied to the document's scroll position:

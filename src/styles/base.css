@@ -18,7 +18,7 @@
         position: relative;
     }
 
-    /* <main> reaches up behind the 64px sticky header, so the glow in it can too. */
+    /* <main> reaches up behind the 64px header, so the glow in it can too. */
     main {
         margin-top: -4rem;
         padding-top: 4rem;
@@ -26,7 +26,7 @@
 
     /* Background glow: a halo of vermilion and warm orange light falling from
        the top of the window. It sticks to the top of the window, so it stays
-       behind the page as it scrolls, and the header frosts over it. It's
+       behind the page as it scrolls. It's
        sticky inside <main> rather than fixed, so chroma.js's scroll filter on
        <main> takes it in too (a filter would pin a fixed child to <main>). It
        pulls itself up into main's top padding and takes no room in the page.

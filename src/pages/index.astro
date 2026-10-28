@@ -18,6 +18,15 @@ const experienceData = (await getCollection("experience")).sort(
 
 const email = "hello@jeffglenn.me";
 
+const elsewhere = [
+	{
+		label: "LinkedIn",
+		icon: "linkedin",
+		href: "https://www.linkedin.com/in/jeff-glenn-b821a6234/",
+	},
+	{ label: "GitHub", icon: "github", href: "https://github.com/jeffaglenn" },
+];
+
 // One fixed order for every project's stack: platform first, then front end.
 const stackOrder = [
 	"Craft CMS",
@@ -287,12 +296,30 @@ const hobbies = [
 				Have something in mind, or just want to say hello?
 			</p>
 
-			<a
-				href={`mailto:${email}`}
-				class="mt-6 inline-flex items-center gap-2.5 h-12 px-6 rounded-full bg-brand text-white font-medium transition-colors duration-200 hover:bg-brand-deep"
-			>
-				{email}
-			</a>
+			<div class="mt-6 flex flex-wrap items-center gap-3">
+				<a
+					href={`mailto:${email}`}
+					class="inline-flex items-center gap-2.5 h-12 px-6 rounded-full bg-brand text-white font-medium transition-colors duration-200 hover:bg-brand-deep"
+				>
+					{email}
+				</a>
+
+				<ul class="flex items-center gap-3">
+					{elsewhere.map((item) => (
+						<li>
+							<a
+								href={item.href}
+								class="flex items-center justify-center size-12 rounded-full border border-rule text-ink-muted transition-colors duration-200 hover:border-brand hover:text-brand"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={`${item.label} (opens in a new tab)`}
+							>
+								<Icon name={item.icon} aria-hidden="true" class="size-4" />
+							</a>
+						</li>
+					))}
+				</ul>
+			</div>
 		</div>
 	</section>
 </Layout>

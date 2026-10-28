@@ -9,21 +9,10 @@ import gsap from 'gsap';
 // --------------------------------- //
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const header = document.getElementById('site-header');
 
 function isTouchDevice() {
     return window.matchMedia("(pointer: coarse)").matches;
-}
-
-// --------------------------------- //
-// Header: show the small name once the large one scrolls away
-// --------------------------------- //
-const header = document.getElementById('site-header');
-const introName = document.getElementById('intro-name');
-
-if (header && introName) {
-    new IntersectionObserver(([entry]) => {
-        header.toggleAttribute('data-scrolled', !entry.isIntersecting);
-    }, { rootMargin: '-64px 0px 0px 0px' }).observe(introName);
 }
 
 // --------------------------------- //
@@ -169,8 +158,9 @@ gsap.utils.toArray('.peek').forEach(item => {
         item.setAttribute('aria-expanded', 'true');
         photo.hidden = false;
 
-        // Open below the phrase when there's no room above it under the header.
-        const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+        // Open below the phrase when there's no room above it, below the
+        // header if it's still on screen.
+        const headerBottom = Math.max(0, header ? header.getBoundingClientRect().bottom : 0);
         photo.classList.remove('is-below');
         gsap.set(photo, { x: 0 });
         if (photo.getBoundingClientRect().top < headerBottom + 12) {

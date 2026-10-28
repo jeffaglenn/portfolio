@@ -30,7 +30,7 @@ src/
 ├── assets/images/             screenshots and hobby photos (optimized at build)
 ├── icons/                     SVGs used through astro-icon
 ├── scripts/
-│   ├── app.js                 header state, portrait shuffle, hobby photos, Paradigm logo
+│   ├── app.js                 portrait shuffle, hobby photos, Paradigm logo
 │   ├── motion.js              GSAP entrances and the "Visit" cursor
 │   └── chroma.js              the color split while scrolling
 └── styles/

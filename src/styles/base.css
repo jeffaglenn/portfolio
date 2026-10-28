@@ -283,6 +283,9 @@
             bg-page
             p-1.5
             opacity-0;
+        /* astro-icon turns the logo's fill into currentColor, so set it here
+           or it picks up the link's red. */
+        color: var(--color-paradigm);
         z-index: 20;
     }
 

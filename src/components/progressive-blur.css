@@ -1,0 +1,145 @@
+/* ==========================================================================
+   Progressive Blur
+   --------------------------------------------------------------------------
+   A blur that ramps from 0 → 64px across an edge of the viewport (or a
+   container), like the frosted fade under iOS / macOS toolbars.
+
+   Source: extracted from a live site, Oct 2026.
+   Docs:   ./README.md  (how it works, tuning, gotchas, browser support)
+
+   HOW IT WORKS
+   `backdrop-filter: blur()` takes ONE radius per element, so a single layer
+   can't fade its blur. Instead we stack 8 layers:
+     - blur radius doubles per layer: 0.5, 1, 2, 4, 8, 16, 32, 64px
+     - each layer is masked to a band 3 steps wide (fade in → hold → fade out)
+     - each band starts 1 step (12.5%) after the previous one
+   Overlapping bands = smooth ramp. Opaque mask (#000) = blur visible.
+
+   MARKUP (exactly 8 empty children — nth-child drives the values)
+   <div class="progressive-blur is-bottom" aria-hidden="true">
+     <div></div><div></div><div></div><div></div>
+     <div></div><div></div><div></div><div></div>
+   </div>
+
+   PUBLIC API — custom properties (set on .progressive-blur or any ancestor)
+   --pb-height        strip height                 default 20vh (top: 10vh)
+   --pb-strength      multiplies every blur radius default 1  (0.5 = subtler)
+   --pb-z             z-index                      default 10
+   --pb-inset-start   left offset (e.g. sidebar)   default 0
+   --pb-inset-end     right offset                 default 0
+
+   Defaults live in var() fallbacks, NOT as declarations on .progressive-blur.
+   Declaring `--pb-strength: 1` on the element would override any value set
+   on an ancestor (e.g. :root or a section), and inheritance would silently
+   break. Internal vars are prefixed --_pb-* and aren't part of the API.
+
+   MODIFIER CLASSES
+   .is-bottom        pinned to bottom edge, blur strongest at the very bottom
+   .is-top           pinned to top edge, blur strongest at the very top
+   .is-contained     position:absolute — sits inside a positioned parent
+   .is-scroll-aware  bottom: collapses at end of page so the footer is sharp
+                     top:    collapses at start of page so the header/hero is sharp
+
+   Additions vs. the original: --pb-strength, --pb-inset-*, .is-contained,
+   class-based API instead of inline styles. Default output is identical.
+   ========================================================================== */
+
+.progressive-blur {
+  /* Internal: resolved height + gradient direction (set per edge below). */
+  --_pb-h: var(--pb-height, 20vh);
+  --_pb-dir: to bottom;
+
+  position: fixed;
+  inset-inline: var(--pb-inset-start, 0px) var(--pb-inset-end, 0px);
+  height: var(--_pb-h);
+  z-index: var(--pb-z, 10);
+  pointer-events: none; /* never block clicks/scroll on content beneath */
+}
+
+.progressive-blur.is-bottom { bottom: 0; }
+
+/* Mirrored: the gradient runs "to top", so the strongest layer hugs the top edge. */
+.progressive-blur.is-top { top: 0; --_pb-dir: to top; --_pb-h: var(--pb-height, 10vh); }
+
+/* Inside a card / hero / scroller wrapper. Parent needs position:relative
+   (and usually overflow:hidden + border-radius to clip the blur). */
+.progressive-blur.is-contained { position: absolute; }
+
+/* --- Layers ------------------------------------------------------------- */
+
+.progressive-blur > * {
+  --pb-step: 12.5%; /* 100% / 8 layers */
+
+  /* Band for layer i: transparent at i, opaque at i+1 → i+2, transparent at i+3.
+     Last layer's band runs past 100% — that's intentional, it stays opaque
+     to the edge. */
+  --pb-mask: linear-gradient(
+    var(--_pb-dir),
+    transparent calc(var(--i) * var(--pb-step)),
+    #000        calc((var(--i) + 1) * var(--pb-step)),
+    #000        calc((var(--i) + 2) * var(--pb-step)),
+    transparent calc((var(--i) + 3) * var(--pb-step))
+  );
+
+  position: absolute;
+  inset: 0;
+  -webkit-backdrop-filter: blur(calc(var(--b) * var(--pb-strength, 1)));
+          backdrop-filter: blur(calc(var(--b) * var(--pb-strength, 1)));
+  -webkit-mask-image: var(--pb-mask);
+          mask-image: var(--pb-mask);
+}
+
+/* --i = band position, --b = base blur radius (doubles each layer) */
+.progressive-blur > :nth-child(1) { --i: 0; --b: 0.5px; }
+.progressive-blur > :nth-child(2) { --i: 1; --b: 1px; }
+.progressive-blur > :nth-child(3) { --i: 2; --b: 2px; }
+.progressive-blur > :nth-child(4) { --i: 3; --b: 4px; }
+.progressive-blur > :nth-child(5) { --i: 4; --b: 8px; }
+.progressive-blur > :nth-child(6) { --i: 5; --b: 16px; }
+.progressive-blur > :nth-child(7) { --i: 6; --b: 32px; }
+.progressive-blur > :nth-child(8) { --i: 7; --b: 64px; }
+
+/* --- Optional: .is-scroll-aware ----------------------------------------
+   Pure-CSS scroll-driven animation tied to the document's scroll position:
+   - .is-bottom: height collapses to 0 in the LAST 1% of scroll, so the
+     footer is sharp at the end of the page.
+   - .is-top:    height is 0 in the FIRST 1% of scroll and grows to full,
+     so the header/hero is sharp at the top of the page.
+   Like the original:
+   - Hidden entirely where scroll timelines are unsupported (otherwise the
+     footer/header would be permanently blurred).
+   - Hidden for prefers-reduced-motion.
+   Only meaningful on fixed, viewport-level strips — scroll() tracks the
+   nearest scroll container (the root, here).
+   ------------------------------------------------------------------------ */
+.progressive-blur.is-scroll-aware { display: none; }
+
+@supports (animation-timeline: scroll()) {
+  .progressive-blur.is-scroll-aware {
+    display: block;
+    /* Longhands on purpose: with the `animation` shorthand, CSS minifiers
+       (esbuild/Lightning CSS in Vite) fold animation-timeline INTO the
+       shorthand, which browsers reject — and the effect silently dies. */
+    animation-name: pb-collapse;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: scroll();
+  }
+  .progressive-blur.is-top.is-scroll-aware { animation-name: pb-collapse-top; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressive-blur.is-scroll-aware { display: none; }
+}
+
+/* Bottom: full until the end, then 0. */
+@keyframes pb-collapse {
+  0%, 99% { height: var(--_pb-h); }
+  100%    { height: 0; }
+}
+
+/* Top: 0 at the very top, full once scrolling starts. */
+@keyframes pb-collapse-top {
+  0%      { height: 0; }
+  1%, 100% { height: var(--_pb-h); }
+}

@@ -10,6 +10,7 @@ import schibstedLatin from "@fontsource-variable/schibsted-grotesk/files/schibst
 
 import { SEO } from "astro-seo";
 import SiteHeader from 'src/components/site-header.astro';
+import ProgressiveBlur from 'src/components/progressive-blur.astro';
 
 interface Props {
     seo?: {
@@ -111,6 +112,9 @@ const pageSeo = {
             <div class="page-glow" aria-hidden="true"></div>
             <slot />
         </main>
+
+        <!-- Kept outside <main>: chroma.js puts a filter on it, which would pin a fixed strip to <main>. -->
+        <ProgressiveBlur position="bottom" scrollAware />
 	</body>
 </html>
 

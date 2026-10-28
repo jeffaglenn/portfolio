@@ -31,7 +31,7 @@ Clients who reach out are hiring Jeff directly, independent of his role at Parad
 
 - Single-page site: intro (portrait and name), Work, About, Experience, Contact. Contact is by email (mailto) plus LinkedIn and GitHub links.
 - Project cards link out to the live client sites in a new tab.
-- Built with Astro 5, Tailwind CSS v4, anime.js (portrait, popups), and GSAP (entrances, the work cursor, the scroll chroma). Content comes from Astro collections: `src/content/projects.json` and `src/content/experience/*.md`.
+- Built with Astro 5, Tailwind CSS v4, and GSAP (entrances, popups, the work cursor, the scroll chroma). Content comes from Astro collections: `src/content/projects.json` and `src/content/experience/*.md`.
 - A single light theme.
 - Google Analytics is installed.
 

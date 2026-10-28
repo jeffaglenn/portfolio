@@ -2,7 +2,7 @@
 
 The portfolio of Jeff Glenn, a Memphis web designer and front-end developer. One static page: intro, selected work, about, experience, and contact.
 
-Built with [Astro](https://astro.build) 5, Tailwind CSS 4, GSAP (entrances, the work cursor, the scroll chroma), and anime.js (the portrait and the hobby photos).
+Built with [Astro](https://astro.build) 5, Tailwind CSS 4, and GSAP (entrances, the hobby photos, the work cursor, the scroll chroma).
 
 ## Commands
 

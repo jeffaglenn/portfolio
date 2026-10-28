@@ -2,7 +2,7 @@
 
 The portfolio of Jeff Glenn, a Memphis web designer and front-end developer. One static page: intro, selected work, about, experience, and contact.
 
-Built with [Astro](https://astro.build) 5, Tailwind CSS 4, GSAP (entrances, the work cursor, the scroll chroma), and anime.js (the portrait and the hobby photos).
+Built with [Astro](https://astro.build) 5, Tailwind CSS 4, and GSAP (entrances, the hobby photos, the work cursor, the scroll chroma).
 
 ## Commands
 
@@ -30,7 +30,7 @@ src/
 ├── assets/images/             screenshots and hobby photos (optimized at build)
 ├── icons/                     SVGs used through astro-icon
 ├── scripts/
-│   ├── app.js                 header state, portrait shuffle, hobby photos, Paradigm logo
+│   ├── app.js                 portrait shuffle, hobby photos, Paradigm logo
 │   ├── motion.js              GSAP entrances and the "Visit" cursor
 │   └── chroma.js              the color split while scrolling
 └── styles/

@@ -1,0 +1,62 @@
+---
+/**
+ * ProgressiveBlur — Astro wrapper for ./progressive-blur.css
+ *
+ * Usage (default — bottom edge only):
+ *   <ProgressiveBlur position="bottom" scrollAware />
+ *
+ * Optional top strip (opt-in; only add when asked):
+ *   <ProgressiveBlur position="top" scrollAware />
+ *
+ * Usage (inside a card/hero — parent needs position:relative; overflow:hidden):
+ *   <ProgressiveBlur position="bottom" contained height="40%" />
+ *
+ * Porting: copy this file + progressive-blur.css into the target project's
+ * components folder. The CSS import below bundles the styles with the
+ * component; delete it if the CSS is loaded globally instead.
+ */
+import './progressive-blur.css';
+
+interface Props {
+  /** Which edge the blur hugs. Default 'bottom'. */
+  position?: 'top' | 'bottom';
+  /** Any CSS length. Defaults: 20vh bottom, 10vh top. */
+  height?: string;
+  /** Multiplier on every blur radius. 1 = original (max 64px). */
+  strength?: number;
+  /** position:absolute inside a positioned parent instead of fixed. */
+  contained?: boolean;
+  /** Bottom: collapse at page end. Top: hidden at page start. Viewport-level strips only. */
+  scrollAware?: boolean;
+  class?: string;
+}
+
+const {
+  position = 'bottom',
+  height,
+  strength,
+  contained = false,
+  scrollAware = false,
+  class: className,
+} = Astro.props;
+
+const style = [
+  height && `--pb-height: ${height}`,
+  strength !== undefined && `--pb-strength: ${strength}`,
+]
+  .filter(Boolean)
+  .join('; ');
+---
+
+<div
+  class:list={[
+    'progressive-blur',
+    `is-${position}`,
+    { 'is-contained': contained, 'is-scroll-aware': scrollAware },
+    className,
+  ]}
+  style={style || undefined}
+  aria-hidden="true"
+>
+  {Array.from({ length: 8 }, () => <div />)}
+</div>

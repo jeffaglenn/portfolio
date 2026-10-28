@@ -14,30 +14,19 @@ const elsewhere = [
 ---
 
 <!--
-    The header is clear at the top of the page. Once the large name in the intro
-    scrolls away, app.js sets data-scrolled and the frosted backing and the
-    small name fade in together.
+    The header scrolls away with the page. <main> reaches up behind it so the
+    glow shows through, and relative + z-30 keep its links above <main> (which
+    becomes a stacking context while chroma.js's scroll filter is on).
 -->
-<header
-	id="site-header"
-	class="group sticky top-0 z-30 bg-transparent transition-[background-color,backdrop-filter] duration-1000 ease-[cubic-bezier(0.33,1,0.68,1)] data-scrolled:bg-page/75 data-scrolled:backdrop-blur-2xl"
->
-	<div class="flex items-center gap-5 h-16 px-5 sm:px-8">
-		<a
-			href="#top"
-			class="font-name font-medium font-stretch-expanded tracking-[-0.03em] text-ink opacity-0 -translate-y-1 transition duration-1000 ease-[cubic-bezier(0.33,1,0.68,1)] group-data-scrolled:opacity-100 group-data-scrolled:translate-y-0"
-			tabindex="-1"
-		>
-			Jeff Glenn
-		</a>
-
-		<!-- 40px hit areas around 18px marks; the negative margin keeps the button's spacing optical. -->
-		<ul class="flex items-center ml-auto -mr-2 text-ink-muted">
+<header id="site-header" class="relative z-30">
+	<div class="flex items-center gap-2 h-16 px-5 sm:px-8">
+		<!-- Circles match the Say hello button's height, like the ones in the contact section. -->
+		<ul class="flex items-center gap-2 ml-auto">
 			{elsewhere.map((item) => (
 				<li>
 					<a
 						href={item.href}
-						class="flex items-center justify-center size-10 rounded-full hover:text-ink transition-colors"
+						class="flex items-center justify-center size-9 rounded-full border border-rule text-ink-muted transition-colors duration-200 hover:border-brand hover:text-brand"
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label={`${item.label} (opens in a new tab)`}
@@ -45,7 +34,7 @@ const elsewhere = [
 						<Icon
 							name={item.icon}
 							aria-hidden="true"
-							class="size-[18px]"
+							class="size-4"
 						/>
 					</a>
 				</li>

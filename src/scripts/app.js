@@ -2,28 +2,17 @@
 // Imports
 // --------------------------------- //
 
-import { animate, utils, createAnimatable } from 'animejs';
+import gsap from 'gsap';
 
 // --------------------------------- //
 // End Imports
 // --------------------------------- //
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const header = document.getElementById('site-header');
 
 function isTouchDevice() {
     return window.matchMedia("(pointer: coarse)").matches;
-}
-
-// --------------------------------- //
-// Header: show the small name once the large one scrolls away
-// --------------------------------- //
-const header = document.getElementById('site-header');
-const introName = document.getElementById('intro-name');
-
-if (header && introName) {
-    new IntersectionObserver(([entry]) => {
-        header.toggleAttribute('data-scrolled', !entry.isIntersecting);
-    }, { rootMargin: '-64px 0px 0px 0px' }).observe(introName);
 }
 
 // --------------------------------- //
@@ -85,7 +74,7 @@ function getRandomImage() {
 
 function preloadFrames() {
     // Random order, so the first frames to arrive aren't always the same ones.
-    const queue = utils.shuffle([...images]);
+    const queue = gsap.utils.shuffle([...images]);
     const loadNext = () => {
         const src = queue.shift();
         if (!src) return;
@@ -155,11 +144,11 @@ if (profilePic) {
 // ------------------ //
 // Hobby photo popups
 // ------------------ //
-utils.$('.peek').forEach(item => {
+gsap.utils.toArray('.peek').forEach(item => {
     const photo = item.querySelector('.peek-photo');
     if (!photo) return;
 
-    utils.set(photo, { scale: 0.92 });
+    gsap.set(photo, { scale: 0.92 });
 
     let open = false;
 
@@ -169,10 +158,11 @@ utils.$('.peek').forEach(item => {
         item.setAttribute('aria-expanded', 'true');
         photo.hidden = false;
 
-        // Open below the phrase when there's no room above it under the header.
-        const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+        // Open below the phrase when there's no room above it, below the
+        // header if it's still on screen.
+        const headerBottom = Math.max(0, header ? header.getBoundingClientRect().bottom : 0);
         photo.classList.remove('is-below');
-        utils.set(photo, { x: 0 });
+        gsap.set(photo, { x: 0 });
         if (photo.getBoundingClientRect().top < headerBottom + 12) {
             photo.classList.add('is-below');
         }
@@ -183,17 +173,18 @@ utils.$('.peek').forEach(item => {
         let shift = 0;
         if (left < margin) shift = margin - left;
         if (right > window.innerWidth - margin) shift = window.innerWidth - margin - right;
-        utils.set(photo, { x: shift });
+        gsap.set(photo, { x: shift });
 
         if (reducedMotion.matches) {
-            utils.set(photo, { scale: 1, opacity: 1 });
+            gsap.set(photo, { scale: 1, opacity: 1 });
             return;
         }
-        animate(photo, {
+        gsap.to(photo, {
             scale: 1,
             opacity: 1,
-            ease: 'outExpo',
-            duration: 400,
+            ease: 'expo.out',
+            duration: 0.4,
+            overwrite: 'auto',
         });
     };
 
@@ -203,15 +194,16 @@ utils.$('.peek').forEach(item => {
         item.setAttribute('aria-expanded', 'false');
 
         if (reducedMotion.matches) {
-            utils.set(photo, { scale: 0.92, opacity: 0 });
+            gsap.set(photo, { scale: 0.92, opacity: 0 });
             photo.hidden = true;
             return;
         }
-        animate(photo, {
+        gsap.to(photo, {
             scale: 0.92,
             opacity: 0,
-            ease: 'outQuad',
-            duration: 180,
+            ease: 'power1.out',
+            duration: 0.18,
+            overwrite: 'auto',
             // Take it out of layout once gone, so a closed photo near the
             // window edge can't widen the page.
             onComplete: () => { if (!open) photo.hidden = true; },
@@ -229,18 +221,15 @@ utils.$('.peek').forEach(item => {
 
     // On a fine pointer the photo drifts a little with the cursor.
     if (!isTouchDevice()) {
-        const drift = createAnimatable(photo, {
-            y: 400,
-            rotate: 400,
-            ease: 'out(3)',
-        });
+        const driftY = gsap.quickTo(photo, 'y', { duration: 0.4, ease: 'power2.out' });
+        const driftRotate = gsap.quickTo(photo, 'rotation', { duration: 0.4, ease: 'power2.out' });
 
         item.addEventListener('mousemove', e => {
             if (reducedMotion.matches) return;
             const { left, width } = item.getBoundingClientRect();
-            const norm = utils.clamp((e.clientX - left) / width * 2 - 1, -1, 1);
-            drift.rotate(norm * 3);
-            drift.y(-Math.abs(norm) * 4);
+            const norm = gsap.utils.clamp(-1, 1, (e.clientX - left) / width * 2 - 1);
+            driftRotate(norm * 3);
+            driftY(-Math.abs(norm) * 4);
         });
     }
 });
@@ -248,17 +237,20 @@ utils.$('.peek').forEach(item => {
 // ------------------ //
 // Paradigm logo that floats over its link and follows the cursor
 // ------------------ //
-utils.$('.logo-hover').forEach(link => {
+gsap.utils.toArray('.logo-hover').forEach(link => {
     const logo = link.querySelector('.logo-float');
     if (!logo) return;
 
-    utils.set(logo, { scale: 0.85 });
+    gsap.set(logo, { scale: 0.85 });
 
-    const follow = createAnimatable(logo, {
-        x: 500,
-        y: 500,
-        ease: 'out(3)',
-    });
+    const followX = gsap.quickTo(logo, 'x', { duration: 0.5, ease: 'power2.out' });
+    const followY = gsap.quickTo(logo, 'y', { duration: 0.5, ease: 'power2.out' });
+
+    // Passing the target as the start value too makes a quickTo jump there.
+    const follow = (x, y, instant) => {
+        followX(x, instant ? x : undefined);
+        followY(y, instant ? y : undefined);
+    };
 
     let shown = false;
 
@@ -266,24 +258,25 @@ utils.$('.logo-hover').forEach(link => {
         shown = true;
         logo.hidden = false;
         if (reducedMotion.matches) {
-            utils.set(logo, { scale: 1, opacity: 1 });
+            gsap.set(logo, { scale: 1, opacity: 1 });
             return;
         }
-        animate(logo, { scale: 1, opacity: 1, ease: 'outExpo', duration: 350 });
+        gsap.to(logo, { scale: 1, opacity: 1, ease: 'expo.out', duration: 0.35, overwrite: 'auto' });
     };
 
     const hide = () => {
         shown = false;
         if (reducedMotion.matches) {
-            utils.set(logo, { scale: 0.85, opacity: 0 });
+            gsap.set(logo, { scale: 0.85, opacity: 0 });
             logo.hidden = true;
             return;
         }
-        animate(logo, {
+        gsap.to(logo, {
             scale: 0.85,
             opacity: 0,
-            ease: 'outQuad',
-            duration: 150,
+            ease: 'power1.out',
+            duration: 0.15,
+            overwrite: 'auto',
             onComplete: () => { if (!shown) logo.hidden = true; },
         });
     };
@@ -291,11 +284,9 @@ utils.$('.logo-hover').forEach(link => {
     // Keep the logo centered on the pointer, but inside the link's box.
     const place = (e, instant) => {
         const { left, top, width, height } = link.getBoundingClientRect();
-        const x = utils.clamp(e.clientX - left - width / 2, -width / 2, width / 2);
-        const y = utils.clamp(e.clientY - top - height / 2, -height / 2, height / 2);
-        const duration = instant || reducedMotion.matches ? 0 : undefined;
-        follow.x(x, duration);
-        follow.y(y, duration);
+        const x = gsap.utils.clamp(-width / 2, width / 2, e.clientX - left - width / 2);
+        const y = gsap.utils.clamp(-height / 2, height / 2, e.clientY - top - height / 2);
+        follow(x, y, instant || reducedMotion.matches);
     };
 
     if (!isTouchDevice()) {
@@ -309,8 +300,7 @@ utils.$('.logo-hover').forEach(link => {
 
     // Keyboard focus shows it centered on the link.
     link.addEventListener('focus', () => {
-        follow.x(0, 0);
-        follow.y(0, 0);
+        follow(0, 0, true);
         show();
     });
     link.addEventListener('blur', hide);
